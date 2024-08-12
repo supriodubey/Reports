@@ -1,0 +1,704 @@
+\chapter{Introduction}
+\section{The Center of the Universe}
+
+One of the foundations of modern cosmology is the Cosmological Principle. If we view it over a large scale, the universe is independent of the position i.e $homogeneous$, and independent of direction i.e $isotropic$ to a first approximation.
+The spacetime geometry that is consistent with the universe being homogeneous and isotropic is given by the Friedmann-Roberston Walker Metric(FRW) metric.
+\begin{align}
+     ds^2= -c^2dt^2 + a(t)^2\left(\frac{dr^2}{1-\kappa r^2}+ r^2d\theta^2 +r^2sin^2\theta d\phi^2\right )\label{eq:1.1}
+\end{align}\\
+where $k = 0$, $k = +1$ and 
+$k = -1$ for flat, positively curved and negatively curved spacelike $3$---hypersurfaces, respectively. Whereas, $a(t)$ is the scale factor that incorporates the expansion of the universe. For ease of notation, we will restrict most of our discussion to the case $k = 0$.
+\hspace{0.5cm}\\
+We can write the FRW metric in the flat space i.e. taking the form of the Minkowski metric with the scale factor.
+
+\begin{align}
+    d{s^2} = -\ d{t^2} + a^2(t) \ d{\sigma^2}\label{eq:1.2}
+\end{align}\\
+where 
+\begin{align}
+     d{\sigma^2} = \gamma_{ij} \ d{x^{i}} \ d{x^{j}}\label{eq:1.3}
+\end{align}\\
+with 
+\begin{align}
+    \gamma_{ij}= \delta_{ij} + \kappa\frac{x_{i}x_{j}}{1-\kappa(x_k x^k)}\label{eq:1.4}
+\end{align}\\
+\hspace{0.5cm}We can notice that by using the polar coordinates we can  get to equation \ref{eq:1.1}. The polar coordinate used in the equation \ref{eq:1.1} refers to the observer comoving with the expansion of the universe. We get the physical distance by multiplying the moving distance with the scale factor.\\
+We can redefine the radial coordinate as  
+\begin{align}
+    d\chi = \frac{dr}{\sqrt{1-\kappa r^2}}\label{eq:1.5}
+\end{align}\\
+such that,
+\begin{align}
+   ds^2= -dt^2 + a(t)^2\left[{d\chi^2}+ f(\chi)^2(d\theta^2 +sin^2\theta d\phi^2)\right ]\label{eq:1.6}
+\end{align}\\
+where,
+\begin{align}
+    f(\chi) = \begin{cases}
+        sinh\chi,& \kappa=-1\\
+        \chi,& \kappa=0\\
+        sin\chi,& \kappa=+1
+    \end{cases}
+\end{align}\\
+This form of metric is particularly convenient for studying the propagation of light. Light travels along the null geodesic $ds^2=0$ so to make the propagation of light in FRW similar to the Minkowski space we introduce conformal time,
+\begin{align}
+    d\tau = \frac{dt}{a(t)},\label{eq:1.8}
+\end{align}\\
+Substituting it in \ref{eq:1.6} we get 
+\begin{align}
+    ds^2= -a(\tau)^2\left[d\tau^2 - \left({d\chi^2}+ f(\chi)^2(d\theta^2 +sin^2\theta d\phi^2)\right)\right ]\label{eq:1.9}
+\end{align}
+    
+\section{Freidmann Equation}
+\hspace{0.5cm}The dynamics of the way the universe evolves are determined by the Einstein equation.
+\begin{align}
+    G_{\mu \nu } = R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R = 8 \pi G T_{\mu \nu }\label{eq:1.10}
+\end{align}\\
+This relates to the Einstein tensor $G_{\mu \nu }$ which is a measure of the “space-time curvature” of the FRW
+universe to the stress-energy tensor where $T_{\mu \nu }$ is the measure of the “matter content” of the universe.\\
+
+\subsection{Space-time Curvature}
+\hspace{0.5cm}Let us compute the Einstein tensor on the l.h.s. of the Einstein equation $G_{\mu \nu } = R_{\mu \nu } - \frac{1}{2} g_{\mu \nu } R$ \\ 
+The Ricci tensor is given by :
+\begin{align}
+        R_{\mu \nu } = \Gamma^{\alpha }_{\mu \nu , \alpha } 
+        - \Gamma^{\alpha }_{\mu \alpha , \nu }
+        + \Gamma^{\beta }_{\mu \nu } \Gamma^{\alpha }_{\alpha \beta } 
+        - \Gamma^{\beta}_{\mu \alpha } \Gamma^{\alpha }_{\nu \beta }
+\end{align}
+Let us see the Christoffel symbols for the FRW metric:\label{1.12}
+%\begin{claim}
+\begin{subequations}
+    \begin{align}
+        %\begin{gather}
+            \Gamma^{0}_{\mu \nu } &= \left[\begin{array}{cccc}
+            0 & 0 & 0 & 0 \\ 
+            0 & \frac{\dot{a}a}{1-kr^2} & 0 & 0 \\ 
+            0 & 0 & r^2a \dot{a} & 0 \\ 
+            0 & 0 & 0 & r^2 a \dot{a} \sin^2\theta 
+            \end{array}\right]\label{eq:1.12a} \\
+            \Gamma^{1}_{\mu \nu } &= \left[\begin{array}{cccc}
+            0 & \dot{a} / a & 0 & 0 \\ 
+            \dot{a} / a & \frac{kr}{(1-kr^2)} & 0 & 0 \\ 
+            0 & 0 & (kr^2-1)r & 0 \\ 
+            0 & 0 & 0 & (kr^2-1)r \sin^2\theta 
+            \end{array}\right] \label{eq:1.12b}\\ 
+            \Gamma^{2}_{\mu \nu } &= \left[\begin{array}{cccc}
+            0 & 0 & \dot{a} / a & 0 \\ 
+            0 & 0 & 1 / r & 0 \\ 
+            \dot{a} / a & 1/r & 0 & 0 \\ 
+            0 & 0 & 0 & - \sin \theta \cos \theta 
+            \end{array}\right]\label{eq:1.12c} \\ 
+            \Gamma^{3}_{\mu \nu } &= \left[\begin{array}{cccc}
+            0 & 0 & 0 & \dot{a} / a \\ 
+            0 & 0 & 0 & 1/r \\ 
+            0 & 0 & 0 & \cos \theta  /\sin \theta  \\ 
+            \dot{a} /a  & 1/r & \cos \theta  /\sin \theta  & 0
+            \end{array}\right] \label{eq:1.12d}\\ 
+        %\end{gather}
+    \end{align}
+\end{subequations}
+%\end{claim}
+   
+
+Here we used simplifications that the FRW metric is diagonal, and it does not depend on \(\varphi \).\\
+
+The components of the Ricci tensor are: 
+    
+\begin{subequations}
+    \begin{align}
+        R_{00} & = - 3 \partial_{t} (\frac{\dot{a}}{a})  - 3 (\frac{\dot{a}}{a})^2\\
+        & = -3 \left(\frac{\ddot{a}}{a} - (\frac{\dot{a}}{a})^2 + (\frac{\dot{a}}{a})^2\right)\\ 
+        & = - 3 \frac{\ddot{a}}{a}
+    \end{align}
+\end{subequations}
+    
+
+
+    
+\begin{subequations}
+    \begin{align}
+        \begin{split}
+            R_{11} &= \partial_{t} (\frac{\dot{a} a}{1 - kr^2} )
+            + \partial_{r} (\frac{kr}{1 - kr^2})
+            - \partial_{r} (\frac{kr}{1 - kr^2})
+            - 2 \partial_{r} (\frac{1}{r}) \\
+            &\phantom{=}\ 
+            + \frac{\dot{a} a}{1 - kr^2} 3 \frac{\dot{a}}{a}
+            + \frac{kr}{1-kr^2} (\frac{kr }{1 - kr^2} + \frac{2}{r}) \\
+            &\phantom{=}\ 
+            - 2 \frac{\dot{a}}{a} \frac{\dot{a} a}{1 - kr^2}
+            - (\frac{kr}{1 - kr^2})^2 
+            - 2 (\frac{1}{r})^2
+        \end{split}  \\
+        &= \frac{\ddot{a} a + \dot{a}^2}{1 - kr^2} 
+        + 3 \frac{\dot{a}^2}{1 - kr^2}
+        + 2 \frac{k}{1 - kr^2}
+        - 2 \frac{\dot{a}^2}{1 - kr^2}  \\
+        &= \frac{\ddot{a} a + 2 \dot{a}^2 + 2 k}{1 - kr^2}
+    \end{align}
+\end{subequations}
+    
+\begin{subequations}
+    \begin{align}
+        \begin{split}
+            R_{22} &= 
+            r^2 \partial_{t} (a \dot{a})
+            + \partial_{r} ((kr^2-1)r)
+            - \partial_{\theta } (\frac{\cos \theta }{\sin \theta }) \\
+            &\phantom{=}\ 
+            +3 \Gamma^{t}_{\theta \theta } \Gamma^{\theta }_{t \theta } + \Gamma^{r}_{\theta \theta } (\Gamma^{r}_{r r } + 2 \Gamma^{\theta }_{r \theta })
+            -2 (\Gamma^{t}_{\theta \theta } \Gamma^{\theta }_{t \theta } + \Gamma^{r}_{\theta \theta } \Gamma^{\theta }_{\theta r}) - \frac{\cos^2 \theta}{\sin^2\theta }
+        \end{split}  \\
+        &= r^2 (\ddot{a} a + \dot{a}^2)
+        + 3kr^2 - 1 + \frac{1}{\sin^2\theta} 
+        +  r^2 \dot{a}^2
+        - kr^2
+        - \frac{\cos^2\theta }{\sin^2\theta }  \\
+        &= r^2 (\ddot{a} a + 2\dot{a}^2 + 2k)
+    \end{align} 
+\end{subequations}
+
+\begin{subequations}
+    \begin{align}
+        R_{33} &= \partial_{\alpha } \Gamma^{\alpha }_{\varphi \varphi } - \partial_{\varphi } \Gamma^{\alpha }_{\alpha \varphi } + \Gamma^{\alpha }_{\varphi \varphi } \Gamma^{\beta }_{\alpha \beta } - \Gamma^{\beta }_{\varphi \alpha } \Gamma^{\alpha }_{\varphi \beta }  \\
+        &= r^2 \sin^2\theta (\ddot{a} a + 2 \dot{a}^2 + 2k) 
+    \end{align}
+\end{subequations}
+
+
+The Ricci scalar then comes out to be 
+
+\begin{subequations}
+    \begin{align}
+        \begin{split}
+            R = g^{\mu \nu } R_{\mu \nu } 
+            &= 3 \frac{\ddot{a}}{a} 
+            + \frac{1-kr^2}{a^2} \frac{\ddot{a}
+             a + 2 \dot{a}^2 + 2k}{1 - kr^2} \\
+             &\phantom{=}\ 
+            + \frac{1}{a^2r^2} r^2 (\ddot{a} a + 2 \dot{a}^2 + 2k)
+            + \frac{1}{a^2r^2 \sin^2\theta }
+            r^2 \sin^2\theta  (\ddot{a} a + 2 \dot{a}^2 + 2k) 
+        \end{split}
+        \\
+        &= 3 \frac{\ddot{a}}{a} + 3 \frac{\ddot{a}a + 2 \dot{a}^2 + 2k}{a^2}
+        \\
+        &= 6 \left[\frac{\ddot{a}}{a} + (\frac{\dot{a}}{a}) + \frac{k}{a^2}\right]
+        \,.
+    \end{align}
+\end{subequations}
+
+We find that the non-zero components of the Einstein tensor $G^{\mu}_{\nu} = g^{\mu \lambda}G_{\lambda \nu }$
+\begin{subequations}
+    \begin{align}
+        G^{0}_{0} = 3 \left[\left(\frac{\dot{a}}{a}^2\right) + \frac{k}{a^2}\right]\label{eq:1.18a}
+    \end{align}
+    \begin{align}
+        G^{i}_{j} =  \left[2\frac{\ddot{a}}{a} + \left(\frac{\dot{a}}{a}^2\right) + \frac{k}{a^2}\right]\delta^{i}_{j}\label{eq:1.18b}
+    \end{align}
+\end{subequations}
+\hspace{0.5cm}\\
+
+*\subsection{Stress-energy Tensor}
+\hspace{0.5cm}For the universe to be isotropic and homogeneous it is forced to be a perfect fluid. Perfect fluids have a stress-energy tensor like :
+\begin{align}
+    T^{\mu \nu } =  (\rho + P) u^{\mu } u^{\nu } + P g^{\mu \nu }\label{eq:1.19}
+\end{align}\\
+
+where $u^{\mu }$ is the 4-velocity of the fluid element. It is diagonal in the $\emph{comoving frame}$, in which $u^{\mu } = (1, \vec{0})$.\\
+\hspace{0.5cm}If we take the covariant divergence of the Einstein tensor \(G_{\mu \nu }\) we get zero; so the stress-energy tensor must also have \(\nabla_{\mu} T^{\mu \nu }=0\). 
+One key emphasis here is that the covariant derivative of the stress-energy tensor is not a conservation equation unlike in special relativity where the equation  \(\partial_{\mu}  T^{\mu \nu }\) describes a conservation equation, a local one.\\ 
+\hspace{0.5cm}In GR we get a conserved quantity if the metric doesn't depend on some coordinate ($\equiv$ something constant). 
+We denote Killing Vectors, a vector oriented in the direction of symmetry. But in cosmology, we do not have symmetry with respect to time translation, so there is no time-like Killing vector \(\xi_{\mu }\) such that \(\xi_{\nu } \nabla_{\mu } T^{\mu \nu }\) represents the conservation of energy.\\
+This equation, \(\nabla_{\mu } T^{\mu \nu }\) follows from the fact that our fluid follows its equations of motion. 
+Let us explore the meaning of these equations. If, in the equation \( \nabla_{\mu } T^{\mu}_{0} = 0\),  we find 
+\begin{subequations}
+    \begin{align}
+        \nabla_{\mu } T^{\mu}_{0} 
+        &= \partial_{\mu } T^{\mu }_{0} + \Gamma^{\mu }_{\mu \lambda } T^{\lambda }_{0} - \Gamma^{\lambda }_{\mu 0} T^{\mu }_{\lambda }
+        = 0 
+    \end{align}
+    \begin{quote}
+        the term $T^{i}_{0}$ vanishes by isotropy. So we get,
+    \end{quote}
+    \begin{align}
+        \partial_{t} \rho + \Gamma^{\mu }_{\mu 0} \rho - \Gamma^{\lambda }_{\mu 0} T^{\mu }_{\lambda } = 0 
+    \end{align}
+    \begin{quote}
+        From \ref{eq:1.12b},\ref{eq:1.12c},\ref{eq:1.12d} we see that $\Gamma^{\lambda }_{\mu 0}$ vanishes
+        unless $\lambda$ and $\mu$ are spatial indices equal to each other, in which case it is $\frac{\dot{a}}{a}$.The above equation therefore reads :
+    \end{quote}
+    \begin{align}
+        \dot{\rho} + 3 \frac{\dot{a}}{a}(\rho + P) = 0 \label{eq:1.20c}
+    \end{align}
+\end{subequations}
+To find the other two Friedmann equations we compare the time-time equation and the space-space equation of the Einstein equations to the stress-energy tensor i.e comparing \ref{eq:1.19} to \ref{eq:1.18a} and \ref{eq:1.18b} respectively
+To relate the sources of matter to the evolution of the scale factor in the FRW metric \ref{eq:1.9}, 
+\begin{subequations}
+    \begin{align}
+        \frac{\ddot{a}}{a} &= - \frac{4 \pi G}{ 3} (\rho + 3 P) \label{eq:1.21a}  \\
+        \left(\frac{\dot{a}}{a}\right)^2 &= \frac{8 \pi G}{3} \rho - \frac{k}{a^2} \label{eq:1.21b}
+    \end{align}
+\end{subequations}\\
+The space-space equation is not a dynamical equation, since it contains no second-time derivatives: it is a \emph{constraint} on the evolution of the system. 
+However, the three Friedmann equations are not independent: the time-time one can be found from \ref{eq:1.21a} and \ref{eq:1.20c}.\\
+We define $\left(\frac{\dot{a}}{a}\right) \equiv H $, the Hubble parameter which is the measure of the expansion rate of the universe, measured in $Km.s^{-1}.Mpc^{-1}$.\\ 
+\hspace{0.5cm}The above equations \ref{eq:1.20c},\ref{eq:1.21a},\ref{eq:1.21b} describe how the universe expands and lay the groundwork for all further discussion of cosmology.
+We can solve the Friedmann equations by an equation of state that relates $\rho$ to $P$. 
+\begin{align}
+    w = \frac{P}{\rho} . 
+\end{align}
+Plugging it in the continuity equation \ref{eq:1.20c} we get:
+\begin{align}
+    \frac{ \log \rho}{ \log a} = {-3(1 + w)} \implies \rho \propto a^{-3(1 + w)}\label{eq:1.23} 
+\end{align}\\
+
+\begin{align}
+    \rho(a) \propto 
+    \begin{cases}
+        a^{-4} ,& \text{radiation: }  w =\frac{1}{3}\\
+        a^{-3},              & \text{matter: }  w = 0\\
+        constant,              & \text{dark energy: }  w = -1\\
+    \end{cases}\label{eq:1.24}
+\end{align}
+It makes intuitive sense that the energy density of relativistic particles decreases as the universe expands, not only because the average number of particles per unit volume decreases ($V \propto a^3$), as it does for non-relativistic matter, but also because of the relativistic Doppler shift, which increases the negative power of the scaling factor by one. 
+In contrast, dark energy has a constant energy density. 
+We can assume that if the Universe is made up of those three types of fluids, then at different times, radiation, followed by matter, and finally Dark Energy, has dominated its energy budget and consequently its evolution.\\
+Now, combining \ref{eq:1.23} with the first Friedmann equation \ref{eq:1.12b} we get the time dependence of the scale factor.
+\begin{align}
+    a(t) \propto 
+    \begin{cases}
+        t^{\frac{2}{3(1+w)}} ,& \text{if,}  w\neq -1\\
+        e^{Ht},               & \text{if,}  w = -1\\
+    \end{cases}\label{eq:1.25}
+\end{align}\\
+We can observe that for $w = 0$, which corresponds to a Universe dominated by non-relativistic matter, we get $a(t) \propto  t^{2/3}$. 
+Now, for $w = 1/3$, which corresponds to relativistic particles (radiation), we get $a(t) \propto  t^{1/2}$. 
+The last and very relevant case is $w = -1$, corresponding to a fluid exerting negative pressure, which leads to the second solution in \ref{eq:1.25}, i.e. an exponential expansion describes the Dark Energy.
+
+
+
+
+
+\section{The Cosmological Constant}
+\hspace{0.5cm}When Einstein developed his theory of general relativity, the prevailing belief was that the Universe was static. However, this contradicted the Friedmann equations, which showed that a Universe
+evolving according to them could not be static unless the acceleration  $\vec{a}$ was zero. namely
+\begin{align}
+   \rho=-3 P \label{1.26}
+\end{align}
+Since a fluid with such property did not seem to be physically reasonable, Einstein modified equation \ref{eq:1.10} by introducing the cosmological constant term $\Lambda$ to counterbalance the gravitational attraction
+\begin{align}
+    R_{\mu \nu}-\frac{1}{2} g_{\mu \nu} R=8 \pi G T_{\mu \nu}-\Lambda g_{\mu \nu},\label{1.27}
+\end{align}
+ in such a way that it does not change the covariant character of the equations. It can be shown that for an appropriate choice of $\Lambda$, one indeed obtains a static cosmological model.
+In order to recover a form similar to the equations \ref{eq:1.10}, we rewrite the stress-energy tensor in a more compact way
+
+\begin{align}
+    \bar{T}_{\mu \nu} & =T_{\mu \nu}-\frac{\Lambda}{8 \pi G} g_{\mu \nu} \\ & =(\bar{P}+\bar{\rho}) u_\mu u_\nu+\bar{P} g_{\mu \nu}, \label{1.29}
+\end{align}
+
+so that
+\begin{align}
+    R_{\mu \nu}-\frac{1}{2} g_{\mu \nu} R=8 \pi G \bar{T}_{\mu \nu}\label{1.30}
+\end{align}
+
+
+In \ref{1.29}, the effective pressure $\bar{P}$ and the effective density $\bar{\rho}$ are related to the corresponding quantities for a perfect fluid by
+\begin{align}
+    \bar{P}=P-\frac{\Lambda}{8 \pi G}, \quad \bar{\rho}=\rho+\frac{\Lambda}{8 \pi G}\label{1.31}
+\end{align}
+
+Although after the discovery of the expansion of the Universe in the late 1920s, there was no need for a term that made the Universe static, the cosmological constant remained a subject of great interest and it is today the simplest possible explanation for the observed accelerated expansion of the Universe. The standard model of cosmology that incorporates the effects of the cosmological constant is the $\Lambda$CDM model.
+
+One cosmological model that involves the cosmological constant is the de Sitter Universe. In this model, the Universe is dominated by a positive cosmological constant, which suppresses all other matter contributions, making the Universe empty ($\rho=0$),($P = 0$) and flat ($k=0$). Under these conditions, the effective pressure and density are related to the cosmological constant through equation \ref{1.31} we get,
+\begin{align}
+   \bar{P}=-\bar{\rho}=-\frac{\Lambda}{8 \pi G}, \label{1.32}
+\end{align}
+
+which, if replaced in equation \ref{eq:1.21b} gives
+\begin{align}
+    \frac{\dot{a}^2}{a^2}=H^2=\frac{\Lambda}{3},\label{1.33}
+\end{align}
+
+corresponding to a Hubble parameter constant in time.The solution to
+this equation is an exponential expansion, where the scale factor increases as a function of time
+\begin{align}
+    a \propto \exp \left(\sqrt{\frac{\Lambda}{3}} t\right),\label{1.34}
+\end{align}
+
+
+This exponential expansion means that test particles move away from
+each other due to the repulsive gravitational effect of the positive cosmological constant.
+In modern cosmology, $\Lambda$, the energy density $\rho_{\Lambda}$ and pressure $P_{\Lambda}$ is interpreted as the energy density and pressure of the vacuum, which is the ground state of a quantum system. Although the vacuum state does not
+contain any physical particles, it is characterized by the creation and annihilation of virtual particles, which contributes to the total energy of the system with non-zero vacuum energy
+
+
+
+
+
+
+
+
+
+\section{Cosmic Distances}\footnote{c = 1} 
+In this section, we will introduce some useful quantities commonly used in cosmology. The Universe is observed to be expanding, and the scale factor $a(t)$ is increasing with time. This expansion also affects the photons that were emitted a long time ago far away and reach us today, which become redshifted due to the stretching of space. Therefore, it is convenient to define a quantity that describes the distance - and time - of a patch of the Universe we are observing based on this physical effect. For that, we define the redshift $z$ as
+\begin{align}
+    z+1 = \frac{a(t0)}{a(t)}
+\end{align}
+where $t$ is the time when the signal was emitted and $t_0$ is today. The scale factor is defined up to a multiplicative constant, and it's usually assumed $a(t_0) = 1$, so $z + 1 = a(t)^{-1}$.
+As we know, the causal connection of points in space-time is determined by whether they are inside or outside each other's lightcone. Lightcones are the solutions to the equation
+\begin{align}
+ds^2 = 0,
+\end{align}
+where $ds^2$ is the space-time interval between two events. In other words, the lightcone of an event consists of all the events that could potentially receive a signal from the first event, assuming the signal travels at or below the speed of light. Any event inside the past lightcone of another event can be causally influenced by it, while any event outside the future lightcone cannot be influenced by it.
+With $ds^2$ a suitable metric, in our case the FRW metric \ref{eq:1.6}, assuming a homogeneous and isotropic Universe and taking $d\Omega=0$,the comoving particle horizon is then, 
+\begin{align}
+    r_p(t) \equiv \chi(t) = \int_0^t \frac{ dt'}{a(t')} =  \int_0^a d\ln{a}\left(\frac{1}{aH}\right) = \tau \label{eq:1.28}
+\end{align}
+
+where in the last equality we exploited the relation we found earlier for the conformal time  Eq. \ref{eq:1.8}\footnote{The main benefit of working with conformal time: light rays correspond to straight lines at $45 \degree$ angles in the $\chi - \tau$ coordinates. If instead, we had used physical time t, then we would find the light cones for curved space-times would be curved.}.
+
+The comoving horizon is therefore the logarithmic integral of the comoving Hubble radius $\frac{1}{aH}$, which we will define below. The related physical particle horizon is
+\begin{align}
+    d_p(t) = a(t) r_p(t) = a(t) \int_0^t \frac{ dt'}{a(t')} \label{eq:1.29}
+\end{align}
+
+due to the scale factor in the denominator and the fact that $a(t) \rightarrow 0$ as $t$ goes to 0, the particle horizon could become infinite, meaning that an observer would be in causal connection with the whole Universe. Using eq \ref{eq:1.25}, we can find an approximate expression for $d_p(t)$ for $w > -1/3$, or else we can notice that the integral diverges. Using the Hubble parameter in FRW model which is 
+\begin{align}
+    H = \frac{2}{3(1+w)t}
+\end{align}
+ With $w = 0$, a spatially flat matter-dominated universe, $H = 2/3t$ and $a \propto  t^ {\frac{2}{3}}$. With $w = 1/3$, a spatially flat radiation-dominated universe, we have $H = 1/2t$ and $a \propto  t^ {\frac{2}{3}}$.
+we can write eq \ref{eq:1.29} as
+
+\begin{align}
+d_p(t) \simeq \frac{3(1+w)}{1+3w}t = \frac{2}{1+3w}\frac{1}{H}
+\end{align}
+
+We take into note that $w > -1/3$ implies $\ddot{a} < 0$, a decelerating expansion which means
+we have a finite particle horizon only in the case of a primordial universe characterized by a decelerating universe.
+Now, let us look into the Hubble time and the comoving Hubble radii.
+
+\begin{align}
+    t_{H} = \frac{a}{\dot{a}} = \frac{1}{H} \\                  
+    r_{H} = \frac{R_{H}}{a} = \frac{1}{\dot{a}} = \frac{1}{aH} \marginnote{$R_{H} = t_{H}$}  \label{eq:1.33}
+\end{align}
+
+The Hubble radius, which is given by $(aH)^{-1}$, represents the distance that particles can travel during one expansion time. It is a measure of whether particles can communicate with each other within a given time frame, based on their comoving separation $\lambda$. In contrast, the particle horizon represents the maximum distance from which particles can reach us within the age of the Universe. Thus, while both the Hubble radius and particle horizon are related to the causal connection of particles, they differ conceptually in that the former measures whether particles can communicate within a given time frame, while the latter measures the maximum distance from which particles can reach us.
+\begin{enumerate}
+    \item if $\lambda$ \ \textgreater  particle horizon, then the particles could never have communicated.
+    \item if $\lambda$ \textgreater  $(aH)^{-1}$ then the particles can't communicate now.
+\end{enumerate}
+
+
+
+
+\section{Cosmic Accounting: The Universe's Energy Budget} \label{section 1.4}
+\hspace{0.5cm}As we saw previously in solving the Friedmann equations using the equation of state $w$, the universe is composed of various ingredients, which prompts us to consider their individual contributions to the cosmic energy budget. 
+In this section, we explore the cosmic accounting of the universe's energy budget and investigate the different components that make up the cosmic inventory.
+Let us look back into equation  \ref{eq:1.21b} and re-write it using the Hubble parameter $H$, we get
+\begin{align}
+    H^2 = \frac{8 \pi G}{3} \rho - \frac{k}{a^2} \label{eq:1.43}
+\end{align}
+We will use the subscript '0' to denote the quantities evaluated today, at $t= t_0$. Considering a flat universe$(k = 0)$ the density required for it corresponds to the critical density today denoted by $\rho_c$
+\begin{align}
+    \rho_{crit,0} =\frac{3H_{0}^{2}}{8\pi G} \label{eq:1.35}
+\end{align}
+We use critical density to define dimensionless density parameters
+\begin{align}
+    \Omega_{I,0} \equiv \frac{\rho_{I,0}}{\rho_{crit,0}}\label{eq:1.36}
+\end{align}
+We can write the Friedmann equation \ref{eq:1.43} as
+\begin{align}
+    H^2(a) = H_{0}^2 \left[\Omega_{r,0}\left(\frac{a_0}{a}\right)^4 + \Omega_{m,0}\left(\frac{a_0}{a}\right)^3 + \Omega_{k,0}\left(\frac{a_0}{a}\right)^2 +\Omega_{\Lambda,0}\right] \label{eq:1.37}
+\end{align}
+where $I = (r,m,k,\Lambda)$ stands for radiation, matter, curvature, and vacuum energy contribution respectively and we defined a $curvature$ density parameter $ \Omega_{k,0} \equiv \frac{-k}{(a_0H_0)^2}$. From now on we will drop the subscript "0" and just write it as  $\Omega_{r}$ which means the radiation density today. So Eq. \ref{eq:1.37} becomes
+\begin{align}
+     \frac{H^2}{H_{0}^2} = [\Omega_{r}a^4 + \Omega_{m}a^3 + \Omega_{k}a^2 +\Omega_{\Lambda}] \label{eq:1.38}
+\end{align}
+At the current time, the scale factor is $a(t_0) = 1$ and $H =H_0$.Substituting the values in \ref{eq:1.38} we get
+\begin{align}
+    \Omega_{total} = \Omega_{r} + \Omega_{m} + \Omega_{k} +\Omega_{\Lambda} = 1 \label{1.39}
+\end{align}
+so, we can say that the density parameter represents the energy content of the universe. From several observational studies, it was seen that the universe is filled with radiation($r$), matter ($m$), and dark energy($\Lambda$).
+\begin{align}
+    |\Omega_k| \leq 0.01 , \Omega_r = 9.4 \times 10^{-5} , \Omega_m = 0.32 , \Omega_{\Lambda} =0.68 \label{1.40}
+\end{align}
+As we can see, the curvature only accounts for 1\% of the total energy budget. Curvature's effects were inconsequential earlier(the curvature contribution is only $10^{-2}$).The matter density parameter is further split into Baryons($b$) and DM($c$).\\
+\hspace{0.5cm}The predictions of primordial nucleosynthesis, which postulates that the density of protons and neutrons in the early Universe affects the efficiency with which fusion occurs, provide the best current constraints on the baryon density of the universe. Deuterium and other elements found in primordial gas clouds have been studied, and the results suggest that the density parameter of baryonic matter is $\Omega_{b} = 0.05$. 
+The majority of the matter density parameter is contained in $non-baryonic$ matter called DM $\Omega_{c} = 0.27$.\\
+\hspace{0.5cm}This 27\% of the universe's energy budget is one of the most enigmatic substances in the universe, which has been an active topic of research. 
+We can't see it, we have not been able to detect it directly, but we know it's out there somewhere because of its gravitational influence on the visible matter in the universe. In the next section, we will dive into some of its evidence
+
+\section{Dark Matter}
+\hspace{0.5cm}Dark matter may be mysterious, but there is a tonne of observational data that points to its reality. Even though dark matter's real identity is still unknown, the scientific community has been investigating its impacts for decades and mounting evidence for its existence. We will summarise some of the observational evidence below in increasing order of cosmic scale 
+
+
+\subsection{Galaxy Rotation Curves}
+\hspace{0.5cm}To comprehend how their mass is distributed, spiral galaxies have been thoroughly researched. Astronomers have identified the rotation curve, or the circular velocity of stars and other tracers as a function of their distance from the galactic center, by measuring the Doppler shift of atomic lines. One can determine the relationship between a test particle's circular velocity, the galaxy's mass, and its distance from the centre using fundamental Newtonian dynamics.$v_{c} (r) = \sqrt{\frac{GM}{r}}$\\
+
+\hspace{0.5cm}The arms of the disk and the dense central bulge, however, contain the majority of a galaxy's visible mass. If we assume that all of the visible mass is contained within the orbit and can be replaced by a constant $M$ using Gauss's law, we would anticipate that the velocity would decrease at large distances from the centre by  $v_{c} (r) \propto \sqrt{\frac{1}{r}} $.\\
+
+\hspace{0.5cm}Surprisingly, observations of a large sample of galaxies have revealed that the rotation curve remains flat out to large distances from the centre, indicating that the velocity remains constant. This implies that additional invisible matter must be distributed as a diffuse halo of particles with a density that scales as $\rho \propto r^{-2}$ out to large distances from the centre. This additional invisible matter is believed to be dark matter. In 1970, Vera Rubin and W. Kent Ford \cite{Rubin:1970zza} were the first to perform a precise measurement of the rotation curve of the Andromeda galaxy (M31) and determine the curve to be rather flat out to $\sim$ 22 kpc.
+
+
+\subsection{Galaxy-Galaxy Lensing}
+\hspace{0.5cm}One of the major results of Einstein's general relativity is the bending of light, massive celestial objects like galaxies and galaxy clusters cause sufficient curvature of space-time which the light follows resulting in it appearing to be bent. This effect is known as gravitational lensing. Galaxy-galaxy lensing provides one of the pieces of evidence for the presence of dark matter halo around galaxies. Using weak lensing one can infer the amount of mass in a typical galaxy which is much larger than the visible mass. 
+
+\subsection{Cluster Of Galaxies}
+\hspace{0.5cm}Fritz Zwicky in the year 1933 was the first astronomer to argue for the existence of dark matter \cite{1937ApJ....86..217Z}. Clusters of galaxies are the largest gravitationally bound systems in the universe. When studying the
+Coma cluster of galaxies, he noticed that the dispersion in the radial velocity of the cluster’s galaxies was very large at around 1000 km/s and the visible matter within the galaxies did not provide enough gravitational attraction to hold the cluster together. His determination was based on the Virial theorem which is described as\\ $\left<K\right> = -\frac{1}{2}\left<V\right>$\\
+\hspace{0.5cm}For a hypothetical system with $N$ objects of mass $m$ at equal distance $r$ interacting through gravity, the virial Theorem allows us  to determine their total mass $mN$ from the velocity $v$ and the size $r$ by the equation $mN =
+\frac{2rv^2}{G_{N}}$. Using this consideration Zwicky claimed that the total mass of the cluster is more than the visible mass. The observations of a pair of collision clusters known as the "bullet cluster" provide the most dramatic proof so far that DM exists on the length scales of galaxy clusters. The bullet cluster has a significant amount of hot gas, the distribution of which can be  determined from X-ray emissions. The total mass was independently measured through weak lensing. What makes the bullet cluster interesting is that the visible mass and the dark matter are spatially separated. Before the collision, the individual systems had their visible matter and dark matter mixed together. When they collided the visible matter interacted significantly with itself. Dark matter on the other hand experienced negligible collisions with each other and the baryonic matter. This led to the separation between the components.
+
+\subsection{Cosmic Shear}
+\hspace{0.5cm}The discovery of cosmic shear also supports the existence of DM at length scales that are relatively intermediate between those of the galaxy, the cluster, and the universe. Cosmic shear is the term for the gravitational attraction of foreground mass concentrations that deflect light from extremely far away galaxies, not in the form of DM halos of galaxies or clusters, but rather in the form of much larger and diffused structures like enormous filaments and loose clumps. Multi-wavelength surveys, which must be both very deep (to identify very distant galaxies) and very wide (to explore extensive regions of the sky) are used. The cosmic shear not only provides evidence of dark matter but also helps in the reconstruction of the matter distribution along the line of sight and helps to look at the formation history of dark matter structures that provides the structure of the universe we see today.
+
+
+
+
+\subsection{Large Scale Structure Formation}
+\hspace{0.5cm}Nowadays the most precise evidence of dark matter is obtained from the entire observable universe. The way we observe the universe today strongly suggests the presence of dark matter and the role it played in it. It transforms the Universe's original state of almost perfect smoothness with only tiny inhomogeneities into one that is rich in structures at various scales.
+Various observations like the measurement from galaxy surveys, weak lensing, Lyman- $\alpha$ forest, etc. establish that the universe appears to be clumpy.\\
+\hspace{0.5cm}From these measurements, we can extract the matter power spectrum ${P}(k)$ which in Fourier space represents the inhomogeneity in the matter. A large value of ${P}(k)$ corresponds to the existence  of more structure which means large inhomogeneity at s small scale (large k which is the wavenumber of the fluctuation).\\
+\hspace{0.5cm}On the other hand in the standard cosmological model, we observe that inflation generates primordial inhomogeneities with very small density perturbation  amplitude $\delta \approx 10^{-5}$. So, how did these tiny primordial lumps grow from such small amplitude to the large structures we see today?\\
+The answer as anticipated is due to the dark matter which is shown in Ref. \cite{Cirelli}.\\
+\hspace{0.5cm}To summarize, during the era of Matter Domination, when the scale factors were around $a_{eq} \sim 1/3400$ before decoupling, the baryonic matter was tightly coupled to photons through electromagnetism, resulting in pressure waves. On solving the Jeans equation for density perturbation we find an oscillating solution damped in time and observe that on scales smaller than the horizon, the tightly coupled baryonic fluid never formed clusters. On the other hand, the solution for dark matter during this period showed a decaying mode and a mode that grew with a specific positive power of time $t^{2/3}$. Dark matter perturbations began to grow as $t^{2/3}$ on scales of 1/k, which are 3400 times smaller than the present horizon. Moreover, during the radiation domination epoch, the growth of dark matter perturbations was only negligible (logarithmic).
+
+\hspace{0.5cm}As the universe evolved, at the epoch of recombination $a_{recomb}$ $\sim$ 1/1100, the temperature reduced enough to increase the mean free path of photons, making the plasma transparent. This allowed electrons and positrons to bind and form neutral hydrogen, causing normal matter to decouple from radiation and fall into the gravitational potential wells that dark matter had already started to form. Hence, dark matter plays a crucial role in constructing the cosmic structure that we observe in the universe, acting as an invisible cosmic framework that brings together the building blocks of the cosmos to form the majestic structures we see today.
+
+
+
+\subsection{CMB Acoustic Peaks}
+\hspace{0.5cm}The cosmic microwave background (CMB) power spectrum, which is the Fourier transform of the photon's temperature field, provides a wealth of information about the contents of the universe. The CMB power spectrum has a similar interpretation as the matter power spectrum, but now for the photon anisotropy field. The acoustic oscillations in the primordial plasma before recombination give rise to a distinctive peak structure in the angular power spectrum of the CMB. The position of the acoustic peaks depends on the dark matter density, while the amplitude is sensitive to the ratio of baryonic matter to dark matter density since only normal matter undergoes acoustic oscillations.
+
+The CMB photons are influenced by both electromagnetism and gravity. On the one hand, photons scatter off charged particles through Thomson scattering, leading to a coupling between photons and baryonic matter in the Universe. On the other hand, the CMB photons are affected by the gravitational potential wells created by matter perturbations, which can result in redshift or blueshift of the photons. When the CMB photons climb out of a gravitational potential well created by a matter perturbation, they lose energy and are redshifted. Conversely, when the photons fall into a potential well, they gain energy and are blueshifted. The photons are sensitive to matter that gravitates and matter that has an electric charge. This enables us to separately measure the densities of dark matter and baryonic matter.
+
+The pattern of acoustic oscillation displayed by CMB anisotropies depends on the conditions of the universe at the time of recombination, which is determined by the quantity and characteristics of the matter. In the absence of external forcing provided by gravity, we would expect a peak in the $C_l$ distribution that has all the same height. However, in the presence of a forcing equation, oscillations occur on top of an offset that is directly proportional to the gravitational potential, and the peaks would not have the same height. This phenomenon provides convincing evidence of dark matter since the matter that provides gravitational forcing is more abundant than the matter coupled with electromagnetism.\footnote{ A very nice description with animation is given in \href{http://background.uchicago.edu/~whu/intermediate/driving2.htmll}{Intermediate Guide to the Acoustic Peaks and Polarization
+Wayne Hu}}
+
+\section{Dark Matter Dynamics}
+\subsection{The Boltzmann Equation and Decoupling}
+
+
+\hspace{0.5cm}From the observations, we can notice that dark matter interacts gravitationally, and can cluster. This is what significantly differentiates dark matter from dark energy. Now, let us try to understand the evolution of dark matter. To do so we will introduce the main equation used to analyze non-equilibrium phenomena: the Boltzmann equation. It describes the evolution of the phase space distribution of particles, \(f(x^{\mu},p^{\mu})\). It is given as:
+
+\begin{align}
+    \mathds{L} [f] = \mathds{C} [f]\,,
+\end{align}
+
+where \(\mathds{L}\) is the \emph{Liouville operator},  while \(\mathds{C}\) is the \emph{collision operator}, which describes the effect (in terms of variation per unit time) on the phase space distribution of collisions between particles. \\
+We find the Cosmological version of the Boltzmann equation as \footnote{Check Appendix \ref{Boltzmann Equation}}
+
+\begin{align}
+  \dot{n}(t)
+  + 3 \frac{\dot{a}}{a} n(t) = \frac{g}{(2 \pi )^3} \int \dd[3]{p} \frac{1}{E} {\mathbb{C}} [f]
+\,.
+\end{align}
+
+\hspace{0.5cm}For a standard DM particle --- a process in the form \(\psi \overline{\psi} \leftrightarrow X \overline{X}\), with \(\psi \) and \(\overline{\psi }\) in local thermal equilibrium, and \(n_\psi = n_{\overline{\psi}}\) as well as \(n_X = n_{\overline{X}}\), we get \footnote{\ref{eq: A.25}}
+
+\begin{align}
+    \dot{n} + 3 H n = \expval{\sigma \abs{v}} \qty[ (n^{\text{eq}})^2 - n^2] = \Psi - \expval{\sigma \abs{v} } n^2 = \Psi - \Gamma_A n\,.
+\end{align}\marginnote{dropping "(t)" for simplicity}
+
+where \(\Psi \) is the rate of creation of particles per unit volume, while \(\Gamma_A\) is the rate of annihilation. 
+
+The annihilation rate is found in terms of the cross-section of the process, which we average over all the momentum distribution of the particles: this is the reason for the appearance of \(\expval{\sigma \abs{v}}\).
+
+Since the number density \(n\) itself is not conserved, we define the \emph{comoving} number density, which is conserved if there is equilibrium
+
+\begin{align}
+  n_C = n \qty(\frac{a}{a_0 })^3\,,
+\end{align}
+
+for some arbitrary initial scale factor \(a_0 \).
+With this, we can simplify the left-hand side: 
+
+\begin{align}
+  \dot{n} + 3 \frac{\dot{a}}{a} n 
+  &= \dv{}{t} \qty[n_C \frac{a_0^3}{a^3}] + 3 \frac{\dot{a}}{a} n_C \frac{a_0^3}{a^3} = \dot{n}_C \frac{a_0^3}{a^3} 
+  + n_C \qty(-\frac{3 \dot{a}}{a^2}) \frac{a_0^3}{a^2}
+  + 3 \frac{\dot{a}}{a} n_C \frac{a_0^3}{a^3}  \\
+  &= \dot{n}_C \qty(\frac{a_0 }{a})^3
+\,.
+\end{align}
+
+Similarly, we can express the right-hand side in terms of comoving densities: \(\expval{\sigma_A \abs{v}}\) is the same, while 
+
+\begin{align}
+    n _{\text{eq}}^2 - n^2 = \qty(n _{C, \text{eq}}^2 - n_C^2) \frac{a_0^{6}}{a^{6}} = n _{C, \text{eq}}^2 \frac{a_0^{6}}{a^{6}} \qty[1 - \frac{n_C^2}{n _{C, \text{eq}}^2}]\,,
+\end{align}
+
+so the equation will read:
+
+\begin{align}
+    \dot{n}_C \frac{a_0^3}{a^3} &= -\expval{\sigma _A v} n _{C, \text{eq}}^2 \frac{a_0^{6}}{a^{6}} \bigg[\underbracket{\frac{n_C^2}{n _{C, \text{eq}}^2}}_{\mathclap{\text{The \(a^3\) factors simplify}}} - 1\bigg] \\
+    \dot{n}_C &= - \expval{\sigma _A v } \underbracket{\qty(\frac{a_0 }{a})^3 n _{C, \text{eq}}^2}_{ = n_{C, \text{eq}} n _{\text{eq}}} \qty[\frac{n^2}{n _{ \text{eq}}^2} - 1] \,.\label{eq:1.47}
+\end{align}
+
+We can express the derivative with respect to time in a more intuitive way using the scale factor.
+
+\begin{align}
+\dv{}{t} = \dot{a}\dv{}{a} = H a \dv{}{a}
+\,.
+\end{align}
+
+With this, we can express the equation \ref{eq:1.47} as
+
+\begin{align}
+    \frac{a}{n _{\text{C, eq}}} \dv{n_C}{a} = - \frac{\expval{\sigma _A v }n _{\text{eq}}}{H} \qty[\qty(\frac{n}{n _{\text{eq}}})^2- 1]\,. \label{eq:1.49}
+\end{align}
+
+The ratio before the parenthesis has an intuitive physical meaning:
+The characteristic time scale for the collisions which can annihilate a particular particle species is given by:
+
+\begin{equation}
+\tau {\text{coll}} = \frac{1}{\Gamma} = \frac{1}{\langle \sigma_A v \rangle n{\text{eq}}}
+\end{equation}
+
+where $\Gamma$ is the interaction rate, $\sigma_A$ is the cross-section for the interaction, $v$ is the velocity of the particles, and $n_{\text{eq}}$ is the equilibrium number density.
+
+On the other hand, the timescale for the expansion of the universe is given by:
+
+\begin{equation}
+\tau _{\text{exp}} = \frac{1}{H}
+\end{equation}
+
+We can now express the derivative of the number density of a particle species with respect to the scale factor $a$ as:
+
+\begin{equation}
+\frac{a}{n_{\text{C,eq}}} \frac{dn_C}{da} = -\frac{\tau_{\text{exp}}}{\tau_{\text{coll}}} \left[\left(\frac{n}{n_{\text{eq}}}\right)^2 - 1 \right]
+\end{equation}
+
+where $n_C$ is the number density of the particle species and the subscript "eq" refers to the equilibrium value.
+
+This equation allows us to characterize decoupling in a more specific way:
+\begin{enumerate}
+    \item If $\Gamma \gg H$, then $\tau_{\text{exp}} \gg \tau_{\text{coll}}$, which means that particles have enough time to reach thermal equilibrium with each other. In this case, the particles are "coupled" through their interactions with each other, and the number density $n$ is approximately equal to the equilibrium value $n_{\text{eq}}$. This implies that $n_C = n_{\text{C,eq}}$, but this quantity can still vary.
+    \item If $\Gamma \ll H$, then $\tau_{\text{exp}} \ll \tau_{\text{coll}}$, which means that particles become "decoupled" from each other. In this case, the interaction rate between particles is much smaller than the expansion rate of the universe. As a result, the number of particles in each chemical species becomes fixed, and $n_C$ remains constant. The number density of particles decreases as the universe expands, so $n \propto a^{-3}$.In summary, when $\Gamma \ll H$ and decoupling occurs, the number density of particles is no longer in chemical equilibrium and becomes fixed, while the total number density decreases as the universe expands
+\end{enumerate}
+
+
+
+
+Let us apply this to both HDM(Hot Dark Matter) and CDM(Cold Dark matter).
+
+\subsection{HDM Density Dstimate}
+
+\hspace{0.5cm}Neutrinos are a candidate for HDM: we know that at temperatures below \(T_d = \SI{1}{MeV}\) they decoupled, after which the ``temperature parameter''(since decoupling neutrinos are not thermal) of the neutrinos' phase space distribution evolved like \footnote{Using Tolman's law, \(T a g_{*s}^{1/3} = const\) , \(g_{*s} \) is the effective degree of freedom .}
+
+\begin{align}
+    T_{\nu } = \qty(\frac{g_{* \text{after decoupling}}}{g_{* \text{before decoupling}}})^{1/3} T_{\gamma }\,,
+\end{align}
+
+and so this scaled like \(T_\nu \propto a^{-1}\), while their number density scaled like \(n_\nu \propto a^{-3} \propto T_\nu^{3}\).
+
+\hspace{0.5cm}Today, neutrinos are considered non-relativistic, but this transition occurred at a relatively low redshift, which was a short time ago. However, there is nothing specific about neutrinos in this regard, and the same reasoning can be applied to any generic hot dark matter (HDM) species represented by \(x\), whose number density today is then given by
+
+\begin{align}
+  n_{0x} = B g_{x} \frac{\zeta (3)}{\pi^2} T_{0x}^3
+\,,
+\end{align}
+
+where the factor \(B\) accounts for the statistics: it is 1 for bosons, \(3/4\) for fermions. The parameter \(g_x\) is the number of degrees of freedom \emph{of the particle species \(x\)}, 
+ can rescale this in terms of the photon number density, which is given by the same expression, with \(B = 1\) and \(g_x = 2\): using the 
+
+\begin{align}
+\frac{n_{0x}}{n_{0\gamma }} &= \frac{B g_x \frac{\zeta (3)}{\pi^2} T^3_{0x}}{2 \frac{\zeta (3)}{\pi^2} T^3_{0 \gamma }} \\
+n_{0x} &= \frac{B}{2} n_{0 \gamma } g_x \frac{g_{*0}}{g_{*dx}}
+\,,
+\end{align}
+
+where \(g_{*0}\) is the current amount of effective degrees of freedom, while \(g_{*dx}\) is the same quantity, computed at the decoupling time of particle \(x\). 
+
+
+
+The energy density, as long as today the particles in question are nonrelativistic,\footnote{
+The assumption that HDM particles are non-relativistic today is not based on experimental evidence, especially since we do not know the exact masses of particles like neutrinos(although given their mass differences (which can be inferred from neutrino oscillations) at the current temperature \(T_{0 \nu } \sim \SI{200}{\micro eV}\) at least some neutrino species must be non-relativistic.). However, if an HDM particle had such a low mass that it remained relativistic today, its energy density would be extremely low and could not account for the large fraction of critical density \(\rho _C\)  that DM constitutes. Therefore, for HDM to be a significant component of DM, it must be non-relativistic today} is given by \(\rho_{0x} = m_x n_{0x}\), so we can get
+
+\begin{align}
+  \rho_{0x} = \frac{B}{2} m_x n_{0 \gamma } g_x \frac{g_{*0x}}{g_{*dx}}
+\,,
+\end{align}
+
+therefore the mass fraction of the HDM particle \(x\) today will be roughly
+
+\begin{align}
+    \Omega_{0x} h^2 \approx \frac{\rho_{0x}}{\rho_{0c}} h^2 \approx 2B g_x \frac{g_{*0}}{g_{*dx}} \frac{m_x}{\SI{e2}{eV}}\,.
+\end{align}
+
+\hspace{0.5cm}This, together with what we know the \(\Omega\) of dark matter to be, allows us to check if a hypothetical particle species is a candidate for HDM, we can use this information to determine whether it is a viable candidate or not based on its mass and when it decouples.
+We can see that if the mass is lower than a few \SI{}{eV} the particle cannot make up most of the DM budget.
+ 
+
+
+\subsection{CDM Density Estimate}
+
+\hspace{0.5cm}CDM is made of particles that were already non-relativistic when they decoupled, so we can describe them using Boltzmann statistics: we keep referring to the DM candidate as \(x\), so at the temperature of decoupling \(T_{dx}\) we have
+
+\begin{align}
+    n_x (T_{dx}) = g_{x} \qty(\frac{m_x T_{dx}}{2 \pi })^{3/2} \exp(- \frac{m_x}{T_{dx}}) \,,
+\end{align}
+
+\hspace{0.5cm}we can assume that \(T_{dx} \ll m_x\).so,the density will scale like \(a^{-3}\), so 
+
+\begin{align}
+      n_{0x} = n_x (T_{dx}) \qty(\frac{a(T_{dx})}{a_0 })^3 = n_x(T_{dx}) \frac{g_{*0}}{g_{*x}} \qty(\frac{T_{0 \gamma }}{T_{dx}})^3 \,.
+\end{align}
+
+The difficulty lies in determining the decoupling temperature \(T_{dx}\), which is when the collision and expansion timescales are equal. 
+\hspace{0.5cm}\hspace{0.5cm}The first Friedmann equation \ref{eq:1.21b} combined with the expression for the energy density (of radiation, but corrected according to the effective degrees of freedom at that time), which is \( \rho = g_* T^4\frac{\pi^2}{30}\) we get
+
+\begin{align}
+    H^2 (T_{dx}) = \frac{8 \pi G}{3} g_{*dx} \frac{\pi^2}{30} T_{dx}^{4} \,,
+\end{align}
+
+which we can use to estimate the expansion timescale \(\tau_{\text{exp}}= 1/H\) which we get as:
+
+\begin{align}
+    \tau_{\text{exp}} \approx \num{.6} g_{*dx}^{-1/2} \frac{m _{\text{pl}}}{T_{dx}^2} \,.
+\end{align}
+
+\hspace{0.5cm}Now, we estimate the collision timescale. We know that its inverse is \(\Gamma = n \expval{\sigma _A \abs{v}}\), and the average cross-section scales with the temperature\footnote{we can understand it as in the early universe, the temperature is very high and particles are highly energetic. As the universe expands and cools, the particles lose energy and the average relative velocity between particles decreases. The thermally averaged cross-section is therefore a function of temperature and decreases as the temperature decreases, so it is proportional to the temperature. } like. 
+\begin{align}
+    \expval{\sigma _A \abs{v}} = \sigma_0 \qty(\frac{T}{m_x})^{N}\,
+\end{align}
+
+
+where \(N = 0\) or \(1\), while \(\sigma_0 \) is a constant characteristic cross section of the process. So, the collision timescale is
+
+\begin{align}
+    \tau _{\text{coll}} (T_{dx}) = \qty(n(T_{dx}) \sigma _0 \qty(\frac{T_{dx}}{m_x})^{N})^{-1}\,.
+\end{align}
+
+Equating the two timescales we get the following equation:
+
+\begin{align}
+    \qty(n(T_{dx}) \sigma _0 \qty(\frac{T_{dx}}{m_x})^{N})^{-1} = \num{.6} g_{*}^{-1/2} \frac{m_{\text{pl}}}{T_{dx}^2}\,,
+\end{align}
+The given equation relates the timescales of decoupling and annihilation for a CDM particle, and it is transcendental in \(T\), since we have an exponential as well as a polynomial term in the expression for \(n_x(T_{dx})\).
+
+\hspace{0.5cm}In order to solve it, we make use of an iterative method and introduce the parameter  \(x_{dx} = m_x / T_{dx}\), which is assumed to be much larger than one (in order for the procedure we have done so far to be valid and also for \(x\) to be CDM): this allows us to select the physical solution to the equation among the nonphysical ones. 
+
+The solution, after the second iteration, is found to be something like: 
+
+\begin{align}
+    x_{dx} = \log \qty(\num{.038} \frac{g_{x}}{g_{*xd}^{1/2}} m _{\text{pl}}  m_x \sigma_0 ) - \qty(N + \frac{1}{2}) \log\qty(\num{.038} \frac{g_{x}}{g_{*xd}^{1/2}} m _{\text{pl}}  m_x \sigma_0 )\,. 
+\end{align}
+We see that \(x_{dx}\) depends on the mass of the particle and the way it interacts \(\sigma_0 \). Using this solution, we can then determine the contribution of the CDM particle to the current energy density.\\
+\hspace{0.5cm}So, to summarise some general observations of dark matter we find that:
+ \begin{enumerate}
+     \item  It makes up about 85 \% of the matter in the Universe and thus is the dominant form of matter.
+     \item It is not baryonic.
+     \item  It is considered "cold," meaning that its kinetic energy is significantly lower than its mass.
+     \item It is collision-less, which means that its constituent particles do not interact with each other very much, if at all.
+     \item It is influenced by gravity.
+     \item It is stable. The stability of dark matter implies that it has been a constant presence in the universe since its early stages and has remained unchanged until now. If dark matter is composed of particles, then they do not undergo decay, or if they do, the half-life is significantly longer than the age of the universe, resulting in negligible cosmological effects.
+ \end{enumerate}
+\hspace{0.5cm}But the main question still remains unanswered: \emph{What is Dark Matter}? The answer to that question is the prize that the scientific community is chasing after.\\
+Axions, Sterile Neutrinos, Weakly Interacting Massive Particles (WIMPs), and MACHOs (Massive Compact Halo Objects) are a few of the suggested candidates for dark matter.\\
+Gravitational microlensing is one method for detecting MACHOs in the Milky Way halo. When a MACHO crosses the line of sight between the observer and a background star, the light from that star is temporarily lensed, increasing its flux towards Earth.\\
+\hspace{0.5cm}Primordial black holes (PBHs) are one particular type of MACHO. PBHs are thought to have originated in the early Universe as a consequence of fluctuations in matter density which will be discussed in the next Chapters. Their masses range from a few grams to several solar masses.
+However, there are a number of problems with the hypothesis that PBHs might account for a substantial fraction of dark matter. One problem is that the observed abundance of dark matter cannot be explained simply by PBHs above a particular mass threshold, as PBHs with masses below that threshold would have evaporated as a result of Hawking radiation. Despite the challenges and constraints on the abundance of PBHs, they remain a fascinating possibility for dark matter and require further investigation. To continue our discussion on the possibility of PBHs as a source of dark matter, we will discuss the primordial fluctuations in the early universe which results in the formation of PBH.
+
+

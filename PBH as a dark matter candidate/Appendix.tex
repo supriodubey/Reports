@@ -1,0 +1,477 @@
+\begin{appendices}
+
+\chapter{Boltzmann Equation}\label{Boltzmann Equation}
+The phase space distribution function is denoted as \(f(x^{\mu }, p^{\mu })\); the Boltzmann equation reads 
+
+\begin{align}
+    \mathds{L}[f] = \mathds{C}[f] \,.\label{eq:A.1}
+\end{align}
+
+If \(\mathds{C} = 0\), then Liouville's theorem tells us that \(\frac{df}{dt} = 0\). 
+The nonrelativistic expression for \(\mathds{L}[f]\) is 
+
+\begin{align}
+    \mathds{L}[f] = \qty[ \pdv{\vec{x}}{t} \cdot \nabla_{\vec{x}} + \pdv{\vec{v}}{t} \cdot \nabla_{\vec{v}} +\pdv{}{t}]f \label{eq:A.2}
+\end{align}
+
+Whereas, general relativistic expression is 
+\begin{align}
+    \mathds{L}[f] = \qty[p^{\mu } \pdv{}{x^{\mu }} - \Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma } \pdv{}{p^{\alpha }}]f \label{eq:A.3}
+\end{align}
+
+Using the geodesic equation 
+
+\begin{align}
+    \dv[2]{x^{\alpha}}{\lambda} 
+    = - \Gamma^{\alpha}_{\beta \gamma } \dv{x^{\beta }}{\lambda } \dv{x^{\gamma }}{\lambda }  
+    = - \Gamma^{\alpha }_{\beta \gamma } p^{\beta } p^{\gamma }\,.\label{eq:A.4}
+\end{align}
+
+Considering homogeneous and isotropic cases we will have \(f = f (\vec{p}, t)\), since the dependence on \(\vec{p}\) and \(E\) are related. The only nonzero Christoffel symbols for a flat FRW metric\eqref{1.12}
+
+\begin{align}
+    \Gamma^{0}_{ij} = \delta_{ij} a \dot{a} && \Gamma^{i}_{0j} = \Gamma^{j}_{i0}= \delta^{i}_{j}v\frac{\dot{a}}{a}\,.\label{eq:A.5}
+\end{align}
+
+Therefore, the Liouville operator can be written in terms of \(p^2 = g_{ij} p^{i}p^{j} = a^2 \delta_{ij} p^{i} p^{j} =  a^2 E\), we get,
+
+\begin{align}
+    \mathds{L}[f(E, t)] &= E \pdv{f}{t} - \frac{\dot{a}}{a} p^2 \pdv{f}{E}\,.\label{eq:A.6}
+\end{align}
+
+The number density reads 
+
+\begin{align}
+    n = \frac{g}{(2 \pi )^3} \int \dd[3]{p} f\,\label{eq:A.7}
+\end{align}
+%
+so the Boltzmann equation can be manipulated by rewriting the Liouville operator as 
+%
+\begin{align}
+    \underbracket{\pdv{}{t} \qty( \frac{g}{(2 \pi )^3} \int \dd[3]{p} f)}_{\dot{n}(t)} - \frac{\dot{a}}{a} \frac{g}{(2 \pi )^3}\int \dd[3]{p} \frac{p^2}{E} \pdv{f}{E} &= \frac{g}{(2 \pi )^3} \int \dd[3]{p} \frac{C[f]}{E}\,.\label{eq:A.8}
+\end{align}
+
+
+Manipulating the second term in the equation we find
+
+\begin{align}
+    \frac{g}{(2 \pi )^3} \int \dd[3]{p} p^2 \pdv{f}{E} = \frac{4 \pi g}{(2 \pi )^3} \int \dd{p} \frac{p^{4}}{E} \pdv{f}{E}  \,,\label{eq:A.9}
+\end{align}
+
+and since \(E^2 = p^2 + m^2 \implies E \dd{E} =p \dd{p}\) we get 
+
+\begin{align}
+    \frac{4 \pi g}{(2 \pi )^3} \int_{0}^{ \infty } \dd{p} p^3 \pdv{f}{p}
+  &= \eval{\frac{4 \pi g}{(2 \pi )^3} p^3 f}_{0}^{\infty } - \frac{4 \pi g}{(2 \pi )^3}\int_{0}^{\infty } \dd{p} 3 p^2 f 
+  = \frac{-3 g}{(2 \pi )^3} \int \dd[3]{p} f = -3n(t) \label{eq:A.10}
+\end{align}
+The boundary term vanishes since at \(0\) we have \(p=0\), and at (momentum) infinity we have \(f=0\) .The conservation of energy tells us that the total energy of a system must be conserved. In the context of the Boltzmann equation, this means that the energy of a particle must be conserved as it undergoes collisions with other particles.
+When a particle has a very high momentum, it means that it has a very high energy. If the particle undergoes a collision that results in a loss of energy, it will lose momentum as well. This means that as the momentum $p$ approaches infinity, the distribution function $f(p)$ must approach zero in order to conserve energy.
+Similarly, at the lower boundary where $p = 0$, the distribution function must also approach zero in order to conserve energy. This is because a particle with zero momentum has zero energy, and cannot transfer any energy to other particles during collisions. We are also moving back and forth between integrals in \(\dd[3]{p}\) and in \(\dd{p}\) times \(4 \pi \), which we can do because of isotropy.
+
+So, we can see that the left-hand side is equal to \(\dot{n}(t) + 3 n(t)\frac{\dot{a}}{a} \), and we have the cosmological Boltzmann equation
+%
+\begin{align}
+\dot{n}(t) + 3 H n(t) = \frac{g}{(2 \pi )^3} \int \dd[3]{p} \frac{\mathds{C}[f]}{E}\,.\label{eq:A.11}
+\end{align}
+
+% This is the cosmological version of the Boltzmann equation. 
+
+Right away we can see that this makes sense in the decoupling limit: if there are no collisions the right-hand side must vanish, so we are left with 
+%
+\begin{align}
+\dot{n}(t) + 3 H n(t) = 0 \label{eq:A.12}
+\,.
+\end{align}
+%
+meaning that \(n \propto a^{-3}\): this is the usual scaling of the number density, so it means we are on the right track.\\
+
+Now we need to understand what the right-hand side looks if particle species are coupled.
+
+
+Let us apply this to a process \(1 + 2 \leftrightarrow 3 + 4\), of which we are interested in the density \(n_1 (t)\): the collision terms reads 
+%
+\begin{align}
+    \begin{split}
+        \frac{g_1 }{(2 \pi )^3} \int \frac{\hat{C}[f_1 ]}{E_1 } \dd[3]{p_1 } &= \int \dd{\Pi_1 }\dd{\Pi_2}\dd{\Pi_3 }\dd{\Pi_4 } (2 \pi )^{4} \delta^{(4)}(p_1 + p_2 - p_3 - p_4 ) \times \\ &\phantom{=}\ \qty[\abs{\mathcal{M}}^2_{3 + 4 \to 1 + 2} f_3 f_4 (1 - f_1 ) (1 + f_2 ) -\abs{\mathcal{M}}^2_{1 + 2 \to 3 + 4} f_1 f_2 (1 - f_3 ) (1 + f_4 ) ] \label{eq:A.13}
+    \end{split}
+\marginnote{The $"-"$ in the $2^{nd}$ term is because we are annihilating particle 1.}\,,
+\end{align}
+
+where 
+
+\begin{align}
+\dd{\Pi _i} = \frac{g_i \dd[3]{p_i}}{(2 \pi )^3 2 E_i} \,\label{eq:A.14}
+\end{align}
+
+while \(\mathcal{M}\) is the Feynman amplitude.
+The terms \(1 \pm f_i\) are given by the Pauli blocking (\(-\)) or Bose enhancement (\(+\)) coming from the statistics of the chosen particle.
+In order to accurately describe the behaviour of a system of particles, the equation mentioned earlier must be written for all of the particle species in the system. This can result in a complex system of integrodifferential equations that need to be solved simultaneously. Such a system allows us to model the interactions and dynamics of all the particle species in the system
+Let us assume time-reversal symmetry(first assumption), in that case we will have \(\abs{\mathcal{M}}^2_{1 + 2 \to 3 + 4} = \abs{\mathcal{M}}^2_{3 + 4 \to 1 +2} \equiv \abs{\mathcal{M}}^2\). 
+
+Next, we postulate that all the particle species are in kinetic equilibrium (second assumption): then, we say that they are distributed according to the Bose-Einstein or Fermi-Dirac distribution, 
+
+\begin{align}
+    f^{i}_{BE - FD} = \qty[\exp(\frac{E - \mu}{T}) \mp 1]^{-1}\,.\label{eq:A.15}
+\end{align}
+
+In this case, we write \(\mp\) since the \(-\) corresponds to Bosons, while the \(+\) is for Fermions. 
+This works well as long as the scatterings are fast enough. 
+This parametrization is quite useful since it makes our integrodifferential equations into simple(r) ODEs. 
+The Kinetic equilibrium is not just local thermodynamic equilibrium: it also requires local \emph{chemical} equilibrium, which implies the following for the chemical potentials:
+
+\begin{align}
+    \mu _1 + \mu _2 = \mu _3 + \mu _4\,. \label{eq: A.16}
+\end{align}
+
+By identifying linear relations for all possible reactions, the number of independent chemical potentials is greatly reduced. These chemical potentials are expected to be related to conserved quantities, which are typically small. As a result, we can assume that all chemical potentials are zero (\(\mu _i = 0  \forall i\)). We can confirm this for CMB photons \(\frac{\mu _\gamma}{T} \lesssim 10^{-4}\).
+
+Further, we make the semi-classical approximation (third assumption): \(1 \pm f_i \approx 1\), so that the distribution just becomes \(f = \exp((\mu - E) /T)\). 
+With all these considerations, we find 
+
+
+    
+\begin{align}
+    \dot{n}_1 (t) + 3 H n_1 (t) &= \int \dd{\Pi_1 }\dd{\Pi_2 }\dd{\Pi_3 }\dd{\Pi_4 } (2 \pi )^{4}\delta^{(4)} (p_1 +p_2 - p_3 - p_4 )\abs{\mathcal{M}}^2 \qty(f_3 f_4 - f_1 f_2 )\\ 
+    \begin{split}
+        &= \int \dd{\Pi_1 }\dd{\Pi_2 }\dd{\Pi_3 }\dd{\Pi_4 }(2 \pi )^{4}\delta^{(4)} (p_1 +p_2 - p_3 - p_4 ) \\ &\phantom{=}\  \abs{\mathcal{M}}^2 \exp(- \frac{E_1 + E_2 }{T}) \qty(\exp(\frac{\mu_3 + \mu _4 }{T}) - \exp( \frac{\mu _1 + \mu _2 }{T}))\label{eq: A.18}
+    \end{split}
+    \marginnote{\(E_1 + E_2 = E_3 + E_4 \).}\,.
+\end{align}
+
+This yields 
+
+\begin{align}
+    n_i (t) &= \frac{g_i}{(2 \pi )^3} \int \dd[3]{p_i} f_i  \\&= g_i \exp( \frac{\mu_i}{T}) \int \frac{ \dd[3]{p_i}}{(2 \pi )^3} \exp(- \frac{E_i}{T})\,.\label{eq: A.20}
+\end{align}
+
+At equilibrium, and using the approximation that \(\mu _i = 0\), we get
+
+\begin{align} \label{eq:equilibrium-number-density}
+    n^{\text{eq}}_i = g_i \int \frac{ \dd[3]{p_i}}{(2 \pi )^3} \exp(- \frac{E_i}{T}) \approx 
+    \begin{cases} 
+        g_i \qty(\frac{m_i T}{2 \pi })^{3/2} \exp(- \frac{m_i}{T}) & \text{non-relativistic}  \\   \frac{g_i}{\pi^2} T^3 & \text{relativistic} 
+    \end{cases}
+\end{align}
+
+Also, 
+
+\begin{align}
+    f_3 f_4 - f_1 f_2 = \exp(- \frac{E_1 + E_2 }{T}) \qty[ e^{ \frac{\mu_3}{T}} e^{ \frac{\mu_4}{T}} - e^{\frac{\mu_1}{T}} e^{ \frac{\mu_2}{T}} ] = \exp(- \frac{E_1 + E_2 }{T}) \qty[\frac{n_3 n_4 }{n_3^{\text{eq}} n_4^{\text{eq}}} - \frac{n_1 n_2 }{n_1^{\text{eq}} n_2^{\text{eq}}}]
+    \,. 
+\end{align}
+
+The thermally averaged cross-section is 
+
+\begin{align}
+    \expval{\sigma \abs{v}} = \frac{1}{n_1^{\text{eq}} n_2^{\text{eq}}}\int \dd{\Pi_1 }\dd{\Pi_2}\dd{\Pi_3 }\dd{\Pi_4 }(2 \pi )^{4} \delta^{(4)} (p_1 + p_2 - p_3 - p_4 )\abs{\mathcal{M}}^2 \exp(- \frac{E_1 + E_2 }{T})\,.
+\end{align}
+
+Then, 
+%
+\begin{align}
+    \dot{n}_1(t) + 3 H n_1 (t) = n_1^{\text{eq}} n_2^{\text{eq}}  \expval{\sigma \abs{v}} \qty[  \frac{n_3 n_4 }{n_3^{\text{eq}} n_4^{\text{eq}}} -\frac{n_1 n_2 }{n_1^{\text{eq}} n_2^{\text{eq}}}]\,.\label{eq: A.24}
+\end{align}
+
+For a standard DM particle --- a process in the form \(\psi \overline{\psi} \leftrightarrow X \overline{X}\), with \(\psi \) and \(\overline{\psi }\) in local thermal equilibrium, and \(n_\psi = n_{\overline{\psi}}\) as well as \(n_X = n_{\overline{X}}\), we get 
+%
+\begin{align}
+    \dot{n}_1 (t) + 3 H n_1 (t) = \expval{\sigma \abs{v}} \qty[ (n_1^{\text{eq}})^2 - n_1^2]\,.\label{eq: A.25}
+\end{align}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{Transfer Function}\label{Transfer function}
+
+
+We used the theory developed by \cite{1986ApJ...304...15B} to get the abundance of PBH. It is crucial to decide when to apply the results of Ref. \cite{1986ApJ...304...15B} in the context of PBHs formation as are valid for some initial fields or some linearly evolved fields, whereas the formation of primordial black holes requires very large perturbations that might evolve in a non-linear way.
+
+According to the inflationary paradigm, density perturbation in the radiation field $\delta$ is generated by curvature perturbation $\zeta$ at horizon re-entry via the Poisson equation (see e.g., Ref. \cite{2000cils.book.....L} )
+
+\begin{align}
+    \delta(\mathbf{x})=\frac{2}{3} \frac{1}{a^{2} H^{2}} \nabla^{2} \Phi(\mathbf{x}),\label{b1}
+\end{align}
+
+where $\Phi$ is the Bardeen potential (also gravitational potential in Poisson gauge) at superhorizon scales. Here, for adiabatic perturbation and neglecting non-linear corrections, $\Phi$ and the primordial curvature perturbation $\zeta$ are related by
+
+\begin{align}
+    \Phi(\mathbf{x})=-\frac{3(1+w)}{5+3 w} \zeta(\mathbf{x}),\label{b2}
+\end{align}
+
+therefore we have that Eq. \ref{b1} becomes
+
+\begin{align}
+    \delta(\mathbf{x})=\frac{2}{3} \frac{1}{a^{2} H^{2}} \nabla^{2} \Phi(\mathbf{x})=-\frac{2(1+w)}{5+3 w} \frac{1}{a^{2} H^{2}} \nabla^{2} \zeta(\mathbf{x}),\label{b3}
+\end{align}
+
+In Fourier space, this equation reads as
+
+\begin{align}
+    \delta(\mathbf{k})=-\frac{2(1+w)}{5+3 w} \frac{k^{2}}{a^{2} H^{2}} \zeta(\mathbf{k}) =\frac{2(1+w)}{5+3w}\left(\frac{k}{aH}\right)^{2} \mathcal{R}_{c}(\mathbf{k}) \label{b4}
+\end{align}
+
+Eq. \ref{b2} tells us that the Bardeen potential is constant at super-horizon scales, however, $\Phi$ evolves differently at the sub-horizon scale depending on whether the perturbations re-enter the horizon during the radiation-dominated epoch or the matter-dominated epoch.
+
+In the case of LSS formation (matter-dominated Universe), the pressure effects are negligible and the linear equation for the gravitational potential $\Phi$ reads as \cite{2000cils.book.....L}
+
+\begin{align}
+    \Phi^{\prime \prime}+3 \mathcal{H} \Phi^{\prime}=0
+\end{align}
+
+so, a growth factor $D(\tau)$ (the solution to the above equation) and a transfer function $T(k)$ that defines the evolution of perturbations across the horizon crossing and radiation/matter transition epochs will determine the overall evolution. Because there is no pressure or mode coupling in this situation, it is important to note that all modes $k$ increase in the same manner. This also implies that the spectral moments, which are statistical features of the density field, simply evolve with the growth factor.
+
+Under radiation domination, however, when we experience pressure effects and the gravitational potential changes as
+
+\begin{align}
+    \Phi^{\prime \prime}+4 \mathcal{H} \Phi^{\prime}+c_{s}^{2} k^{2} \Phi=0,
+\end{align}
+
+where $c_{s}^{2}=1 / 3$ is the sound speed of the relativistic fluid. In this case, the statistical properties of the density field change in time in a non-trivial way, and we can only write a "global" transfer function (see e.g., Ref. \cite{Ando:2018qdb} and Refs. therein)
+
+\begin{align}
+    T(k, \tau)=3 \frac{\sin (k \tau / \sqrt{3})-(k \tau / \sqrt{3}) \cos (k \tau / \sqrt{3})}{(k \tau / \sqrt{3})^{3}}, \label{b7}
+\end{align}
+
+Nevertheless, we may apply the results of Ref. \cite{1986ApJ...304...15B} on super-horizon scales, where there are no pressure effects, and we take account of the evolution of sub-horizon modes including the transfer function \ref{b7} in Eq. \ref{b4} (see e.g., Ref. \cite{Ando:2018qdb})
+
+\begin{align}
+    \delta(\mathbf{k})=-\frac{2(1+w)}{5+3 w} \frac{k^{2}}{a^{2} H^{2}} T(k, \tau) \mathcal{R}_{c}(\mathbf{k}) .
+\end{align}
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Window Function}\label{Window function}
+A window function is a mathematical tool which is introduced to treat the analytically random field as random fields are not differentiable.
+The smallest comoving scale of the universe is that of the typical separation between neighbouring galaxies of the order of 1 Mpc.
+To exclude scales smaller than $R\left(r<R\right.$ or $\left. k>R^{-1}\right)$ we can filter the density field with a window function. This can be done in $\mathrm{k}$-space or $\mathrm{x}$-space.
+The filtering in $\mathrm{x}$-space is done by convolution. We introduce a (usually spherically symmetric) window function $W(\mathbf{r} ; R)$ such that
+\begin{align}
+   \int d^d r W(\mathrm{r} ; R)=1 \label{c1}
+\end{align}
+
+(normalization) and $W \sim 0$ for $|\mathbf{r}| \gg R$ and define the filtered density field
+\begin{align}
+    \delta(\mathrm{x} ; R) \equiv(\delta * W)(\mathrm{x}) \equiv \int d^d \mathrm{x}^{\prime} \delta\left(\mathrm{x}^{\prime}\right) W\left(\mathrm{x}-\mathrm{x}^{\prime}\right)
+\end{align}
+
+Here, the desired resolution is indicated by $R$, and the functions $\delta(\mathrm{x}; R)$ and $W(\mathrm{x}; R)$ are taken into consideration. We will refer to the following notation as $W(\mathrm{x}; R)$, keeping the scale $R$ implicit. We can now write simply $W(r)$ because we also assume that $W$ is spherically symmetric.
+
+Denote the Fourier coefficients of $\delta(\mathrm{x} ; R)$ by $\delta_{\mathrm{k}}(R)$. We use the Fourier series for $\delta(\mathrm{x})$ and $\delta(\mathrm{x}; R)$, however, since $W(r)$ vanishes for big $r$, we can use $ \Tilde{W}(k)$ instead, which is a Fourier transform. Thus, a mixed form of the convolution theorem is required. Let's state it clearly:
+
+\begin{align}
+    \delta_{\mathbf{k}}(R) & =\frac{1}{V} \int_V d^d x \delta(\mathbf{x} ; R) e^{-i \mathbf{k} \cdot \mathbf{x}}=\frac{1}{V} \int_V d^d x d^d x^{\prime} \delta\left(\mathbf{x}^{\prime}\right) W\left(\mathbf{x}-\mathbf{x}^{\prime}\right) e^{-i \mathbf{k} \cdot \mathbf{x}} \\
+    & =\frac{1}{V} \int_V d^d x^{\prime} \delta\left(\mathbf{x}^{\prime}\right) e^{-i \mathbf{k} \cdot \mathbf{x}^{\prime}} \int d^d r W(\mathbf{r}) e^{-i \mathbf{k} \cdot \mathbf{r}}=\Tilde{W}(\mathbf{k}) \delta_{\mathbf{k}},
+\end{align}
+
+where
+\begin{align}
+    \Tilde{W}(\mathbf{k})=\int d^d r W(\mathbf{r}) e^{-i \mathbf{k} \cdot \mathbf{r}}
+\end{align}
+
+is the Fourier transform of $W(\mathbf{r})$ With our normalization, $W(\mathrm{r})$ has dimension $1 / V$ and $\Tilde{W}(\mathbf{k})$ is dimensionless with $\Tilde{W}(\mathbf{k}=0)=1$. Since $W(\mathbf{r})=W(r)$ is spherically symmetric, so is $\Tilde{W}(\mathbf{k})= \Tilde{W}(k)$. Since $W(-\mathbf{r})=W(\mathbf{r}), \Tilde{W}(\mathbf{k})$ is real.
+For the correlations of these filtered Fourier coefficients, we get
+\begin{align}
+    \left\langle\delta_{\mathbf{k}}^*(R) \delta_{\mathbf{k}^{\prime}}(R)\right\rangle=\Tilde{W}(\mathbf{k})^* \Tilde{W}\left(\mathbf{k}^{\prime}\right)\left\langle\delta_{\mathbf{k}^*} \delta_{\mathbf{k}^{\prime}}\right\rangle=\frac{1}{V} \delta_{\mathbf{k k}^{\prime}} \Tilde{W}(k)^2 P(k)
+\end{align}
+so the filtered power spectra are
+\begin{align}
+    \Tilde{W}(k)^2 P(k) \quad \text { and } \quad \Tilde{W}(k)^2 \mathcal{P}(k)
+\end{align}
+
+The filtered correlation function is
+\begin{align}
+    \xi(\mathbf{r} ; R) \equiv\langle\delta(\mathbf{x} ; R) \delta(\mathbf{x}-\mathbf{r} ; R)\rangle=\frac{1}{(2 \pi)^d} \int d^d k e^{i \mathbf{k} \cdot \mathbf{r}}  \Tilde{W}(k)^2 P(k)
+\end{align}
+and the variance of the filtered density field is
+\begin{align}
+    \sigma^2(R) \equiv\left\langle\delta(\mathrm{x} ; R)^2\right\rangle=\xi(0 ; \mid R)=\int_0^{\infty}  \Tilde{W}(k)^2 \mathcal{P}(k) \frac{d k}{k}
+\end{align}
+
+The simplest window function is the top-hat window function
+\begin{align}
+    W_T(\mathrm{r}) \equiv \frac{1}{V(R)} \Theta\left(1-\frac{r}{R}\right)\label{c10}
+\end{align}
+
+and $W_T(\mathbf{r})=0$ elsewhere, i.e., $\delta(\mathrm{x})$ is filtered by replacing it with its mean value within the distance $R$.Its Fourier transformation is
+\begin{align}
+      \Tilde{W}_{R}^{\text {T}}(k)=3 \frac{\sin (k R)-(k R) \cos (k R)}{k^{3} R^{3}},
+\end{align}
+Mathematically more convenient is the Gaussian window function
+\begin{align}
+    W_G(r) \equiv \frac{1}{V_G(R)} e^{-\frac{1}{2} r^2 / R^2}\label{c11}
+\end{align}
+
+Where
+\begin{align}
+    V_G(R) \equiv \int d^d r e^{-\frac{1}{2}|\mathbf{r}|^2 / R^2}
+\end{align}
+
+is the volume of $W_G$. The volume of a window function is defined as what $\int d^d r W(\mathrm{r})$ would be if $W$ were normalized so that $W(0)=1$, instead of the normalization we chose in \ref{c1}. For the top hat, this is the volume over which the filter averages; for others, a generalization of this.
+The volume of $W_G$ is 
+\begin{align}
+    V_G(R)=(2 \pi)^{d / 2} R^d
+\end{align}
+
+\begin{align}
+    \Tilde{W}_{R}^{\text {G}}(k)=e^{-\frac{1}{2}(k R)^2}
+\end{align}
+
+
+There are also other choices available apart from these two.
+
+In principle, there could be some ambiguity on which field has to be smoothed out if the radiation field $\delta$ or the curvature field $\zeta$. However, in linear order, the two possibilities are equivalent, in fact, if we apply the smoothing procedure to Eq. \ref{b3} we obtain
+
+\begin{align}
+    \delta_{R}(\mathbf{x})= & \int d^{3} y W_{R}(|\mathbf{x}-\mathbf{y}|) \delta(\mathbf{y}) \\
+    = & \frac{2(1+w)}{5+3 w} \frac{1}{a^{2} H^{2}} \int d^{3} y W_{R}(|\mathbf{x}-\mathbf{y}|) \nabla_{\mathbf{y}}^{2} \zeta(\mathbf{y}) \\
+    = & \frac{2(1+w)}{5+3 w} \frac{1}{a^{2} H^{2}} \int d^{3} y\left\{\zeta(\mathbf{y}) \nabla_{\mathbf{y}}^{2} W_{R}(|\mathbf{x}-\mathbf{y}|)\right. \\
+    & \left.\quad+\nabla_{\mathbf{y}} \cdot\left[W_{R}(|\mathbf{x}-\mathbf{y}|) \nabla_{\mathbf{y}} \zeta(\mathbf{y})-\zeta(\mathbf{y}) \nabla_{\mathbf{y}} W_{R}(|\mathbf{x}-\mathbf{y}|)\right]\right\},
+\end{align}
+
+where we have used the relation $\psi \nabla^{2} \phi=\phi \nabla^{2} \psi+\nabla \cdot(\psi \nabla \phi-\phi \nabla \psi)$ between two generic scalar fields $\psi(\mathbf{x})$ and $\phi(\mathbf{x})$. The second term in the integrand is a surface contribution and vanishes using the divergence theorem, under the fairly general assumption that $W_{R}$ and its derivative vanish at large scales. Furthermore, at least for the two window functions in equations  \ref{c10} and \ref{c11}, we have that $\nabla_{\mathbf{y}}^{2} W_{R}=\nabla_{\mathbf{x}}^{2} W_{R}$, therefore the above equation reads as
+
+\begin{align}
+    \delta_{R}(\mathbf{x})=\frac{2(1+w)}{5+3 w} \frac{1}{a^{2} H^{2}} \int d^{3} y \zeta(\mathbf{y}) \nabla_{\mathbf{x}}^{2} W_{R}(|\mathbf{x}-\mathbf{y}|)=\frac{2(1+w)}{5+3 w} \frac{1}{a^{2} H^{2}} \nabla_{\mathbf{x}}^{2} \zeta_{R}(\mathbf{x}),
+\end{align}
+
+which is the smoothed version of Eq.. \ref{b3}, as we expected. This proves the equivalence between smoothing out the density or the curvature field at a linear level.
+
+In the end, the complete relation between smoothed density field and curvature perturbation reads as
+
+\begin{align}
+    \delta_{R}(\mathbf{k}, \tau)=-\frac{2(1+w)}{5+3 w} \frac{k^{2}}{a^{2} H^{2}} T(k, \tau) \Tilde{W}_{R}(k) \zeta(\mathbf{k}) =  \frac{2(1+w)}{5+3 w} \frac{k^{2}}{a^{2} H^{2}} T(k, \tau) \Tilde{W}_{R}(k)  \mathcal{R}_{c}(\mathbf{k}).
+\end{align}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\chapter{Peaks Theory}\label{Peaks}
+As we showed in Chapter 2, the density inhomogeneities that seed the formation of structure in the Universe originated from quantum fluctuations arising during inflation. Cosmological density fluctuations are often assumed to be Gaussian random fields. Bardeen \emph{et al.} \cite{1986ApJ...304...15B}addressed the statistical properties of such fields to study the Large Scale Structure (LSS) formation and abundance. The authors had in mind the matter-dominated era, where pressure effects are negligible. However, the tools developed can be applied to PBHs formation under favourable assumptions.\\
+Here we will discuss the basic notions of Gaussian statistics 
+
+\section{The number density of extrema}
+The study of the local maxima of the initial density perturbation is the central objective of the approach to the problem of the non-linear evolution of structures. The density perturbations is a Gaussian random field and in general in order to have a well-defined set of local maxima, the field must be smooth and differentiable.
+
+An $n$-dimensional random field $F(\mathbf{r})$ is a set of random variables, one for each point $\mathbf{r}$ in the $n$-dimensional real space, defined by the set of finite-dimensional joint probability distribution functions
+
+\begin{align}
+    \operatorname{prob}\left[F\left(\mathbf{r}_{1}\right), F\left(\mathbf{r}_{2}\right), \ldots, F\left(\mathbf{r}_{j}\right)\right] d F\left(\mathbf{r}_{1}\right) d F\left(\mathbf{r}_{2}\right) \ldots d F\left(\mathbf{r}_{j}\right) .\label{d1} 
+\end{align}
+
+A Gaussian random field is one for which the various $j$-point probability distributions defined above are multivariate Gaussians. A joint Gaussian probability distribution for random variables $y_{i}$ reads as
+
+\begin{align}
+    P\left(y_{1}, \ldots, y_{n}\right) d y_{1} \ldots d y_{n}=\frac{e^{-Q}}{\left[(2 \pi)^{n} \operatorname{det}(M)\right]^{1 / 2}}, \quad Q=\sum_{i j}\left(\Delta y_{i}\left(M^{-1}\right)_{i j} \Delta y_{j}\right) / 2, \label{d2}
+\end{align}
+
+where only the mean values of the random variables $\left\langle y_{i}\right\rangle$ and their covariance matrix
+
+\begin{align}
+    M_{i j}=\left\langle\Delta y_{i} \Delta y_{j}\right\rangle, \quad \Delta y_{i}=y_{i}-\left\langle y_{i}\right\rangle, \label{d3}
+\end{align}
+
+are required to characterize the distribution.\\
+
+We assume that initial density fluctuations are described by isotropic, homogeneous Gaussian random fields with zero means and that the field has been previously smoothed out with some window function of radius $R$. Such a field is completely specified by the power spectrum $P_{R}(k)$, or equivalently its Fourier transform, the correlation function $\xi_{R}(r)$. Since the Gaussian nature is retained throughout the linear regime, a complete statistical description of the local maxima can be extracted from the power spectrum.
+
+The number density of points $p$ that specify the maxima of the random field $F(\mathbf{r})$ is given by the point process equation
+
+\begin{align}
+    n_{p k}(\mathbf{r})=\sum_{p} \delta^{(3)}\left(\mathbf{r}-\mathbf{r}_{p}\right) \label{d4}
+\end{align}
+
+The class of points can be restricted, for eg. by considering only those maxima above a certain threshold height. The number density Eq. \ref{d4} can be expressed in terms of the random field and its derivatives. The Taylor expansion of $F(\mathbf{r})$ in the neighbourhood of a maximum point $\mathbf{r}_{p}$
+
+\begin{align}\begin{split}
+    F(\mathbf{r}) & =F\left(\mathbf{r}_{p}\right)+\left.\partial_{i} F(\mathbf{r})\right|_{\mathbf{r}=\mathbf{r}_{p}}\left(r-r_{p}\right)_{i}+\left.\frac{1}{2} \partial_{i} \partial_{j} F(\mathbf{r})\right|_{\mathbf{r}=\mathbf{r}_{p}}\left(r-r_{p}\right)_{i}\left(r-r_{p}\right)_{j}+\ldots \\
+    & \approx F\left(\mathbf{r}_{p}\right)+\frac{1}{2} \theta_{i j}\left(r-r_{p}\right)_{i}\left(r-r_{p}\right)_{j},\end{split}\label{d5}
+\end{align}
+
+where the first derivative $\eta_{i}\left(\mathbf{r}_{p}\right)=\left.\partial_{i} F(\mathbf{r})\right|_{\mathbf{r}=\mathbf{r}_{p}}=0$, the second derivative tensor $\theta_{i j}=$ $\left.\partial_{i} \partial_{j} F(\mathbf{r})\right|_{\mathbf{r}=\mathbf{r}_{p}}$ is negative definite given that $\mathbf{r}_{p}$ is a maximum, and
+
+\begin{align}
+    \eta_{i}(\mathbf{r}) \approx \sum_{j} \theta_{i j}\left(r-r_{p}\right)_{j} \label{d6}
+\end{align}
+
+Since the $\theta$-matrix is non-singular at the maximum point (continuous and differetiable), we can invert Eq. \ref{d6}
+
+\begin{align}
+    \mathbf{r}-\mathbf{r}_{p} \approx \theta^{-1}\left(\mathbf{r}_{p}\right) \eta(\mathbf{r}) \label{d7}
+\end{align}
+
+and using the properties of the Dirac delta, we write
+
+\begin{align}
+    \delta^{(3)}\left(\mathbf{r}-\mathbf{r}_{p}\right) \approx\left|\operatorname{det} \theta\left(\mathbf{r}_{p}\right)\right| \delta^{(3)}(\eta(\mathbf{r})), \label{d8}
+\end{align}
+
+where the $\delta$-function selects all the extremal points that are zeros of $\eta(\mathbf{r})$. Therefore, the number density of extrema (minima and maxima) in terms of field derivative can be expressed as
+
+\begin{align}
+    n_{e x t}(\mathbf{r})=\left|\operatorname{det} \theta\left(\mathbf{r}_{p}\right)\right| \delta^{(3)}(\eta(\mathbf{r})) .\label{d9}
+\end{align}
+
+We find an identical expression for $n_{p k}(\mathbf{r})$ \ref{d4} with the additional condition of negativity on the three eigenvalues of $\theta_{i j}$ Moreover if one selects only those maxima whose heights are in the range $\left[F_{0}, F_{0}+d F\right]$ then a $\delta\left(F-F_{0}\right) d F$ should multiply equation 4.9). The ensemble average of $n_{e x t}(\mathbf{r})$ is defined as
+
+\begin{align}
+    \left\langle n_{e x t}(\mathbf{r})\right\rangle=\int \mathrm{d} F \mathrm{~d}^{6} \theta\left|\operatorname{det} \theta\left(\mathbf{r}_{p}\right)\right| P(F, \eta=0, \theta), \label{d10}
+\end{align}
+
+where $P$ is the joint probability distribution defined in Eq. \ref{d2} From Eq. \ref{d10} we can derive the differential peak density that allows us to define the abundance of PBHs. The full computation of the integral can be found in Ref. \cite{1986ApJ...304...15B}, over here we discuss the result. The distribution of fluctuations can be specified through the spectral moments
+
+\begin{align}
+    \sigma_{j}^{2}(\tau)=\int \frac{d^{3} k}{(2 \pi)^{3}} P_{R}(k, \tau) k^{2 j},\label{d11}
+\end{align}
+
+where we notice that $0^{th}$ order spectral moment corresponds to the variance of the density fluctuation
+
+\begin{align}
+    \sigma_{0}^{2}(\tau) \equiv \sigma_{R}^{2}(\tau)=\xi_{R}(\mathbf{0}, \tau)=\int \frac{\mathrm{d}^{3} k}{(2 \pi)^{3}} P_{R}(k, \tau), \label{d12}
+\end{align}
+The second moment of smoothed density power spectrum used in eq.\ref{3.31} is defined as
+\begin{align}
+    \frac{\sigma_{1}^2}{\sigma_{2}^2} = \langle k^2 \rangle,\ = 3\left(\frac{\gamma}{\quad R_{\star}} \right)^2\label{d13}
+\end{align}
+From the spectral moments, we infer the spectral parameters
+
+\begin{align}
+    \gamma(\tau)=\frac{\sigma_{1}^{2}(\tau)}{\sigma_{2}(\tau) \sigma_{0}(\tau)}, \quad R_{\star}(\tau)=\sqrt{3} \frac{\sigma_{1}(\tau)}{\sigma_{2}(\tau)}, \label{d14}
+\end{align}
+
+Since in matter-domination, at linear order, the density field grows in a self-similar way, the spectral parameters above are time-independent and the comoving density of peaks does not depend on the time at which the density is measured, but this is not the case when pressure effects are important. The issue will be further discussed in section 4.2.
+
+Finally, notice that the integral Eq. \ref{d12} should be performed overall the moment since we are evaluating the statistical properties of the entire density field, so no sub- or super-horizon considerations apply here.
+
+By denoting the peak height as $\delta_{\text {peak }}(r=0)=\delta_{\text {peak }, 0}$ and introducing the parameter $\nu=\delta_{\text {peak }, 0} / \sigma_{0}$,Ref. \cite{1986ApJ...304...15B} found that the differential comoving peak density $d n_{\text {peak }}^{\text {com. }} / d \nu$ reads as
+
+\begin{align}
+    \frac{d n_{\mathrm{peak}}^{\text {com }}}{d \nu}=\frac{1}{(2 \pi)^{2} R_{\star}^{3}} e^{-\nu^{2} / 2} G(\gamma, \gamma \nu)
+\end{align}
+
+where the function $G(\gamma, \gamma \nu)$, denoting $\omega=\gamma \nu$ can be approximated by
+
+\begin{align}
+    G(\gamma, \omega) \approx \frac{\omega^{3}-3 \gamma^{2} \omega+\left[B(\gamma) \omega^{2}+C_{1}(\gamma)\right] e^{-A(\gamma) \omega^{2}}}{1+C_{2}(\gamma) e^{-C_{3}(\gamma) \omega}}
+\end{align}
+
+for $0.3<\gamma<0.7$ and for $-1<\omega<+\infty$, keeping the error below the $1 \%$ level. The coefficients of the above equation read as
+
+\begin{align}
+    & A(\gamma)=\frac{5 / 2}{9-5 \gamma^{2}}, \quad B(\gamma)=\frac{432}{(10 \pi)^{1 / 2}\left(9-5 \gamma^{2}\right)^{5 / 2}}, \\
+    & C_{1}(\gamma)=1.84+1.13\left(1-\gamma^{2}\right)^{5.72}, \quad C_{2}(\gamma)=8.91+1.27 e^{6.51 \gamma^{2}}, \quad C_{3}(\gamma)=2.58 e^{1.05 \gamma^{2}}
+\end{align}
+
+Not all the peaks will correspond to a site where a more complex structure will form. Typically we have to introduce some threshold criterion, in our case, we ask $\nu>\nu_{c}$ to have PBHs formation.
+
+\end{appendices}
