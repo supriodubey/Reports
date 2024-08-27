@@ -1,6 +1,303 @@
-\chapter{Methodology and Data Analysis Pipeline}
-\section{Quijote Nbody-simulation}
-\section{Machine Learning}
-\subsection{Supervised Learning}
-\subsection{Unsupervised Learning}
-\subsection{Neural Networks}
+\chapter{Methodology and Data Analysis}\label{method}
+\justifying
+
+The traditional way to put constraints on cosmological parameters from observational data is to compare summary statistics to theoretical predictions. However, an important question that arises is which statistic or combination of statistics should be used to gain the maximum information.
+
+We previously saw that for Gaussian density fields, the power spectrum or correlation function fully describes the field, making them the primary tools in cosmological data analysis. These statistics are effective at high redshifts or on large scales at low redshifts, where the universe resembles a Gaussian density field. The CMB measurements from \cite{planckcollaboration2019planck2018resultsix} have limited the primordial universe to be weakly non-Gaussian. However, CMB is limited to high-redshift observations and is insensitive to low-redshift phenomena like the transition from the matter-dominated epoch to the Dark Energy-dominated epoch.
+
+Currently active and upcoming three-dimensional (3D) surveys such as the Euclid mission\cite{EUCLID} and  Vera C. Rubin Observatory’s Legacy Survey of Space and Time (LSST) \cite{RubinObservatory} will allow us to observe a large fraction of the sky and provide very detailed maps of the large-scale structure of the universe. The vast amounts of data collected from these surveys, i.e. all the small-scale modes will offer greater constraining power. In three-dimensional surveys, a significant portion of the modes exists on scales ranging from mildly to non-linear, where the density field exhibits non-Gaussian behaviour. This non-Gaussianity causes information to propagate from the two-point function to higher-order statistics. It is currently an open question as to what is the statistic or set of statistics that will help in improving the constraints on cosmological parameters.
+
+Numerical simulations are essential for tackling this challenge. They provide powerful means to obtain theoretical predictions in fully non-linear regimes (section \ref{n-body}) and in both real- and redshift space for any considered statistic. This capability is crucial for extracting cosmological information from non-linear modes, thereby tightening the constraints on cosmological parameters and enhancing our understanding of fundamental physics. The Quijote simulations help in quantifying the information content of various statistics in the fully non-linear regime.
+
+Moreover, advanced statistical techniques such as machine learning and deep learning to perform LFI are being explored to identify new and optimal statistics for extracting cosmological information \cite{Jung:2024esv, Alsing_2019, Charnock_2018}. These methods require extensive datasets for training, which the Quijote simulations provide, thereby supporting the analysis of data from new and upcoming surveys. \\
+It was shown in \cite{Bayer_2021} and \cite{Coulton_2023} using the Quijote simulation that the information we can extract on the cosmological parameters using solely the power spectrum saturates at scales $k = 0.2\,h\,\mathrm{Mpc}^{-1}$ and that adding higher-order correlation functions helps in improving constraints on higher scales, greater than $k = 0.2\,h\,\mathrm{Mpc}^{-1}$.
+
+The main aim of this thesis is to develop a machine learning pipeline to perform LFI and identify different summary statistics and combinations of summary statistics that can be used to constrain the sum of massive neutrino ($M_{\nu}$), $f_{NL}^{\mathrm{equil}}$ and other cosmological parameters by extending the analysis to non-linear scale upto to $k_{\mathrm{max}} = 0.5\,h\,\mathrm{Mpc}^{-1}$ leveraging on the Quijote simulation and Quijote-PNG simulations.\\
+
+In this chapter, we will discuss our approach to constraint $M_{\nu}$, $ f_{NL}^{\mathrm{equil}}$ and the cosmological parameters using the Quijote simulation by using Likelihood-free inference using Moment Network \cite{jeffrey2020solvinghighdimensionalparameterinference}.
+Firstly, we describe the Quijote Simulation used for analysis, followed by the summary statistics used for constraining the parameters. Then we define the method implemented i.e. Likelihood-free inference using moment neural network followed by a summary of machine learning and the neural network model we implemented. Finally, we discuss the indicators we use for evaluating the moment prediction
+
+\section{Quijote Simulation}
+
+The analyses presented in this paper are based on the Quijote \cite{Villaescusa_Navarro_2020}  sets of simulations for $M_{\nu}$, and Quijote-PNG \cite{Coulton_2023}  sets of simulations for $f_{NL}^{\mathrm{equil}}$  respectively.\\
+These are dark matter only $\mathrm{N}$-body simulations of volume $1\left(h^{-1} \mathrm{Gpc}\right)^3$, containing $512^{3}$ CDM particles each for PNG and $M_{\nu}$, and an extra $512^{3}$ neutrino particles for $M_{\nu}$ . The simulation is run using the TreePM code GadGet-III \cite{Springel2005Natur.435..629S} from initial conditions generated at $z=127$ using 2LPTPNG \cite{Coulton_2023} and Zel'dovich approximation \cite{Zel1970A&A.....5...84Z}  for the simulations with PNG and $M_{v}$ respectively. \cite{Villaescusa_Navarro_2020} uses Zel’dovich approximation and not the second-order Lagrangian perturbation theory (2LPT) for simulation with massive neutrinos as it is currently unknown how to predict 2LPT in massive neutrino models. In particular, there is no estimate for the two significant quantities, the second-order scale-dependent growth factor, and growth rate, necessary to calculate the 2LPT in the presence of massive neutrinos
+\\ 
+We consider dark matter halos with $ \text{M} > 3.2 \times 10^{13}\, h^{-1} M_{\odot}$ corresponding to a mean tracer density\footnote{It is the average number density of tracers in a given volume.} of $\bar{n}(z = 0) = 1.55 \times 10^{-4}\, h^{3} \mathrm{Mpc}^{-3}$, which are identified in each simulation by the standard Friends-of-Friends (FoF) algorithm \cite{FOFDavis1985ApJ...292..371D} by setting the linking length parameter to $b=0.2$ and considering halos with more than 20 dark matter particles.\\
+
+\begin{itemize}
+    \item For PNG we mainly use a set of 1000 simulations with varying amounts of equilateral PNG, with $f_{\mathrm{NL}}^{\text {equil }} \in[-600,600]$, and the cosmological parameters are changed within $\Omega_{m} \in[0.1,0.5]$,$\Omega_{b} = [0.049]$, $\sigma_{8} \in[0.6,1.0]$,$n_{s} \in[0.8,1.2]$ and $h \in[0.5,0.9]$ where the parameters are distributed in a Latin hypercube (LH $f_{NL}^{\mathrm{equil}}$) 
+    
+    \item For $M_{v}$ we use a set of 2000 simulations with varying amounts of $M_{\nu}(\mathrm{eV})  \in[0,1]$, $\Omega_{m} \in[0.1,0.5]$, $\Omega_{b} = \in[0.03, 0.07]$, $\sigma_{8} \in[0.6,1.0]$, $n_{s} \in[0.8,1.2]$ and $h \in[0.5,0.9]$ where the parameters are distributed in a Latin hypercube with massive neutrinos (nwLH).
+\end{itemize}
+
+
+
+\section{ Summary Statistics Estimators}
+
+In this section, we describe the different statistical probes we use from the halo catalogues generated by the Quijote and Quijote PNG simulations in red-shift space, specifically looking at non-linear scales up to $k_{\mathrm{max}} = 0.5\,h\,\mathrm{Mpc}^{-1}$ .\\
+
+We use halo summary statistics as halos are a biased tracer of the underlying matter density field and galaxies form within these halos. So, studying the statistical properties of halos to gain inference on cosmological parameters is a crucial first step in drawing conclusions from real observational data.
+
+
+\subsection{Power Spectrum}
+
+To measure the halo power spectrum, we use the standard estimator \cite{feldman1994ApJ...426...23F} as described in \cite{jung2024quijotepngoptimizingsummarystatistics} given by:
+
+\begin{equation}
+    \hat{P}(k_i) = \frac{1}{V N_i} \sum_{k \in \Delta_i} \delta(k) \delta^*(k),\autolabel{}
+\end{equation}
+
+where $\delta(k)$ is the density field in Fourier space defined on a grid, the $k$-range has been divided into bins $\Delta_i$ of width equal to the fundamental mode, $V$ is the survey volume, and $N_i$ is the number of vectors $k$ in each bin.
+
+\subsection{Bispectrum}
+
+To extract the halo bispectrum information we use modal estimators as shown in \cite{Jung_2023}. They can be efficiently extracted from data by measuring the following modal coefficients:
+\begin{equation}
+    \hat{\beta}_n = \frac{1}{V} \int d^3 x \, M_p(\mathbf{x}) M_q(\mathbf{x}) M_r(\mathbf{x}), \autolabel{}
+\end{equation}
+where
+\begin{equation}
+    M_p(\mathbf{x}) \equiv \int \frac{d^3 k}{(2 \pi)^3} \frac{q_p(k) \delta(\mathbf{k})}{\sqrt{k P(k)}} e^{i \mathbf{k} \cdot \mathbf{x}}, \autolabel{}
+\end{equation}
+for a well-chosen basis of one-dimensional functions \( q_p(k) \) and mode triplets \( n \leftrightarrow (p, q, r) \). 
+
+Modal estimators \cite{Fergusson_2012} are based on
+constructing complete, orthogonal bases of separable bispectrum
+templates (“bispectrum modes”) and finding their amplitudes by
+fitting them to the data (For a review refer to \cite{Liguori:2010hx} \cite{Jung_2022}). This procedure can be made fast, using a KSW type of approach \cite{Komatsu_2005} which takes advantage of the fact that certain theoretical bispectrum templates can be written in a separable form. This means the bispectrum can be broken down into products of functions of individual wave vectors. By leveraging the separability, the computational complexity is significantly reduced. Instead of summing over all possible triplets of modes (which is computationally expensive), the problem is reduced to summing over individual modes multiple times, which is much faster.\\
+The vector of estimated mode amplitudes is referred to as the “mode spectrum.” This mode spectrum is theory-independent and it contains all the information that needs to be extracted from the data.
+It is also possible to obtain theoretical mode spectra, by expanding primordial shapes in the same modal basis used to analyse
+the data. This allows us to measure $f_{NL}$ for any given primordial
+bispectrum template, by correlating the theoretical mode vectors, which can be quickly computed for any shape, with the data
+mode spectrum. This feature makes modal techniques ideal for
+analyses of a large number of competing models. Also important
+is that non-separable bispectra are expanded with arbitrary precision into separable basis modes. Therefore the treatment of nonseparable shapes is always numerically efficient in the modal approach. Finally, the data mode spectrum can be used, in combination with measured mode amplitudes, to build linear combinations of basis templates, which provide a model-independent
+reconstruction of the full data bispectrum.
+
+\subsection{Halo Mass Function}
+In addition to the halo power spectrum and bispectrum, we extract the halo mass function (HMF) defined using:
+
+\begin{equation}
+    \frac{\mathrm{d}n}{\mathrm{d}\log M} = \frac{1}{V} \sum_{i=1}^{N_h} \frac{1}{\Delta \log M}, \autolabel{}
+\end{equation}
+
+where:
+\begin{itemize}
+    \item \( \frac{\mathrm{d}n}{\mathrm{d}\log M} \) is the number density of halos per unit comoving volume per logarithmic mass bin,
+    \item \( V \) is the comoving volume of the simulation or survey,
+    \item \( N_h \) is the number of halos within the mass bin \([M, M + \Delta M]\),
+    \item \( \Delta \log M \) is the width of the logarithmic mass bin.
+\end{itemize}
+
+ We measure it in the Quijote simulations using 15 logarithmic bins corresponding to halo masses $M$ between approximately $2.0 \times 10^{13}$ and $4.6 \times 10^{15} \, M_{\odot}/h$ which is the same binning 
+ used in \cite{Bayer_2021} where the counted halos each contain between 30 and 7000 dark matter particles.
+
+\subsection{Marked Statistics}
+In our analysis, we extend the standard power spectrum and bispectrum calculations to include marked statistics as discussed in section \ref{Marked}. We saw that these marked statistics provide additional cosmological insights by weighting the density field with a mark function before computing its spectral properties. Let us write down the equation again.
+
+\begin{equation}
+    m(\mathbf{x}; R, p, \delta_s) = \left[\frac{1 + \delta_s}{1 + \delta_s + \delta_R(\mathbf{x})}\right]^p, \autolabel{}
+\end{equation}
+
+where $\delta_R(\mathbf{x})$ was the local density field, smoothed with a top-hat filter at scale $ R $.$ \delta_s $ and $ p $ were the parameters that adjusted the sensitivity and enhancement of low and high-density regions, respectively.
+
+Recent studies \cite{Massara_2021, Massara_2023,jung2024quijotepngoptimizingsummarystatistics} have demonstrated that measuring the power spectrum of the marked density field reveals new cosmological information beyond what is captured by the standard power spectrum. This additional information originates from higher-order statistics embedded in the marked field.
+
+In our analysis, we use both the power spectrum and the bispectrum of the marked density field. The bispectrum of the marked field requires more computational resources compared to its power spectrum counterpart due to its higher-order nature.
+
+To explore the cosmological implications effectively, we focus on four distinct marks characterized by the following parameter choices. These specific parameter configurations were identified in \cite{Massara_2023} as providing the most stringent constraints on cosmological parameters when analyzing galaxy catalogues derived from the Quijote N-body simulations.:
+\begin{itemize}
+    \item Scale $ R $: [30, 25, 20, 30] $ h^{-1} \mathrm{Mpc} $
+    \item Power $ p $: [1, 1, 1, 1]
+    \item Sensitivity $ \delta_s $: [0.10, 0.25, 0.50, 0.50]
+\end{itemize}
+
+In the case of massive neutrinos marked bispectrum, we only use the following values for $R$,$ p $, $ \delta_s $ : [20,1,0.50] i.e the smallest smoothing scale due to the large computational time required for calculating the combination.  
+
+
+
+\section{Method}
+\subsection{Likelihood Free Inference}
+In cosmological data analysis, we frequently encounter situations where we can generate mock data through sophisticated forward simulations, yet are unable to formulate a tractable likelihood function.\footnote{The likelihood function is a function of the parameters of a statistical model, given observed data. It measures the plausibility of different parameter values, based on how likely the observed data is under those parameter values.\\
+Formally, let $\mathbf{X} = (X_1, X_2, \ldots, X_n)$
+be a set of observed data points, and let $\theta$ be the parameters of the statistical model. If $f(\mathbf{X} \mid \theta)$ denotes the probability density function (or probability mass function, for discrete data) of the data given the parameters, the likelihood function $L(\theta \mid \mathbf{X})$ is defined as $L(\theta \mid X) = f(X \mid \theta)$} 
+For instance, the physics associated with non-linear structure formation on small scales \cite{Springel2005Natur.435..629S, QijoteVillaescusa_Navarro_2020, Klypin_2011}, baryonic feedback \cite{springel2018MNRAS.475..676S} etc., can be captured to varying extents by simulations however, developing compact and accurate models for the statistical properties of these processes remains challenging. Similarly, on the measurement side, it can be difficult to incorporate complicated noise models, selection bias etc., into the likelihood function.\\
+The standard approach is to construct an approximate likelihood that aims to capture as much of the known physics and measurement processes underlying the data as possible, hoping that the adopted approximations do not lead to biased posterior inferences. Even if the means and variances of inferences are not significantly biased, assessing tensions between data sets (Marshall et al. 2006), combining inferences, and comparing models can be strongly affected by posterior tail probabilities\cite{krywonos2024cosmologicalmeasurementscmbbao}, which are unlikely to be accurate when using popular likelihood approximations. Moreover, traditional methods like Fisher information and Markov Chain Monte Carlo (MCMC) \cite{verde2008practicalguidebasicstatistical} introduce significant computational complexities. Evaluating likelihood functions in high-dimensional parameter spaces is computationally expensive. MCMC, while effective for exploring complex posterior distributions, often demands extensive computational time to ensure convergence, especially in scenarios involving numerous parameters or complex dependencies\cite{Akeret_2013}. These challenges underscore the need to explore alternative approaches, such as likelihood-free methods, which can mitigate computational burdens while accommodating the complexities inherent in cosmological data analysis 
+
+Likelihood-free inference (LFI) also known as simulation-based inference(SBI) allows us to perform Bayesian inference using only forward simulations, free from any likelihood assumptions or approximations. This approach has great appeal for cosmological data analysis, as including complex physical processes, instrumental effects, selection biases, etc., into a forward simulation is typically much easier than incorporating these effects into a complicated likelihood function.\\
+
+There are several methods to implement likelihood-free inferences, with the simplest incarnation being Approximate Bayesian Computation (ABC). ABC involves drawing parameters from a proposal distribution, simulating mock data, and then accepting or rejecting the parameters based on whether the simulated data falls within an $\epsilon$-ball around the observed data \cite{Alsing_2019, Alsing_2018}. Another widely used method is Density-estimation likelihood-free inference (DELFI), which aims to train a flexible density estimator for the target posterior from a set of simulated data-parameter pairs. DELFI can yield high-fidelity posterior inference from orders of magnitude fewer simulations than traditional ABC-based methods \cite{Papamakarios:2019ccu, Alsing_2018, Alsing_2019, lueckmann2019likelihoodfreeinferenceemulatornetworks}.\\ 
+
+In this thesis, we use likelihood-free inference using a fully connected neural network (NN) and implementing the Moment Network method introduced by \cite{jeffrey2020solvinghighdimensionalparameterinference}.
+
+\subsection{Moment Network}
+
+The primary objective of any inference problem is estimating the posterior probability density \\ $p(\theta\mid x)$ of a set of parameters $\theta$ given some observed data $x$ where the posterior $p(\theta\mid x)$ contains all beliefs and uncertainties about the unknown quantities $\theta $. However, for physical inference problems involving high-dimensional parameter spaces, the whole high-dimensional posterior distribution is not required nor interpretable. Instead, the objective is frequently to find the marginal one- and two-dimensional posterior distributions of the parameters. The posterior estimations are then primarily utilized to calculate posterior moments. Moment Networks eliminate the need to estimate posterior density and instead focus on estimating parameter location, scale, and covariance (including higher-order moments).
+
+The above model outputs two numbers per parameter, the mean $\left(\mu_i\right) $and standard deviation $\left(\sigma_i\right) $of the marginal posterior \ref{fig:5.1}:
+
+\begin{align}
+    \mu_i(\mathbf{X}) &= \int_{\theta_i} p\left(\theta_i \mid \mathbf{X}\right) \theta_i \, d \theta_i, \autolabel{}, \\
+    \sigma_i(\mathbf{X}) &= \int_{\theta_i} p\left(\theta_i \mid \mathbf{X}\right) \left(\theta_i - \mu_i\right)^2 \, d \theta_i. \autolabel{},
+\end{align}
+
+where $p\left(\theta_i \mid \mathbf{X}\right)$ is the marginal posterior over the parameter \emph{i}:
+
+\begin{equation}
+    p\left(\theta_i \mid \mathbf{X}\right) = \int_\theta p\left(\theta_1, \theta_2, \ldots, \theta_n \mid \mathbf{X}\right) \, d \theta_1 \ldots d \theta_{i-1} d \theta_{i+1} \ldots d \theta_n . \autolabel{}
+\end{equation}
+
+
+In this notation, $ \mathbf{X} $ represents the summary statistics. Following the moment network method, the loss for the NN function is defined as \cite{camelsVillaescusa_Navarro_2022}:
+\begin{equation}
+    \begin{aligned}
+        \mathcal{L} = & \sum_{i \in \text{params}} \log \left( \sum_{j \in \text{batch}} \left(\theta_{i, j} - \mu_{i, j}\right)^2 \right) \\
+        & + \sum_{i \in \text{params}} \log \left( \sum_{j \in \text{batch}} \left( \left(\theta_{i, j} - \mu_{i, j}\right)^2 - \sigma_{i, j}^2 \right)^2 \right) .
+    \end{aligned}\autolabel{}
+\end{equation}
+
+which differs from the original one presented by \cite{jeffrey2020solvinghighdimensionalparameterinference},
+\begin{equation}
+    \mathcal{L} = \sum_{i \in \text{params}} \sum_{j \in \text{batch}} \left( \left(\theta_{i, j} - \mu_{i, j}\right)^2 + \left( \left(\theta_{i, j} - \mu_{i, j}\right)^2 - \sigma_{i, j}^2 \right)^2 \right) . \autolabel{}
+\end{equation}
+
+In the loss defined in \cite{Villaescusa_Navarro_2020} we see that the arithmetic sum is replaced by the sum of the logarithm of each term (either posterior mean or posterior standard deviation) which was found to provide much tighter and reliable values for $ \mu_{i} $and $ \sigma_i $ than its original version. The reason behind this is that by taking the logarithm of each term before summing the losses are effectively multiplied rather than summed. This adjustment mitigates the issue mentioned above by rescaling all terms to a comparable magnitude. Consequently, the loss function assigns similar weight to all terms, preventing certain parameters from overshadowing others and allowing for more balanced parameter estimation.
+
+\subsection{Neural Network Model}
+
+Before going into the NN model let's briefly try to understand the very basics of machine learning.\\
+
+Supervised and unsupervised learning are the two primary methods of machine learning. The distinction between the two lies in the fact that in supervised learning, the network is provided with a label in addition to the data sample; in contrast, unsupervised learning lacks this knowledge. This implies that the various strategies may be used to learn either independently in the case of unsupervised learning or dependently in the case of supervised learning, depending on the dataset and the issue. We use supervised learning, which enables the model to evaluate its current performance in comparison to the genuine values. \\
+NN have multiple layers of nodes; one input, one or many hidden, and one output layer. Each node has a threshold which is defined by the activation function, and only if the output is above the threshold will the information be carried to the next layer. The model will fine-tune by learning the best weights to apply to each node in order to get the output which is the closest to the true value. There are different hyperparameters which are set prior to beginning the training, and these are introduced briefly in the following paragraphs. 
+
+\subsubsection{Nodes and Layers}
+
+Neural networks consist of interconnected layers of nodes. Each node processes input data using a weighted sum, which passes through an activation function to determine if the output should propagate to the next layer. The network typically includes:
+
+\begin{itemize}
+    \item \textbf{Input Layer}: Receives input data features.
+    \item \textbf{Hidden Layers}: Intermediate layers that perform transformations on the input data.
+    \item \textbf{Output Layer}: Produces the final output prediction.
+\end{itemize}
+
+\subsubsection{Optimizers}
+
+Optimization is crucial in achieving the goal of any machine learning algorithm. The optimizer updates the model parameters iteratively to minimize the error function. Two widely used optimizers are:
+
+\begin{itemize}
+    \item \textbf{Gradient Descent}: Calculates gradients for the entire dataset and updates weights accordingly.
+    \item \textbf{Adam (Adaptive Moment Estimation)}: Combines momentum and squared gradients to adaptively adjust learning rates for each parameter.
+\end{itemize}
+
+\subsubsection{Learning Rate}
+
+The learning rate is a hyperparameter that controls the step size of the optimizer during training. A higher learning rate accelerates convergence but may risk overshooting the optimal solution, while a lower learning rate requires more epochs for convergence but is less likely to overshoot. Adaptive learning rates that adjust during training are often preferred for improved convergence efficiency.
+
+\subsubsection{Batch Size}
+
+Batch size refers to the number of data samples processed in one iteration of the optimizer. Common choices include batch, mini-batch, or stochastic (one sample) gradient descent. Batch size affects training time per epoch and can influence model performance when combined with learning rate adjustments.
+
+
+\subsubsection{Regularization}
+Regularization techniques constrain a model's capacity to prevent overfitting and improve generalization to unseen data. Below mentioned are three most commonly used regularization techinques are
+
+\begin{itemize}
+    \item \textbf{L1 Regularization}: Adds a penalty proportional to the sum of the absolute values of the model weights to the loss function:
+    \[ \mathcal{L}_{\text{regularized}} = \mathcal{L}_{\text{original}} + \lambda \sum_{i} |w_i| \]
+    This technique shrinks the less important feature’s coefficient to zero thus, removing some features altogether. It works well for feature selection in case we have a huge number of features.
+
+    \item \textbf{L2 Regularization}: Adds a penalty proportional to the sum of the squared values of the model weights to the loss function:
+    \[ \mathcal{L}_{\text{regularized}} = \mathcal{L}_{\text{original}} + \lambda \sum_{i} w_i^2 \]
+    This method penalizes large weights, promoting smoother model responses and reducing sensitivity to noise in the training data and avoid overfitting
+
+    \item \textbf{Dropout}: A regularization technique where a fraction of neurons is randomly deactivated during each training iteration:
+    \[ \text{Dropout}(x) = x \cdot \text{mask} \]
+    where the mask is a binary vector sampled from a Bernoulli distribution. Dropout prevents overfitting by ensuring that the model does not rely on any specific neurons.
+\end{itemize}
+
+ \begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Diagram_network.jpg}
+    \caption{Moment Neural Network Architecture}
+    \label{fig:5.1} 
+\end{figure}
+
+\subsubsection{Network Training and Architecture.}
+We perform our NN training in the "CloudVeneto" server using Nvidia V100 GPU.
+We start by splitting our data randomly into training, validation and test sets in the ratio of 60 \%,20\% and 20\% respectively. This is done to avoid hidden correlations between the data from the same simulation that we do not want the network to learn. The input layer consists of various combinations of summary statistics and we are interested in their constraining capabilities. This is followed by a normalization layer and a variable number of hidden layers with varying numbers of nodes. The output layer concatenates two sets of variable mean and sigma described in a moment with the number of nodes equal to the number of parameters.\\
+For the hidden layers, we use the Scaled Exponential Linear Unit (SELU) activation function \cite{klambauer2017selfnormalizingneuralnetworks}. The SELU activation function is defined as:
+
+\begin{equation}
+    \text{SELU}(x) = \lambda 
+    \begin{cases} 
+    x & \text{if } x > 0 \\
+    \alpha e^x - \alpha & \text{if } x \leq 0 \autolabel{}
+    \end{cases}
+\end{equation}
+
+where $\lambda \approx 1.0507$ and $\alpha \approx 1.67326$. The weights are initialized using the prescription in \cite{he2015deepresiduallearningimage}, which is commonly known as He initialization. An "L2" layer weight regularizer is used to prevent overfitting. We also apply dropout to each hidden layer \cite{JMLR:v15:srivastava14a} to further regularize the model. 
+
+The hidden layer is then followed by the output layer that concatenates the two sets of variables described in the moment, i.e., the mean and the sigma values of each parameter. To ensure that the sigma values are positive, we use the ELU+1 activation function \cite{jung2024quijotepngoptimizingsummarystatistics}, which is defined as:
+
+where ELU (Exponential Linear Unit) is defined as:
+
+\begin{equation}
+    \text{ELU}(x)+1 = 
+    \begin{cases} 
+    x+1 & \text{if } x > 0 \\
+    e^x  & \text{if } x \leq 0 \autolabel{}
+    \end{cases}
+\end{equation}
+
+For the means, we use a linear activation function, which is simply:
+
+\begin{equation}
+    \text{Linear}(x) = x \autolabel{}
+\end{equation}
+\\
+The weights are initialized similarly to the hidden layers along with the "L2" layer weight regularizer.\\
+
+Now, The training is performed using the Adam optimizer \cite{kingma2017adammethodstochasticoptimization}, with a cyclical learning rate \cite{smith2017cyclicallearningratestraining}. We chose to use a cyclic learning rate as it helps the optimizer avoid falling into the local minima and saddle points by periodically varying the learning rate between a lower and upper bound. So, Instead of using a fixed learning rate or a monotonically decreasing schedule, CLR allows the learning rate to increase and decrease in a cyclical fashion. 
+
+The neural network architecture includes several hyperparameters that were optimized using Bayesian optimization \cite{omalley2019kerastuner}. This technique explores different values within specified ranges to find the best-performing configuration. We performed 50 trials for hypertuning the NN model with $\mathrm{M}{\nu}$ and 30 trials for $f_{NL}^{\mathrm{equil}}$. The decision to use fewer trials for $f_{NL}^{\mathrm{equil}}$ was primarily driven by the need to avoid extensive computational time. The hyperparameters and their ranges are as follows:
+
+
+
+\begin{itemize}
+    \item \textbf{Number of Layers }: The number of hidden layers varies between 1 and 8.
+    \item \textbf{Architecture }: The number of nodes in each hidden layer ranges from 8 to 1024, with increments of 32.
+    \item \textbf{Dropout Rate }: The dropout rate ranges from 0.1 to 0.5, sampled logarithmically.
+    \item \textbf{Learning Rate}: The learning rate ranges from $10^{-5}$ to $10^{-2}$, sampled logarithmically.
+    \item \textbf{Regularization Rate }: The "L2" regularization rate ranges from $10^{-5}$ to $10^{-1}$, sampled logarithmically.
+    \item \textbf{Cyclic Base Learning Rate }: The base learning rate for cyclical learning ranges from $10^{-5}$ to $10^{-2}$, sampled logarithmically.
+    \item \textbf{Batch Size}: The batch size can take values of $[16, 32, 64, 128, 256, 512]$.
+
+\end{itemize}
+
+The network is then trained and to evaluate our neural network's (NN) learning capacity, we examine the "training" vs "validation loss" plots shown in Figure \ref{fig:fnl_loss_plot}. The training loss indicates how effectively the model performs on the training data, while the validation loss measures its performance on a separate dataset, known as the validation set. This validation set helps us evaluate how well the model generalizes to unseen data, beyond its training data. We stop the training when the validation loss does not decrease for 100 epochs.
+
+
+
+
+
+
+\subsection{Evaluators}
+
+
+To evaluate the quality of moment predictions.
+\begin{itemize}
+    \item Firstly, we calculate the coefficient of determination for each parameter defined as :
+        \begin{equation}
+        R^2(\hat{\theta}) \equiv 1 - \frac{\sum_i \left(\theta_i - \hat{\theta}(x_i)\right)^2}{\sum_i \left(\theta_i - \bar{\theta}\right)^2}, \autolabel{}
+        \end{equation}
+        where $i$ runs over simulations in the test set, $\theta_i$ represents the true parameter for the $i$-th simulation, $\bar{\theta}$ is the average of the true parameter across the test set, and $\hat{\theta}(x_i)$ is the posterior mean estimate from the $i$-th simulation.\\
+        An $R^2$ value close to 1 indicates that the mean posterior estimate of the parameters is close to the average of the true value of the parameter hence it indicates a close recovery of the true parameters, while $R^2 = 0$ suggests that using the average value as a prediction is as good as the estimator. A thing to note is that $R^2$ can be negative if the estimator performs worse than simply using the average value.
+        The coefficient of determination assesses the quality of the posterior mean estimates. 
+        
+        \item To evaluate the second moment, we use a different metric $\chi^2$. For each parameter, we compute:
+        \begin{equation}
+            \chi^2(\hat{\theta}, \hat{\sigma}) \equiv \frac{1}{N} \sum_i \frac{\left(\theta_i - \hat{\theta}(x_i)\right)^2}{\hat{\sigma}^2(x_i)},\autolabel{}
+        \end{equation}
+        where $\hat{\sigma}(x_i)$ is the predicted standard deviation for the $i$-th simulation, and $N$ is the number of simulations in the set. If the model overfits to get a reduced $\hat{\sigma}(x_i)$ the  $\chi^2$ shoots up and if it underestimates the sigma we get a $\chi^2$, The closer to 1, the better the calibration. For each trained network, We calculate $\chi^2$ using the simulations in the validation set and discard all those where $|\chi^2 - 1| > 0.5$. 
+        
+\end{itemize}

@@ -1,1 +1,595 @@
-\chapter{Neutrinos in Cosmology}
+\chapter{Perturbation Theory and the Formation of Large-Scale Structures}\label{PT}
+\justifying
+
+One of the most sought-after questions in modern cosmology is understanding the large-scale structures of the universe we see today. Previously in section \ref{section 1.7.4} we saw how quantum fluctuations during inflation that grow to super-horizon scales induce the primordial density perturbations.
+These perturbations are induced in the dark matter field once they re-enter the horizon. As they grow over the age of the universe, baryons accumulate in the gravitational potential wells of these dark matter density fluctuations eventually forming the structures we observe due to gravitational instabilities.\\
+
+Cosmological Perturbation Theory (PT) aims at comprehending the dynamical evolution of the density and velocity fields of matter perturbations. This perturbative technique works especially well when characterizing the dynamics of gravitational instabilities at large scales, where density fluctuations are still tiny. On these large scales, structure creation is often thought to be primarily driven by gravity inside the PT framework. At small scales, however, this assumption falters as non-gravitational factors start to affect the distribution of matter for example the effects of the pressure forces of the baryons.\\
+
+Furthermore, the predictive ability of PT is ultimately limited by the strong non-linear nature of gravitational evolution. At small scales ($k_{NL}(z = 0) \approx 0.25 h/Mpc$ \cite{Dodelson}), strong non-linearities and non-perturbative effects dominate the dynamics, making perturbative approaches ineffective. These scales are characterized by complex interactions and feedback mechanisms that require more advanced modelling techniques, frequently involving numerical simulations and semi-analytical methods.\\
+
+However, there is a quasi non-linear regime in which the non-linear evolution of matter can still be adequately described by higher-order corrections to linear PT that could provide important information about the change from linear to fully non-linear scales. This approach allows the utility of PT beyond its strictly linear domain, bridging the gap between large-scale predictions and small-scale complexities. \\
+
+Moreover, PT offers a framework for comprehending the statistical properties of matter distribution, like the power spectrum and bispectrum, which hold information about the universe and are crucial for restricting cosmological models and understanding data from extensive surveys.\\
+
+PT operates under two main assumptions:\\
+\begin{itemize}
+    \item On large scales baryonic pressure is neglected i.e. baryon is treated as cold as it cools rapidly after recombination and is approximated as collisionless. cold dark matter (CDM) and baryons are treated as pressureless single-field.
+
+    \item Since CDM particles are non-relativistic, at scales smaller than the Hubble radius ($r_{H}$) the equations of motion reduce to those of Newtonian gravity.
+\end{itemize}
+
+In this chapter, we will discuss the Eulerian and Lagrangian framework of the standard PT and follow Ref. \cite{Bernardeau_2002} and references within it for our discussion.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Euler Perturbation Theory}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{The Vlasov Equation}
+
+When we consider gravitational instabilities in an expanding universe we need to account for the departures from the homogeneous universe. The positions are described by their comoving coordinates $\mathbf{x}$ ($\mathbf{r}=a(\tau) \mathbf{x}$ where r is the physical coordinate) and the equations of motion are described in terms conformal time  $\tau$. The conformal expansion rate is defined as  $\mathcal{H} \equiv \mathrm{d} \ln a / \mathrm{d} \tau=H a$  where $H$ is the Hubble constant.
+We then define the density contrast $\delta(\mathbf{x})$ by,
+
+\begin{equation}
+    \rho(\mathbf{x}, \tau) \equiv \bar{\rho}(\tau)[1+\delta(\mathbf{x}, \tau)] \autolabel{},
+\end{equation}
+
+
+the peculiar velocity $\mathbf{u}$ with
+
+
+\begin{equation}
+    \mathbf{v}(\mathbf{x}, \tau) \equiv \mathcal{H} \mathbf{x}+\mathbf{u}(\mathbf{x}, \tau) \autolabel{},
+\end{equation}
+
+
+and the cosmological gravitational potential $\Phi$ with
+
+
+\begin{equation}
+    \phi(\mathbf{x}, \tau) \equiv-\frac{1}{2} \frac{\partial \mathcal{H}}{\partial \tau} x^{2}+\Phi(\mathbf{x}, \tau) \autolabel{},
+\end{equation}
+
+
+so that the latter is sourced only by density fluctuations, as expected. The Poisson equation reads,
+
+
+\begin{align*}
+    \nabla^{2} \Phi(\mathbf{x}, \tau)=\frac{3}{2} \Omega_{m}(\tau) \mathcal{H}^{2}(\tau) \delta(\mathbf{x}, \tau) \\
+    =  4\pi G \bar{\rho}(\tau)\delta(\mathbf{x}, \tau) \autolabel{},
+\end{align*}
+    
+In the following, the spatial variable will only be comoving coordinates, therefore all space derivatives should be interpreted as being performed with respect to $\mathbf{x}$. Then, the equation of motion can be written as,
+
+
+\begin{equation}
+    \frac{\mathrm{d} \mathbf{p}}{\mathrm{d} \tau}=-a m \nabla \Phi(\mathbf{x}) \autolabel{},
+\end{equation}
+
+
+where,
+
+
+\begin{equation}
+    \mathbf{p}=a m \mathbf{u} \autolabel{},
+\end{equation}
+
+
+Now we define the Vlasov equation which is a a non-linear partial differential equation that describes the evolution of the particle number density in phase space. The particle number density in phase space is defined by the distribution function $f(\mathbf{x}, \mathbf{p}, \tau)$; phase-space conservation implies the Vlasov equation,
+
+\begin{equation}
+    \frac{\mathrm{d} f}{\mathrm{~d} \tau}=\frac{\partial f}{\partial \tau}+\frac{\mathbf{p}}{m a} \cdot \nabla f-a m \nabla \Phi \cdot \frac{\partial f}{\partial \mathbf{p}}=0 \autolabel{},
+\end{equation}
+
+The non-linearity is induced by the fact that the potential $\Phi$ depends through the Poisson equation on the integral of the distribution function over momentum ( i.e. momentum average) (which gives the density field, see Eq.\eqref{eq:3.8} below).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Eulerian Dynamics}
+In practice, we are usually interested in solving the evolution of the spatial distribution rather than the full phase-space dynamics. This is obtained by taking momentum moments of the distribution function. 
+
+
+\begin{align}
+    \int \mathrm{d}^{3} \mathbf{p} f(\mathbf{x}, \mathbf{p}, \tau) \equiv \rho(\mathbf{x}, \tau) \autolabel{},\\
+    \int \mathrm{d}^{3} \mathbf{p} \frac{\mathbf{p}}{a m} f(\mathbf{x}, \mathbf{p}, \tau) & \equiv \rho(\mathbf{x}, \tau) \mathbf{u}(\mathbf{x}, \tau)  \autolabel{},\\
+    \int \mathrm{d}^{3} \mathbf{p} \frac{p_{i} p_{j}}{a^{2} m^{2}} f(\mathbf{x}, \mathbf{p}, \tau) & \equiv \rho(\mathbf{x}, \tau) \mathbf{u}_{i}(\mathbf{x}, \tau) \mathbf{u}_{j}(\mathbf{x}, \tau)+\sigma_{i j}(\mathbf{x}, \tau) \autolabel{},
+\end{align}
+
+
+The zeroth order moment Eq.\eqref{eq:3.8} relates the phase space density to the local mass density field, The higher order moments Eq.\eqref{eq:3.9} and Eq.\eqref{eq:3.10} define the peculiar velocity flow $\mathbf{u}(\mathbf{x}, \tau)$ and the stress tensor $\sigma_{i j}(\mathbf{x}, \tau)$. The equation for these fields follows from taking moments of the Vlasov equation. The zeroth moment gives the continuity equation describing the  mass conservation,
+
+
+\begin{equation}
+    \frac{\partial \delta(\mathbf{x}, \tau)}{\partial \tau}+\nabla \cdot\{[1+\delta(\mathbf{x}, \tau)] \mathbf{u}(\mathbf{x}, \tau)\}=0 \autolabel{},
+\end{equation}
+
+and subtracting $\mathbf{u}(\mathbf{x}, \tau)$ times the continuity equation from the first moment gives the Euler equation which describes the conservation of momentum
+
+
+\begin{align*}
+    \frac{\partial \mathbf{u}(\mathbf{x}, \tau)}{\partial \tau}+\mathcal{H}(\tau) \mathbf{u}(\mathbf{x}, \tau)+\mathbf{u}(\mathbf{x}, \tau) \cdot & \nabla \mathbf{u}(\mathbf{x}, \tau)= \\
+    & -\nabla \Phi(\mathbf{x}, \tau)-\frac{1}{\rho} \nabla_{j}\left(\rho \sigma_{i j}\right) \autolabel{}.
+\end{align*}
+
+
+We can observe in the above equations that the continuity equation couples the zeroth $(\rho)$ to the first moment $(\mathbf{u})$ of the distribution function similarly, the Euler equation couples the first moment $(\mathbf{u})$ to the second moment $\left(\sigma_{i j}\right)$, and so on.\\
+Now that the phase-space information has been integrated out, an ansatz is considered for the cosmological fluid's equation of state i.e. the stress tensor $\left(\sigma_{i j}\right)$.\\
+
+The first assumption that we considered at the beginning of the chapter is that the cosmological structure formation is driven by cold matter which has negligible pressure and velocity dispersion. The stress tensor in Eq.\eqref{eq:3.10} characterizes the deviation of particle motions from a single coherent flow (single stream), for which the first term will be the dominant contribution. Therefore, it is a good approximation to set $\sigma_{i j} \approx 0$, at the initial stages of gravitational instability when structures did not have time to collapse and virialize. As time goes on, this approximation will break down at progressively larger scales, but at present times at the scales relevant to large-scale structure, this approximation is extremely handy. The breakdown describes the generation of velocity dispersion due to multiple streams, known as \emph{shell crossing}\\
+
+At large scales, when fluctuations are small, linear perturbation theory provides an adequate description of cosmological fields. In this regime, different Fourier modes evolve independently which conserves the primordial statistics. Therefore we combine the equations  eq.\eqref{eq:3.4}, eq.\eqref{eq:3.11} and eq.\eqref{eq:3.12}  and transform it into Fourier space to get the equation of motion for gravitational instabilities which are characterised by the overdensity $\tilde{\delta}(\mathbf{k}, \tau)$ and velocity divergence $\tilde{\theta}(\mathbf{k}, \tau)$ . These are the continuity and Euler equations in Fourier space.\\
+
+
+\begin{align*}
+    \frac{\partial \tilde{\delta}(\mathbf{k}, \tau)}{\partial \tau}+\tilde{\theta}(\mathbf{k}, \tau)=-\int \mathrm{d}^{3} \mathbf{k}_{1} \mathrm{~d}^{3} \mathbf{k}_{2} \delta_{D}\left(\mathbf{k}-\mathbf{k}_{12}\right) \alpha\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) \tilde{\theta}\left(\mathbf{k}_{1}, \tau\right) \tilde{\delta}\left(\mathbf{k}_{2}, \tau\right) \autolabel{}, \\
+    \frac{\partial \tilde{\theta}(\mathbf{k}, \tau)}{\partial \tau}+\mathcal{H}(\tau) \tilde{\theta}(\mathbf{k}, \tau)+\frac{3}{2} \Omega_{m} \mathcal{H}^{2}(\tau) \tilde{\delta}(\mathbf{k}, \tau)=-\int \mathrm{d}^{3} \mathbf{k}_{1} \mathrm{~d}^{3} \mathbf{k}_{2} \delta_{D}\left(\mathbf{k}-\mathbf{k}_{12}\right) \\
+    \times \beta\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) \tilde{\theta}\left(\mathbf{k}_{1}, \tau\right) \tilde{\theta}\left(\mathbf{k}_{2}, \tau\right) \autolabel{},
+\end{align*}
+
+
+( $\delta_{D}$ denotes the three-dimensional Dirac delta distribution) where $\mathbf{k}_{ij} = \mathbf{k}_{i} + \mathbf{k}_{j}$ the functions.The left-hand side of the above equations is the linear part, while the right-hand side contains the non-linear evolution that generates mode couplings, imprinted in functions
+
+\begin{equation}
+    \alpha\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) \equiv \frac{\mathbf{k}_{12} \cdot \mathbf{k}_{1}}{k_{1}^{2}}, \quad \beta\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) \equiv \frac{k_{12}^{2}\left(\mathbf{k}_{1} \cdot \mathbf{k}_{2}\right)}{2 k_{1}^{2} k_{2}^{2}} \autolabel{}.
+\end{equation}
+
+
+Now, coming back to our assumption for the vanishing stress tensor we will try to investigate further the Poisson, continuity and Euler equations i.e. eq.\eqref{eq:3.4}, eq.\eqref{eq:3.11} and eq.\eqref{eq:3.12} respectively for the three unknown $\rho$, $\mathbf{u}$ and $\Phi$. in the next section.
+
+\subsection{Linear Solution}
+At large scales\footnote{not to confuse with large scale modes}, the fluctuation fields can be assumed to be small compared to the homogeneous contribution described by the first terms in eq.\eqref{eq:3.11} and eq.\eqref{eq:3.12}. Therefore, it follows that we can linearize them to obtain the equations of motion in the linear regime.
+
+
+\begin{equation}
+    \frac{\partial \delta(\mathbf{x}, \tau)}{\partial \tau}+\theta(\mathbf{x}, \tau)=0 \autolabel{},
+\end{equation}
+
+
+
+\begin{equation}
+    \frac{\partial \mathbf{u}(\mathbf{x}, \tau)}{\partial \tau}+\mathcal{H}(\tau) \mathbf{u}(\mathbf{x}, \tau)=-\nabla \Phi(\mathbf{x}, \tau) \autolabel{},
+\end{equation}
+
+
+where $\theta(\mathbf{x}, \tau) \equiv \nabla \cdot \mathbf{u}(\mathbf{x}, \tau)$ is the divergence of the velocity field as mentioned before. \\
+Now a velocity field, as any vector field, can be completely described by its divergence $\theta(\mathbf{x}, \tau)$ and its vorticity $\mathbf{w}(\mathbf{x}, \tau) \equiv \nabla \times \mathbf{u}(\mathbf{x}, \tau)$, whose equations of motion follow from Eq.\eqref{eq:3.17}
+
+
+\begin{align*}
+    & \frac{\partial \theta(\mathbf{x}, \tau)}{\partial \tau}+\mathcal{H}(\tau) \theta(\mathbf{x}, \tau)+\frac{3}{2} \Omega_{m}(\tau) \mathcal{H}^{2}(\tau) \delta(\mathbf{x}, \tau)=0  \autolabel{}\\
+    & \frac{\partial \mathbf{w}(\mathbf{x}, \tau)}{\partial \tau}+\mathcal{H}(\tau) \mathbf{w}(\mathbf{x}, \tau)=0 \autolabel{}
+\end{align*}
+
+
+On solving Eq. \eqref{eq:3.19} we see that vorticity evolution is given by, w $(\tau) \propto a^{-1}$, i.e. in the linear regime any initial vorticity decays away due to the expansion of the Universe. To get the density contrast evolution we will take the time derivative of Eq.\eqref{eq:3.18} and replace it in Eq.\eqref{eq:3.16} and use the Poisson equation Eq.\eqref{eq:3.4} to get,
+
+
+\begin{equation}
+    \frac{\mathrm{d}^{2} D_{1}(\tau)}{\mathrm{d} \tau^{2}}+\mathcal{H}(\tau) \frac{\mathrm{d} D_{1}(\tau)}{\mathrm{d} \tau}=\frac{3}{2} \Omega_{m}(\tau) \mathcal{H}^{2}(\tau) D_{1}(\tau) \autolabel{}
+\end{equation}
+
+
+where $\delta(\mathbf{x}, \tau)=D_{1}(\tau) \delta^{1}(\mathbf{x}, 0)$, and $D_{1}(\tau)$ is the linear growth factor which describes the growth of the overdensity field from some reference time $\tau = 0$ to some later time $\tau$. The second term in the above equation is the friction term that arises due to the Hubble flow whereas the third term is the force term. Since it is a second-order differential equation, it has two independent solutions, let's denote the fastest growing mode $D_{1}^{(+)}(\tau)$ and the slowest one $D_{1}^{(-)}(\tau)$. The evolution of the density is then
+
+
+\begin{equation}
+    \delta(\mathbf{x}, \tau)=D_{1}^{(+)}(\tau) A(\mathbf{x})+D_{1}^{(-)}(\tau) B(\mathbf{x}) \autolabel{},
+\end{equation}
+
+
+where $A(\mathbf{x})$ and $B(\mathbf{x})$ are two arbitrary functions of position describing the initial density field configuration, whereas the velocity divergence [using Eq.\eqref{eq:3.16}] is given by
+
+
+\begin{align*}
+    & \theta(\mathbf{x}, \tau)=-\mathcal{H}(\tau)\left[f\left(\Omega_{m}, \Omega_{\Lambda}\right) A(\mathbf{x})+g\left(\Omega_{m}, \Omega_{\Lambda}\right) B(\mathbf{x})\right]  \autolabel{},\\
+    & f\left(\Omega_{m}, \Omega_{\Lambda}\right) \equiv \frac{\mathrm{d} \ln D_{1}^{(+)}}{\mathrm{d} \ln a}=\frac{1}{\mathcal{H}} \frac{\mathrm{d} \ln D_{1}^{(+)}}{\mathrm{d} \tau} \quad g\left(\Omega_{m}, \Omega_{\Lambda}\right)=\frac{1}{\mathcal{H}} \frac{\mathrm{d} \ln D_{1}^{(-)}}{\mathrm{d} \tau} \autolabel{},
+\end{align*}\\
+
+Let us discuss three different cases -
+
+\begin{itemize}
+    \item The Einstein-de Sitter Universe i.e when $\Omega_{m}=1, \Omega_{\Lambda}=0$,\\
+    
+    \begin{equation*}
+        D_{1}^{(+)}=a, \quad D_{1}^{(-)}=a^{-3 / 2}, \quad f(1,0)=1 \autolabel{}
+    \end{equation*}
+    We see that the density fluctuations grow as the scale factor which is consistent with our intuition that, as time evolves overdense regions attract more matter and become overdense
+    
+    \item When $\Omega_{m}<1, \Omega_{\Lambda}=0$ we have $\left(x \equiv 1 / \Omega_{m}-1\right)$.\\
+    
+    \begin{equation*}
+        D_{1}^{(+)}=1+\frac{3}{x}+3 \sqrt{\frac{1+x}{x^{3}}} \ln [\sqrt{1+x}-\sqrt{x}] \quad D_{1}^{(-)}=\sqrt{\frac{1+x}{x^{3}}} \autolabel{},
+    \end{equation*}
+    and the logarithmic derivative can be approximated by \cite{1976ApJ...205..318P}
+    \begin{equation*}
+        f\left(\Omega_{m}, 0\right) \approx \Omega_{m}^{3 / 5} \autolabel{},
+    \end{equation*}
+    As $\Omega_{m} \rightarrow 0(x \gg 1), D_{1}^{(+)} \rightarrow 1$ and $D_{1}^{(-)} \rightarrow x^{-1}$ and perturbations cease to grow.
+
+    \item Where there is only matter and vacuum energy\\
+    
+    In this case the linear growth factor admits the integral representation as a function of $\Omega_{m}$ and $\Omega_{\Lambda}$
+    \begin{equation*}
+        D_{1}^{(+)}=H(a) \frac{5 \Omega_{m}}{2} \int_{0}^{a} \frac{\mathrm{d} a}{a^{3} H(a)} \autolabel{},
+    \end{equation*}
+\end{itemize}
+
+So, we see that the growth factor describes the scale-independent growth at late times. Now, we would like to relate the potentials during this time to the primordial curvature perturbations. Using the Poisson equation, Eq. \eqref{eq:3.4} 
+ in Fourier space, we relate the linear density contrast to the gravitational potential fluctuations :
+\begin{align*}
+    k^2 \Phi_{(\mathbf{k})}= 4 \pi G \bar{\rho} \delta^{1}_{\mathbf{k}}=\frac{3}{2}
+    \mathcal{H}^2 \Omega_m \delta^{1}_{\mathbf{k}} .\autolabel{}
+\end{align*}
+
+Now the curvature perturbations can be related to the gravitational potential of the perturbed FLRW metric, for components with a barotropic equation of state, as:
+\begin{align}
+    \Phi(\mathbf{k})=-\frac{3(1+w)}{(5+3 w)}\zeta(\mathbf{k}) ,\autolabel{}
+\end{align}
+
+Using Eq. \eqref{eq:3.28} and \eqref{eq:3.29} we get the following equation which relates over-densities to primordial potential.
+
+\begin{align}
+    \delta^{1}(\mathbf{k})=-\frac{2(1+w)}{(5+3 w)\Omega_m} \frac{k^{2}}{a^{2} H^{2}} T(k, \tau)D_{1}^{(+)}\zeta(\mathbf{k}) \autolabel{}.
+\end{align}
+
+where $D_{1}(\tau)$ is the growth factor discussed above and $T(k)$ is the transfer function that defines the evolution of perturbations across the horizon crossing and radiation/matter transition epochs. For the matter-dominated era, it reduces to \footnote{Notice we have changed to redshift(z) from scale factor}
+
+\begin{align}
+    \delta^{1}_{(\mathbf{k})} = -\frac{2}{3} \frac{k^{2}}{\Omega_{m}H_{0}^{2}} T(k) D_{1}^{(+)} \Phi_{(\mathbf{k})} = M(\mathbf{k},z) \Phi_{(\mathbf{k},z)} \autolabel{}
+\end{align}
+
+
+
+
+
+\subsection{Eulerian Non-Linear Perturbation Theory}
+We will now consider the density and velocity fields evolution beyond the linear approximation\footnote{Given the smallness of the spacetime perturbations we can continue to work to linear order in the potential }. To do so, we shall first make a self-consistent approximation, that is, we will characterize the velocity field by its divergence, and justify that the vorticity degrees of freedom can be neglected.
+
+Taking the curl of Eq. \eqref{eq:3.12} and temporarily restoring the stress tensor contribution $\left(\sigma_{i j}\right)$ to the conservation of momentum we can write the vorticity equation of motion as
+
+
+\begin{equation}
+    \frac{\partial \mathbf{w}(\mathbf{x}, \tau)}{\partial \tau}+\mathcal{H}(\tau) \mathbf{w}(\mathbf{x}, \tau)-\nabla \times[\mathbf{u}(\mathbf{x}, \tau) \times \mathbf{w}(\mathbf{x}, \tau)]=\nabla \times\left(\frac{1}{\rho} \nabla \cdot \vec{\sigma}\right) \autolabel{},
+\end{equation}
+
+ Let us now look into two cases. In the first case, if the primordial vorticity vanishes, we see that $\sigma_{i j} \approx 0$, as in the case of a pressureless perfect fluid. So, in the absence of primordial vorticity $\sigma_{i j}$ remains zero at all times. In the next case, if the initial vorticity is non-zero, we saw in the previous section that in the linear regime vorticity decays due to the expansion of the Universe; however, it can be amplified non-linearly through the third term in Eq. \eqref{eq:3.31}. In what follows, we shall assume that the initial vorticity vanishes, thus Eq. \eqref{eq:3.31} together with the equation of state $\sigma_{i j} \approx 0$ guarantees that vorticity remains zero throughout the evolution.
+
+PT assumes that it is possible to expand the density and velocity fields about the linear solutions by effectively treating the variance of the linear fluctuations as a small parameter and assuming no vorticity in the velocity field [\cite{Dodelson}\cite{Bernardeau_2002}]. Linear solutions correspond to simple (time-dependent) scaling of the initial density field; which we can write as
+
+\begin{equation}
+    \delta(\mathbf{x}, t)=\sum_{n=1}^{\infty} \delta^{(n)}(\mathbf{x}, t), \quad \theta(\mathbf{x}, t)=\sum_{n=1}^{\infty} \theta^{(n)}(\mathbf{x}, t) \autolabel{},
+\end{equation}
+
+
+where $\delta^{(1)}=D_{1}(\tau) \delta(\mathbf{x}, 0)$ and $\theta^{(1)} = -\mathcal{H}\delta^{(1)}$ are linear in the initial density field as we saw before, $\delta^{(2)}$ and $\theta^{(2)}$ are quadratic in the initial density field, etc.
+
+\subsection{General Solutions in Einstein-de Sitter Cosmology}
+Let's first consider an Einstein-de Sitter Universe, for which $\Omega_{m}=1$ and $\Omega_{\Lambda}=0$ and scaling out an overall factor of $\mathcal{H}$ from the velocity field brings Eq. \eqref{eq:3.13} and Eq. \eqref{eq:3.14} into homogeneous form in $\tau$ or, equivalently, in $a(\tau)$. As a consequence, these equations can formally be solved with the following perturbative expansion \cite{Goroff1986ApJ...311....6G, Jain_1994},
+
+
+\begin{equation}
+    \tilde{\delta}(\mathbf{k}, \tau)=\sum_{n=1}^{\infty} a^{n}(\tau) \delta_{n}(\mathbf{k}), \quad \tilde{\theta}(\mathbf{k}, \tau)=-\mathcal{H}(\tau) \sum_{n=1}^{\infty} a^{n}(\tau) \theta_{n}(\mathbf{k}) \autolabel{},
+\end{equation}
+
+
+where only the fastest-growing mode is taken into account. Remarkably, it implies that the PT expansions defined in Eq. \eqref{eq:3.32} are expansions with respect to the linear density field with time-independent coefficients. At small $a$ the series are dominated by their first term, and since $\theta_{1}(\mathbf{k})=$ $\delta_{1}(\mathbf{k})$ from the continuity equation, $\delta_{1}(\mathbf{k})$ completely characterizes the linear fluctuations.
+
+The equations of motion, Eqs. (37-38) determine $\delta_{n}(\mathbf{k})$ and $\theta_{n}(\mathbf{k})$ in terms of the linear fluctuations to be:
+
+
+\begin{equation}
+    \delta_{n}(\mathbf{k})=\int \mathrm{d}^{3} \mathbf{q}_{1} \ldots \int \mathrm{d}^{3} \mathbf{q}_{n} \delta_{D}\left(\mathbf{k}-\mathbf{q}_{1 \ldots n}\right) F_{n}\left(\mathbf{q}_{1}, \ldots, \mathbf{q}_{n}\right) \delta_{1}\left(\mathbf{q}_{1}\right) \ldots \delta_{1}\left(\mathbf{q}_{n}\right) \autolabel{},
+\end{equation}
+
+
+
+\begin{equation}
+    \theta_{n}(\mathbf{k})=\int \mathrm{d}^{3} \mathbf{q}_{1} \ldots \int \mathrm{d}^{3} \mathbf{q}_{n} \delta_{D}\left(\mathbf{k}-\mathbf{q}_{1 \ldots n}\right) G_{n}\left(\mathbf{q}_{1}, \ldots, \mathbf{q}_{n}\right) \delta_{1}\left(\mathbf{q}_{1}\right) \ldots \delta_{1}\left(\mathbf{q}_{n}\right) \autolabel{},
+\end{equation}
+
+
+here $F_{n}$ and $G_{n}$ are homogeneous functions of the wave vectors $\left\{\mathbf{q}_{1}, \ldots, \mathbf{q}_{n}\right\}$ with degree zero. They incorporate the non-linear mode coupling induced by gravity and are constructed from the fundamental mode coupling functions $\alpha\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right)$ and $\beta\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right)$ according to the recursion relations  $(n \geq 2$, see \cite{Goroff1986ApJ...311....6G, Jain_1994} for a detailed derivation):
+
+
+\begin{align*}
+    F_{n}\left(\mathbf{q}_{1}, \ldots, \mathbf{q}_{n}\right)= & \sum_{m=1}^{n-1} \frac{G_{m}\left(\mathbf{q}_{1}, \ldots, \mathbf{q}_{m}\right)}{(2 n+3)(n-1)}\left[(2 n+1) \alpha\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) F_{n-m}\left(\mathbf{q}_{m+1}, \ldots, \mathbf{q}_{n}\right)\right. \\
+    & \left.+2 \beta\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) G_{n-m}\left(\mathbf{q}_{m+1}, \ldots, \mathbf{q}_{n}\right)\right]  \autolabel{},\\
+    G_{n}\left(\mathbf{q}_{1}, \ldots, \mathbf{q}_{n}\right)= & \sum_{m=1}^{n-1} \frac{G_{m}\left(\mathbf{q}_{1}, \ldots, \mathbf{q}_{m}\right)}{(2 n+3)(n-1)}\left[3 \alpha\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) F_{n-m}\left(\mathbf{q}_{m+1}, \ldots, \mathbf{q}_{n}\right)\right. \\
+    & \left.+2 n \beta\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) G_{n-m}\left(\mathbf{q}_{m+1}, \ldots, \mathbf{q}_{n}\right)\right] \autolabel{},
+\end{align*}
+
+
+where $\mathbf{k}_{1} \equiv \mathbf{q}_{1}+\ldots+\mathbf{q}_{m}, \mathbf{k}_{2} \equiv \mathbf{q}_{m+1}+\ldots+\mathbf{q}_{n}, \mathbf{k} \equiv \mathbf{k}_{1}+\mathbf{k}_{2}$. Up to third order, the symmetrized kernels (i.e. sum of the $n$-th order kernels over all possible permutations of the modes) for the density field are:
+
+
+\begin{align*}
+    & F_{1}(\mathbf{k})=1  \autolabel{},\\
+    & F_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right)=\frac{5}{7}+\frac{1}{2} \frac{\mathbf{k}_{1} \cdot \mathbf{k}_{2}}{k_{1} k_{2}}\left(\frac{k_{1}}{k_{2}}+\frac{k_{2}}{k_{1}}\right)+\frac{2}{7}\left(\frac{\mathbf{k}_{1} \cdot \mathbf{k}_{2}}{k_{1} k_{2}}\right)^{2}  \autolabel{},\\
+    & F_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{3}\right)=\frac{7}{54}\left[F_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) \alpha\left(\mathbf{k}_{3}, \mathbf{k}_{12}\right)+F_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \alpha\left(\mathbf{k}_{1}, \mathbf{k}_{23}\right)+F_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{1}\right) \alpha\left(\mathbf{k}_{2}, \mathbf{k}_{31}\right)\right. \\
+    & +G_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) \alpha\left(\mathbf{k}_{12}, \mathbf{k}_{3}\right)+G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \alpha\left(\mathbf{k}_{23}, \mathbf{k}_{1}\right)+G_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{1}\right) \alpha\left(\mathbf{k}_{31}, \mathbf{k}_{2}\right) \\
+    & +\frac{2}{27}\left[G_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) \beta\left(\mathbf{k}_{12}, \mathbf{k}_{3}\right)+G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \beta\left(\mathbf{k}_{23}, \mathbf{k}_{1}\right)+G_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{1}\right) \beta\left(\mathbf{k}_{31}, \mathbf{k}_{2}\right)\right]  \autolabel{},\\
+    & F_{4}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{3}, \mathbf{k}_{4}\right)=\frac{1}{792}\left[2 G_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{4}\right)\right. \\
+    & \left(18 F_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{4}, \mathbf{k}_{2}+\mathbf{k}_{3}\right)+8 G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \beta\left(\mathbf{k}_{2}+\mathbf{k}_{3}, \mathbf{k}_{1}+\mathbf{k}_{4}\right)\right) \\
+    & +2 G_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{3}\right)\left(18 F_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{3}, \mathbf{k}_{2}+\mathbf{k}_{4}\right)+8 G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{4}\right) \beta\left(\mathbf{k}_{1}+\mathbf{k}_{3}, \mathbf{k}_{2}+\mathbf{k}_{4}\right)\right) \\
+    & +2 G_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right)\left(18 F_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{2}, \mathbf{k}_{3}+\mathbf{k}_{4}\right)+8 G_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{4}\right) \beta\left(\mathbf{k}_{1}+\mathbf{k}_{2}, \mathbf{k}_{3}+\mathbf{k}_{4}\right)\right) \\
+    & +6 G_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{3}\right)\left(9 \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{3}, \mathbf{k}_{4}\right)+4 \beta\left(\mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{3}, \mathbf{k}_{4}\right)\right) \\
+    & +6 G_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{4}\right)\left(9 \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{4}, \mathbf{k}_{3}\right)+4 \beta\left(\mathbf{k}_{3}, \mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{4}\right)\right) \\
+    & +6 G_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{3}, \mathbf{k}_{4}\right)\left(9 \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{3}+\mathbf{k}_{4}, \mathbf{k}_{2}\right)+4 \beta\left(\mathbf{k}_{2}, \mathbf{k}_{1}+\mathbf{k}_{3}+\mathbf{k}_{4}\right)\right) \\
+    & +6 G_{3}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}, \mathbf{k}_{4}\right)\left(9 \alpha\left(\mathbf{k}_{2}+\mathbf{k}_{3}+\mathbf{k}_{4}, \mathbf{k}_{1}\right)+4 \beta\left(\mathbf{k}_{1}, \mathbf{k}_{2}+\mathbf{k}_{3}+\mathbf{k}_{4}\right)\right) \\
+    & +36 F_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{4}\right) G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \alpha\left(\mathbf{k}_{2}+\mathbf{k}_{3}, \mathbf{k}_{1}+\mathbf{k}_{4}\right) \\
+    & +36 F_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{3}\right) G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{2}+\mathbf{k}_{4}, \mathbf{k}_{1}+\mathbf{k}_{3}\right) \\
+    & +36 F_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) G_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{3}+\mathbf{k}_{4}, \mathbf{k}_{1}+\mathbf{k}_{2}\right) \\
+    & +54 F_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{3}\right) \alpha\left(\mathbf{k}_{4}, \mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{3}\right)+54 F_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{3}, \mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{4}\right) \\
+    & \left.+54 F_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{3}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{2}, \mathbf{k}_{1}+\mathbf{k}_{3}+\mathbf{k}_{4}\right)+54 F_{3}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{1}, \mathbf{k}_{2}+\mathbf{k}_{3}+\mathbf{k}_{4}\right)\right] \autolabel{},
+\end{align*} 
+
+\newpage
+
+
+while for the velocity divergence field they are:
+
+
+\begin{align*}
+    & G_{1}(\mathbf{k})=1  \autolabel{},\\
+    & G_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right)=\frac{3}{7}+\frac{1}{2} \frac{\mathbf{k}_{1} \cdot \mathbf{k}_{2}}{k_{1} k_{2}}\left(\frac{k_{1}}{k_{2}}+\frac{k_{2}}{k_{1}}\right)+\frac{4}{7}\left(\frac{\mathbf{k}_{1} \cdot \mathbf{k}_{2}}{k_{1} k_{2}}\right)^{2}  \autolabel{},\\
+    & G_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{3}\right)=\frac{1}{18}\left[F_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) \alpha\left(\mathbf{k}_{3}, \mathbf{k}_{12}\right)+F_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \alpha\left(\mathbf{k}_{1}, \mathbf{k}_{23}\right)+F_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{1}\right) \alpha\left(\mathbf{k}_{2}, \mathbf{k}_{31}\right)\right. \\
+    & \left.+G_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) \alpha\left(\mathbf{k}_{12}, \mathbf{k}_{3}\right)+G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \alpha\left(\mathbf{k}_{23}, \mathbf{k}_{1}\right)+G_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{1}\right) \alpha\left(\mathbf{k}_{31}, \mathbf{k}_{2}\right)\right] \\
+    & +\frac{2}{9}\left[G_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) \beta\left(\mathbf{k}_{12}, \mathbf{k}_{3}\right)+G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \beta\left(\mathbf{k}_{23}, \mathbf{k}_{1}\right)+G_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{1}\right) \beta\left(\mathbf{k}_{31}, \mathbf{k}_{2}\right)\right]  \autolabel{},\\
+    & G_{4}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{3}, \mathbf{k}_{4}\right)=\frac{1}{792}\left[2 G_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{4}\right)\right. \\
+    & \left(6 F_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{4}, \mathbf{k}_{2}+\mathbf{k}_{3}\right)+32 G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \beta\left(\mathbf{k}_{2}+\mathbf{k}_{3}, \mathbf{k}_{1}+\mathbf{k}_{4}\right)\right) \\
+    & +2 G_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{3}\right)\left(6 F_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{3}, \mathbf{k}_{2}+\mathbf{k}_{4}\right)+32 G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{4}\right) \beta\left(\mathbf{k}_{1}+\mathbf{k}_{3}, \mathbf{k}_{2}+\mathbf{k}_{4}\right)\right) \\
+    & +2 G_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right)\left(6 F_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{2}, \mathbf{k}_{3}+\mathbf{k}_{4}\right)+32 G_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{4}\right) \beta\left(\mathbf{k}_{1}+\mathbf{k}_{2}, \mathbf{k}_{3}+\mathbf{k}_{4}\right)\right) \\
+    & +6 G_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{3}\right)\left(3 \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{3}, \mathbf{k}_{4}\right)+16 \beta\left(\mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{3}, \mathbf{k}_{4}\right)\right) \\
+    & +6 G_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{4}\right)\left(3 \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{4}, \mathbf{k}_{3}\right)+16 \beta\left(\mathbf{k}_{3}, \mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{4}\right)\right) \\
+    & +6 G_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{3}, \mathbf{k}_{4}\right)\left(3 \alpha\left(\mathbf{k}_{1}+\mathbf{k}_{3}+\mathbf{k}_{4}, \mathbf{k}_{2}\right)+16 \beta\left(\mathbf{k}_{2}, \mathbf{k}_{1}+\mathbf{k}_{3}+\mathbf{k}_{4}\right)\right) \\
+    & +6 G_{3}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}, \mathbf{k}_{4}\right)\left(3 \alpha\left(\mathbf{k}_{2}+\mathbf{k}_{3}+\mathbf{k}_{4}, \mathbf{k}_{1}\right)+16 \beta\left(\mathbf{k}_{1}, \mathbf{k}_{2}+\mathbf{k}_{3}+\mathbf{k}_{4}\right)\right) \\
+    & +12 F_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{4}\right) G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \alpha\left(\mathbf{k}_{2}+\mathbf{k}_{3}, \mathbf{k}_{1}+\mathbf{k}_{4}\right) \\
+    & +12 F_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{3}\right) G_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{2}+\mathbf{k}_{4}, \mathbf{k}_{1}+\mathbf{k}_{3}\right) \\
+    & +12 F_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) G_{2}^{(s)}\left(\mathbf{k}_{3}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{3}+\mathbf{k}_{4}, \mathbf{k}_{1}+\mathbf{k}_{2}\right) \\
+    & +18 F_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{3}\right) \alpha\left(\mathbf{k}_{4}, \mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{3}\right)+18 F_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{3}, \mathbf{k}_{1}+\mathbf{k}_{2}+\mathbf{k}_{4}\right) \\
+    & \left.+18 F_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{3}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{2}, \mathbf{k}_{1}+\mathbf{k}_{3}+\mathbf{k}_{4}\right)+18 F_{3}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}, \mathbf{k}_{4}\right) \alpha\left(\mathbf{k}_{1}, \mathbf{k}_{2}+\mathbf{k}_{3}+\mathbf{k}_{4}\right)\right] \autolabel{},
+\end{align*}
+
+
+From above we can see that the first order is just the linear solution and hence $F_{1}(\mathbf{k})=1$ and $G_{1}(\mathbf{k})=1$. In an Einstein-de-Sitter Universe
+(where, f = 1), the n-th order growth factor is $D_{n} = D^{n}_{1}$. The difference in the above equations between $\Lambda$CDM and Einstein-de-Sitter Universe is a factor of $\Omega_{m}/f^{2}$ and its value is very close to unity \cite{Bernardeau_2002}.\\
+Since the growth rate in $\Lambda$CDM is found to be $f \approx \Omega _{m}^{0.59}$ therefore, we can safely take all the higher order growth factors in $\Lambda$CDM to be $D_{n} = D^{n}_{1}$ and use the kernel results of Einstein-de-Sitter Universe.
+
+So, the equations Eq. \eqref{eq:3.34} and Eq. \eqref{eq:3.35} allow us to calculate how the universe evolves non-linearly very neatly. An intuitive representation of the perturbative expansion which is analogous to Feynman's diagram of quantum field theory can be seen in Fig \ref{fig:2.1}.
+
+
+The second order density field $\delta^{(2)}$ is connected by joining two instances of initial (linear) density field with an $F_{2}$ kernel. Similarly, the $n_{th}$ order field is made by joining \emph{n} initial density fields with the $n_{th}$ order kernel $F_{n}$. The
+analogous rules hold for the expansion of the velocity divergence.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Images/Perturbative expansion diagram.png}
+    \caption{Diagrammatic representation of the second-order density field $\delta^{(2)}$ (left) and the $n^{th}$ order density field(right). In each case, the final density field is connected to \emph{n} initial density fields by the interaction kernel $F_{n}$ (with n = 2 in the case of $\delta^{(2)}$). Analogous diagrams describe the velocity divergence $\theta(n)$ in terms of kernels$G_{n}$. Here the time arguments are suppressed for clarity.\cite{Dodelson}}
+    \label{fig:2.1} 
+\end{figure}\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Lagrangian Perturbation theory}
+\subsection{Lagrangian Dynamics}
+We saw that the Eulerian PT describes the evolution of the density and velocity fields from a fixed comoving coordinate system. Another way to formulate non-linear perturbation theory is by using Lagrangian Perturbation Theory (LPT) which follows the trajectories of the fluid elements \cite{Zel1970A&A.....5...84Z, buch1989A&A...223....9B, bouchet1996introductory}. The idea is to parameterise each particle in the cosmic fluid instead of taking the Lagrangian of all the particles. The displacement field $\Psi(\mathbf{q})$ is the dynamical parameter in this formalism. It connects the initial Lagrangian positions $\mathbf{q}$ of the fluid elements, with the final Eulerian positions $\mathbf{x}$. which is defined as:
+
+
+\begin{equation}
+\mathbf{x}(\tau)=\mathbf{q}+\mathbf{\Psi}(\mathbf{q}, \tau) \autolabel{}
+\end{equation}
+
+
+We can write the equation of motion for the particle's trajectory as
+
+
+\begin{equation}
+    \frac{d^{2} \mathbf{x}(\tau)}{d \tau^{2}}+\mathcal{H} \frac{d \mathbf{x}}{d \tau}=\nabla_{\mathbf{x}} \Phi(\mathbf{x}) \autolabel{},
+\end{equation}
+
+
+where again $\Phi$ is the gravitational potential fluctuations and the subscript in the gradient subscript denotes the Eulerian position. The divergence of the above equation gives
+
+
+\begin{equation}
+    J(\mathbf{q}, \tau) \boldsymbol{\nabla}_{\mathbf{x}}\left[\frac{d^{2} \boldsymbol{\Psi}}{d \tau^{2}}+\mathcal{H} \frac{d \boldsymbol{\Psi}}{d \tau}\right]=\frac{3}{2} \Omega_{m} \mathcal{H}^{2}(J-1) \autolabel{},
+\end{equation}
+
+
+Where we have used the Poisson equation Eq. \eqref{eq:3.4} and conservation of particles in an infinitesimal volume between the two frames, i.e. $\bar{\rho} d^{3} q=\rho(\mathbf{x}, \tau) d^{x}=\bar{\rho}[1+\delta(\mathbf{x})] d^{3} x$. The Jacobian transformation that connects the two frames is given by
+
+
+\begin{equation}
+    J d^{3} q=d^{3} x \Rightarrow J=\operatorname{det}\left|\frac{\partial x_{i}}{\partial q_{i}}\right|=\operatorname{det}\left|\delta_{i j}+\frac{\partial \Psi_{i}}{\partial q_{j}}\right| \autolabel{},
+\end{equation}
+
+
+which gives
+
+
+\begin{equation}
+1+\delta(\mathbf{x}, \tau)=\frac{1}{J(\mathbf{q}, \tau)} \autolabel{},
+\end{equation}
+
+
+Using the chain rule on the divergence in Eulerian space \footnote{
+\begin{align*}
+    \frac{\partial}{\partial x_{i}}=\frac{\partial q_{i}}{\partial x_{i}} \frac{\partial}{\partial q_{i}}=\left(\delta_{i j}+\frac{\partial \Psi_{i}}{\partial q_{j}}\right)^{-1} \frac{\partial}{\partial q_{j}}
+\end{align*}
+}, 
+we can get the final equation of the displacement field as
+
+
+\begin{equation}
+    \left[\delta_{i j}+\Psi_{i, j}(\mathbf{q}, \tau)\right]^{-1}\left[\frac{d^{2} \Psi_{i, j}(\mathbf{q}, \tau)}{d \tau^{2}}+\mathcal{H} \frac{d \Psi_{i, j}(\mathbf{q}, \tau)}{d \tau}\right]=\frac{3}{2} \Omega_{m} \mathcal{H}^{2} \frac{J(\mathbf{q}, \tau)-1}{J(\mathbf{q}, \tau)} \autolabel{}
+\end{equation}
+
+
+ where $\Psi_{i,j} = \frac{\partial \Psi_{i}}{\partial q_{j}}$. This approach, however, breaks down at shell crossing, a phenomenon that occurs when particles come very close to each other, eventually acquiring the same Eulerian coordinate $\mathbf{x}$ despite originating from different Lagrangian points $\mathbf{q}$. This convergence happens over time due to the time-dependent relationship between the Eulerian and Lagrangian coordinates Eq. \eqref{eq:3.46}. The Jacobian can be expanded as
+
+\begin{equation}
+\begin{aligned}
+    J &= \operatorname{det}\left|\delta_{ij} + \frac{\partial \Psi_{i}}{\partial q_{j}}\right| \\
+    &= 1 + \boldsymbol{\nabla}_{\mathbf{q}} \cdot \Psi(\mathbf{q}, \tau) \\
+    &\quad + \frac{1}{2}\left[\left(\boldsymbol{\nabla}_{\mathbf{q}} \cdot \Psi(\mathbf{q}, \tau)\right)^{2} - \sum_{i,j} \Psi_{i,j} \Psi_{j,i}\right] \\
+    &\quad + \frac{1}{6}\left[\left(\boldsymbol{\nabla}_{\mathbf{q}} \cdot \boldsymbol{\Psi}(\mathbf{q}, \tau)\right)^{3} - 3 \boldsymbol{\nabla}_{\mathbf{q}} \cdot \boldsymbol{\Psi}(\mathbf{q}, \tau) \sum_{i,j} \Psi_{i,j} \Psi_{j,i}\right],
+\end{aligned}
+\autolabel{}
+\end{equation}
+
+\begin{equation}
+\left.+2 \sum_{i, l, k} \Psi_{i, j} \Psi_{j, k} \Psi_{k, i}\right]+\ldots \autolabel{},
+\end{equation}
+
+
+while the EOM of the fluid trajectory can be solved perturbatively as
+
+
+\begin{equation}
+    \Psi(\mathbf{q}, \tau)=\boldsymbol{\Psi}^{(1)}(\mathbf{q}, \tau)+\Psi^{(2)}(\mathbf{q}, \tau)+\ldots \autolabel{}
+\end{equation}
+
+
+
+\subsection{Linear Solution} 
+
+The linear part of the Jacobian, i.e. the first two terms of Eq. (3.35), are used in this first approximation. The inverse of the Jacobian transformation matrix will be now
+
+
+\begin{equation}
+    \left[\delta_{i j}+\Psi_{i, j}(\mathbf{q}, \tau)\right]^{-1} \simeq \delta_{i j}-\Psi_{i, i} \autolabel{},\footnote{using $\operatorname{det}(I+A)=1+\operatorname{tr}(A)+\mathcal{O}\left(A^{2}\right) I$}
+\end{equation}
+
+
+Using, Eq. \eqref{eq:3.54} and the linear part of the Jacobian expansion, we can derive the linear solution as:
+
+\begin{align*}
+    & 1+\delta^{(1)}(\mathbf{x}, \tau)=\frac{1}{J(\mathbf{q}, \tau)} \simeq 1-\nabla_{\mathbf{q}} \cdot \Psi(\mathbf{q}, \tau) \Rightarrow \\
+    & \nabla_{\mathbf{q}} \cdot \Psi^{(1)}(\mathbf{q}, \tau)=-D_{1}^{(+)}(\tau) \delta^{(1)}(\mathbf{q}) \autolabel{},
+\end{align*}
+
+
+where we split the time part from the spatial part in the growing linear solution. The linear density field $\delta^{(1)}(\mathbf{q})$ is the initial condition field, which evolves with the linear growth factor under the divergence of the displacement field. The linear growth factor in LPT is the same as in Eulerian PT. Therefore, in the first order, the position of the particle in Eulerian space can be written using Eq. \eqref{eq:3.46} and Eq. \eqref{eq:3.56} as :
+
+\begin{equation}
+    \mathbf{x}(\tau)=\mathbf{q}-\nabla_{\mathbf{q}}^{-1} \delta^{(1)}(\mathbf{x}, \tau) \autolabel{},
+\end{equation}
+
+
+while the velocity field is given by
+
+
+\begin{equation}
+    \mathbf{u}(\tau) \frac{d \mathbf{x}}{d \tau}=-f \mathcal{H} \nabla_{\mathbf{q}}^{-1} \delta^{(1)}(\mathbf{x}, \tau) \autolabel{},
+\end{equation}
+
+
+where $f$ is the linear growth rate same as in the Eulerian PT. For the Poisson equation, we can relate the displacement field divergence with the gravitational potential in Lagrangian space, under the assumption of an irrotational gravity field, as
+
+
+\begin{equation}
+    \nabla_{\mathbf{q}} \cdot \Psi^{(1)}(\mathbf{q}, \tau)=-\nabla_{\mathbf{q}}^{2} \Phi^{(1)}(\mathbf{q}, \tau)=-\delta^{(1)}(\mathbf{x}, \tau) \autolabel{},
+\end{equation}
+
+
+which leads to 
+\begin{equation}
+    \Psi^{(1)}(\mathbf{q}, \tau)=-\nabla_{\mathbf{q}} \Phi(\mathbf{q}, \tau).\autolabel{}
+\end{equation} \\
+
+Zel'dovich \cite{Zel1970A&A.....5...84Z} used the linear solution and tried to approximate the dynamical equation by extrapolating it into the non-linear regime which is known as the (Zel’dovich approximation (ZA). This was done by exchanging the divergence of the displacement field with the tidal tensor (traceless part). From Eq. \eqref{eq:3.50} we get
+
+
+\begin{equation}
+    \rho(\mathbf{x}, \tau)=\frac{\bar{\rho}(\tau)}{\operatorname{det}\left|\delta_{i j}+\frac{\partial \Psi_{i}}{\partial q_{j}}\right|}=\frac{\bar{\rho}}{\left|\left(1-\lambda_{1} D_{1}(\tau)\right)\left(1-\lambda_{2} D_{1}(\tau)\right)\left(1-\lambda_{3} D_{1}(\tau)\right)\right|} \autolabel{},
+\end{equation}
+
+
+where the variables $\lambda_{i}$ are the eigenvalues of the tidal tensor field $\Psi_{i, j}$. The power of this result lies on the fact that, we can predict the future of a collapsing region (i.e. $(1-\lambda D_{1}(\tau))=0)$ and determine the structure this point belongs to. If the eigenvalues are all positive, while one of them is larger than the rest (i.e. $\lambda_{1}>\lambda_{2}, \lambda_{3}$ ), we get a pancake shape. This indicates that the element collapses in one direction. However, the ZA breaks down before the point reaches the final steps of collapse. A spherical collapse occurs in the case where all eigenvalues are positive, but now equal in size. If two of them are positive and one negative (i.e. $\lambda_{1}, \lambda_{2}>0,0<\lambda_{3}$ ), then the collapse happens in 2 dimensions and therefore the point belongs to a filament. In the case where two of them are negative and only one is positive (i.e. $\lambda_{1}, \lambda_{2}<0, \lambda_{3}>0$ ) the element belongs to a wall. Finally, negative eigenvalues correspond to a growing mode, which indicates that the point belongs to a void.
+
+\subsection{Second-order solution}
+For LPT there is no known recursive solution for the expression of higher order like in Eulerian PT. The solution must be performed order by order. The second-order Lagrangian PT (2LPT) can improve significantly the predictions, for the density and velocity fields over the linear solution.This is because the second-order solution to Eq. \eqref{eq:3.51} accounts for the correction to the Zel'dovich approximation (ZA) displacement due to tidal effects \cite{buchert1994A&A...288..349B, Melot1995A&A...294..345M, bouchet1996introductory,Bernardeau_2002}. Now, we will use Eq. \eqref{eq:3.53} and consider terms up to second order. We will then substitute these terms into the equation of motion, Eq. \eqref{eq:3.51}, to get
+
+
+\begin{equation}
+    \frac{d^{2} \Psi_{i, i}^{(2)}}{d \tau^{2}}+\mathcal{H} \frac{d \Psi_{i, i}^{(2)}}{d \tau}-\frac{3}{2} \mathcal{H}^{2} \Omega_{m} \Psi_{i, i}^{(2)}=-\frac{3}{4}\left[\left(\Psi_{k, k}^{(2)}\right)^{2}-\Psi_{i, j}^{(2)} \Psi_{j, i}^{(2)}\right] \autolabel{},
+\end{equation}
+
+
+where the linear solution of the displacement field has been also used in the above derivation. Separating, as before, the second-order solution into a time and a spatial part, we get
+
+
+\begin{equation}
+    \Psi_{k, k}^{(2)}(\mathbf{q}, \tau)=\frac{D_{2}(\tau)}{2 D_{1}^{2}(\tau)} \sum_{i \neq j}\left(\Psi_{i, i}^{(1)}(\mathbf{q}, \tau) \Psi_{j, j}^{(1)}(\mathbf{q}, \tau)-\Psi_{i, j}^{(1)}(\mathbf{q}, \tau) \Psi_{j, i}^{(1)}(\mathbf{q}, \tau)\right) \autolabel{},
+\end{equation}
+
+
+where the time-dependent part of $\Psi^{(2)}$ is denoted as $D_{2}(\tau)$ which is the  second-order growth factor. It has been shown that in $\Lambda$CDM cosmology\cite{bouchet1996introductory} ,
+\begin{equation}
+    D_{2}(\tau) \simeq \frac{-3 D_{1}^{2}(\tau) \Omega_{m}^{-1 / 143}}{7} . \autolabel{}
+\end{equation}
+
+By using the Poisson equation together with the displacement field relation at second order (i.e. $\Psi^{(2)}(\mathbf{q}, \tau)=$ $\left.\boldsymbol{\nabla}_{\mathbf{q}} \Phi^{(2)}(\mathbf{q}, \tau)\right)$ We can further simplify the second-order result as,
+
+
+\begin{equation}
+    \nabla_{\mathbf{q}} \Phi^{(2)}(\mathbf{q}, \tau) \simeq-\frac{3}{7} \Omega_{m}^{-1 / 143} \sum_{i>j}\left(\Phi_{, i i}^{(1)}(\mathbf{q}, \tau) \Phi_{, j j}^{(1)}(\mathbf{q}, \tau)-\left[\Phi_{, i j}^{(1)}(\mathbf{q}, \tau)\right]^{2}\right) \autolabel{},
+\end{equation}
+
+
+On Expanding the linear results for the position and velocity of a fluid element we get,
+
+
+\begin{equation}
+    \mathbf{x}(\mathbf{q}, \tau)=\mathbf{q}-D_{1} \nabla_{\mathbf{q}} \Phi^{(1)}(\mathbf{q}, \tau)+D_{2} \nabla_{\mathbf{q}} \Phi^{(2)}(\mathbf{q}, \tau) \autolabel{},
+\end{equation}
+
+
+
+\begin{equation}
+    \mathbf{u}(\mathbf{q}, \tau)=-f_{1} \mathcal{H} \nabla_{\mathbf{q}}^{-1} \Phi^{(1)}(\mathbf{q}, \tau)+f_{2} \mathcal{H} \nabla_{\mathbf{q}}^{-1} \Phi^{(2)}(\mathbf{q}, \tau) \autolabel{},
+\end{equation}
+
+For flat models with a non-zero cosmological constant $\Omega_\Lambda$, we have for $0.01 \leq \Omega_m \leq 1$ \cite{bouchet1996introductory}:
+\[
+f_1 \approx \Omega_m^{5/9}, \quad f_2 \approx 2 \Omega_m^{6/11}.\autolabel{}
+\]
+While extending the solution to the third order displacement field provides a slightly better description of under-dense regions and additional substructures in high-density regions \cite{bouchet1996introductory}, it offers a minimal improvement over 2LPT, as noted by \cite{buchert1994A&A...288..349B, Melot1995A&A...294..345M}.\\
+
+We can use LPT to generate initial conditions for $N$-body numerical simulations. The first step involves generating random Gaussian density fluctuations in Fourier space, by using the definition of the power spectrum i.e. 
+\[
+\left.\delta_{\mathbf{k}}=\sqrt{P_{m}^{L}} A \exp (i \phi)\right), \autolabel{}
+\] 
+with a random amplitude (i.e. fluctuation around $\sqrt{P_{m}^{L}}$ ) and a phase. Then it can be connected to the linear part of the gravitational potential $\Phi_{\mathbf{k}}^{1}$ using Eq. \eqref{eq:3.59}. To go to the second-order effects we then solve Eq. \eqref{eq:3.65} which is the corresponding equation for the second-order gravitational potential. These relations can be easily linked, in Fourier space, to the displacement field at each order. The final step is to inverse-Fourier transform these results, to get the linear and second-order perturbative solutions of the displacement field. Finally, these displacements can be used in Eq. \eqref{eq:3.66}  to move the particles from their starting grid points and assign to them an initial velocity Eq. \eqref{eq:3.67}.
+
+\section{N-body Simulation} \label{n-body}
+The density fluctuation becomes strongly non-linear on small scales, at these scales the PT breaks down and one has to leverage numerical simulations to study their evolution. The current state-of-the-art numerical simulations can follow the dynamics up to about $10^{12}$ particles \cite{Maksimova_2021}. A thing to keep in mind is that when we say dark matter particles these do not stand for actual dark matter particles rather, they represent small elements of the dark matter distribution in phase space. The mass of the particle \emph{m} is only a numerical parameter and it is determined by the total amount of matter in the simulation volume divided by the number of particles. So, a higher resolution simulation has more particles with correspondingly smaller mass. N-body simulations discretize the phase space into N elementary volumes "particles" with well-defined positions, velocities and masses and follow the evolution of these test particles due to the action of gravity.\newpage
+
+The basic steps of an N-body simulation proceed as follows.
+\begin{enumerate}
+    \item Implementation of initial conditions (\cite{Michaux_2020,Sirko:2005uz} and references therein)
+    \item Calculating force by solving the Poisson equation.
+    \item Update position and velocities of particles using integrators that preserve the phase space volume. eg the Leapfrog method \cite{hock1981csup.book.....H}
+    \item Go back to step 2. until the simulation is completed.
+\end{enumerate}
+The methods used for these simulations mainly differ in how the Poisson equation is solved which corresponds to gravitational forces(for a review check \cite{Trenti:2008}). There are two primary algorithmic approaches for this task.
+
+The first one is the grid-based method also known as the Particle-Mesh method(PM) in which, each particle's mass is distributed onto a $3D$ grid to create a smooth density field. This can be achieved using various methods such as the Cloud-in-cell (CIC)\cite{CICBIRDSALL1997141} method Piece-wise Spline (PCS) etc. The grid can either have a fixed resolution or be adaptively refined in regions with high particle density. The Poisson equation is then solved for the potential, $\Phi$, using the Fast Fourier Transform (FFT)\cite{FFTPress2007}, or other efficient numerical methods for adaptively refined grids. Finally, the potential gradient is interpolated to each particle's position to compute gravitational forces. 
+
+Next is the tree algorithm \cite{barnes1986Natur.324..446B} which expands gravitational forces into multipoles, focusing on the lowest-order contributions from distant particles. This method efficiently approximates forces by grouping distant particles and treating them collectively.
+
+Both the grid-based and tree algorithms employ force smoothing \cite{Dehnen_2001}, known as "softening," on small scales to prevent nonphysical particle-particle interactions. This adjustment is necessary because simulation particles represent aggregated mass distributions rather than discrete physical particles.
+
+The computational expense of both tree algorithms and adaptive grid methods scales approximately as $ \mathcal{O}(N \log N)$ with the number of particles $\mathcal{O}(N)$. This contrasts sharply with the direct summation of forces \cite{Wang_2015}, which scales as $\mathcal{O}(N^2)$ and would be prohibitively expensive for simulations involving billions of particles.
+
+Then there are hybrid methods such as the P3M and PM-Tree codes \cite{Springel2005Natur.435..629S}. The P3M (Particle-Particle-Particle-Mesh) algorithm enhances the dynamic range of the Particle-Mesh (PM) algorithm by efficiently handling long-range gravitational interactions. However, in scenarios where particles cluster strongly, a substantial number of particles interact directly with each other, resulting in a computational complexity of $\mathcal{O}(N^2)$ and slows down the computations.
+To mitigate this issue, adaptive mesh techniques are employed. These adapt the spatial resolution of the mesh, refining it in regions of high particle density. Adaptive P3M \cite{Norman} implementations thus maintain computational efficiency by scaling with $\mathcal{O}(N \log(N))$, similar to tree codes. This adaptive approach ensures that computational resources are focused where they are most needed, optimizing performance. 
+Alternatively, another strategy involves hybridizing the PM algorithm with a tree code for short-range force calculations\cite{Springel2005Natur.435..629S}. This hybrid PM-Tree scheme leverages the efficiency of PM for long-range interactions and the locality-handling capabilities of tree codes for short-range interactions.
+
+So, once the N-body simulation is processed it generates "snapshots" of particle locations and velocity at various time points. We can compute the density field by assigning particles to a grid which allows us to measure various summary statistics like the power, spectrum Bi-spectrum and perform cosmological analysis. We can also search for gravitationally bound groups of particles, known as dark matter halos, that can reveal the location of galaxies.
+ 
+
+ 

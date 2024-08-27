@@ -1,1 +1,440 @@
-\chapter{Neutrino Masses}
+\chapter{Statistical Analysis of Random Cosmic Field}\label{stats}
+\justifying
+\section{Random fields} \label{section 3.1}
+A significant challenge in modern cosmology is identifying appropriate tools to analyze the distribution of density fluctuations, their initial conditions, and their subsequent evolution. The current explanation for the large-scale structure of the Universe posits that the present distribution of matter on cosmological scales results from the growth of primordial, small seed fluctuations in an otherwise homogeneous Universe, amplified by gravitational instability.\\
+
+Testing cosmological theories that characterize these primordial seeds is inherently statistical rather than deterministic. This is due to the lack of direct observational access to primordial fluctuations, which would provide definite initial conditions for deterministic evolution equations. Moreover, the timescale for cosmological evolution far exceeds the period over which we can make observations, preventing us from following the evolution of individual systems. Instead, we observe different objects at various stages of their evolution through our past light cone.\\
+
+The observable Universe is modelled as a stochastic realization of a statistical ensemble of possibilities. The objective is to make statistical predictions based on the properties of the primordial perturbations that lead to the formation of large-scale structures. According to the cosmological principle, which asserts that the Universe is homogeneous and isotropic on large scales, cosmological models assume that the statistical properties of density fluctuations are uniform across widely separated regions of the Universe.\\
+
+A crucial assumption in cosmology is that the observable part of the Universe is a fair sample of the whole. This implies that statistical measures, such as correlation functions, should be considered averages over the ensemble. However, we only have one realization of the Universe. The fair sample hypothesis posits that samples from well-separated regions of the Universe are independent realizations of the same physical process, and there are enough independent samples in the observable Universe to be representative of the statistical ensemble. The hypothesis of ergodicity further states that averaging over many realizations is equivalent to averaging over a sufficiently large volume. \cite{verde2008practicalguidebasicstatistical}\cite{Bernardeau_2002}\\
+
+Theories are limited to predicting the statistical characteristics of the density contrast $\delta(x)$. The cosmological principle requires that this density contrast forms an isotropic and homogeneous random field, of which the observable Universe is one realization. Among the models explaining the large-scale structure of the Universe, those based on the inflationary paradigm are most widely considered. In the simplest single-field models, these generate adiabatic, Gaussian initial fluctuations, with the origin of stochasticity lying in quantum fluctuations generated in the early Universe.\\
+
+In cosmology, the scalar field $\delta(x)$ suffices to define the initial fluctuations field and, ideally, the current matter and galaxy distribution. Identifying the right tools to analyze the distribution of density fluctuations, their initial conditions, and their evolution is a major challenge in the study of cosmic structures. In the following sections, we will discuss some of these tools in detail.
+
+
+For a cosmic random field, such as matter density, the infinite volume condition of the ergodic hypothesis is not satisfied, due to the limited size of the observable Universe. In this case, the ensemble average of an observable overall realization is equal to the spatial average. This means that the ensemble average of any cosmological quantity will be an estimator of its true value. The expectation value of the n-point correlation function (=i.e. the $n^{th}$ central moment for a multivariate joint probability density distribution of the density field $\rho(\mathbf{x})$ is defined as \cite{gnedenko1998theory}.
+
+
+\begin{align*}
+    \left\langle\left(\rho\left(\mathbf{x}_{1}\right)-\rho_{0}\right)\left(\rho\left(\mathbf{x}_{2}\right)-\rho_{0}\right) \ldots\left(\rho\left(\mathbf{x}_{n}\right)-\rho_{0}\right)\right\rangle & =\int_{V}\left(\rho\left(\mathbf{x}_{1}\right)-\rho_{0}\right)\left(\rho\left(\mathbf{x}_{2}\right)-\rho_{0}\right) \ldots\left(\rho\left(\mathbf{x}_{n}\right)-\rho_{0}\right) \\
+    & \times p\left[\rho\left(\mathbf{x}_{1}\right), \rho\left(\mathbf{x}_{2}\right), \ldots, \rho\left(\mathbf{x}_{n}\right)\right] \autolabel{}
+\end{align*}
+
+
+Here $\rho$ is the expectation value of the average density field and the integration is over the infinite volume. Then the  Fourier transformation of the joint probability density function is given by the characteristic function $M(t)$ as:
+
+
+\begin{equation}
+    M(t) = \langle \exp(t \rho) \rangle = \int P(\rho) e^{t \rho} \, d\rho
+\end{equation}
+
+Using the series expansion of the exponential function, we get:
+
+\begin{equation}
+    e^{t \rho} = \sum_{n=0}^{\infty} \frac{(t \rho)^n}{n!}
+\end{equation}
+
+Substituting this series expansion into the integral, we obtain:
+
+\begin{equation}
+    M(t) = \int P(\rho) \left( \sum_{n=0}^{\infty} \frac{(t \rho)^n}{n!} \right) \, d\rho
+\end{equation}
+
+Interchanging the order of summation and integration, we have:
+
+\begin{equation}
+    M(t) = \sum_{n=0}^{\infty} \frac{t^n}{n!} \int P(\rho) \rho^n \, d\rho
+\end{equation}
+
+The integral \(\int P(\rho) \rho^n \, d\rho\) represents the \(n\)-th moment of \(\rho\), denoted as \(\langle \rho^n \rangle\). Therefore, the characteristic function can be written as:
+
+\begin{equation}
+    M(t) = \sum_{n=0}^{\infty} \frac{t^n}{n!} \langle \rho^n \rangle
+\end{equation}
+
+
+
+
+where $\rho=\rho_{1}, \rho_{2}, \ldots, \rho_{n}$ is a vector. The expectation value of $\left\langle\rho^{n}\right\rangle$ is the raw moment, i.e. the expectation value for $\rho_{0}=0$, and it is related to the central moments through the binomial transformation. Taking logarithm of Eq. \ref{eq:3.2} we get the $n$-th cumulants as:
+
+
+\begin{equation}
+    \ln M(t)=\sum_{n=1} \frac{t^{n}}{n!}\left\langle\rho^{n}\right\rangle_{c} \autolabel{}
+\end{equation}
+
+
+Equating the two, after expanding the Maclaurin series of $\ln M(t)$, we can get the relationship between cumulants and central moments of the density random field. Lets us see the the one-point results for the first four:
+
+
+\begin{align}
+    & \langle\rho\rangle_{c}=\langle\rho\rangle \\
+    & \left\langle\rho^{2}\right\rangle_{c}=\left\langle\rho^{2}\right\rangle-\langle\rho\rangle_{c}^{2} \\
+    & \left\langle\rho^{3}\right\rangle_{c}=\left\langle\rho^{3}\right\rangle-3\left\langle\rho^{2}\right\rangle_{c}\langle\rho\rangle_{c}-\langle\rho\rangle_{c}^{3}  \autolabel{}\\
+    & \left\langle\rho^{4}\right\rangle_{c}=\left\langle\rho^{4}\right\rangle-4\left\langle\rho^{3}\right\rangle_{c}\langle\rho\rangle_{c}-3\left\langle\rho^{2}\right\rangle_{c}^{2}-6\left\langle\rho^{2}\right\rangle_{c}\langle\rho\rangle_{c}^{2}-\langle\rho\rangle_{c}^{4},
+\end{align}
+
+
+For the overdensity field,  $\delta(\mathbf{x})$, these relations can be derived by normalizing with the average density. Since the first central moment of the random overdensity fluctuations is zero (i.e. $\langle\delta\rangle=0$ ), the above equations are significantly simplified.
+
+ When working with multipoint correlation functions, it is important to consider all permutations of the random field between points. The cumulant is the fundamental statistical measure of interest since it represents a set of independent quantities that fully characterize the perturbations' probability distribution function (PDF). Cumulants are commonly referred to in the literature as connected correlation functions, a term derived from quantum field theory and Feynman diagrams eg.Fig. \ref{fig:2.1}. The covariance is the second-order cumulant, or two-point cumulant, while the variance is the first-order cumulant, or one-point cumulant (i.e., the diagonal component).\\
+
+Now, most inflationary models predict a Gaussian distribution for the initial density fluctuations due to the quadratic nature of the action. In the multi-variant case, we have
+
+
+\begin{equation}
+    P\left[\delta\left(\mathbf{x}_{1}\right), \delta\left(\mathbf{x}_{2}\right), \ldots, \delta\left(\mathbf{x}_{n}\right)\right]=\frac{1}{\sqrt{2 \pi} \operatorname{det}(C)} \exp \left[\frac{1}{2} \delta_{i} C_{i j}^{-1} \delta_{j}\right] \autolabel{}
+\end{equation}
+
+
+where $C i j=\left\langle\delta_{i} \delta_{j}\right\rangle_{c}$ is the covariance and $\delta_{i} \equiv \delta\left(\mathbf{x}_{i}\right)$. Substituting the Gaussian PDF in the characteristic function, all the odd cumulants vanish while the even are obtained by the sum of the product of the ensemble averages of two-point correlators, with all possible combinations between the different positions. This is encoded in the Wick's theorem of quantum and classical field theories as
+
+
+\begin{equation}
+    \left\langle\delta_{1} \delta_{2} \ldots\right\rangle=\sum_{\text {pairings pairs }} \prod_{(i, j)}\left\langle\delta_{i} \delta_{j}\right\rangle_{c} \autolabel{}
+\end{equation}
+
+
+However, in the case of a primordial non-Gaussian(PNG) perturbation field, the even-order cumulants are non-zero which implies that these higher-order correlators are a direct indication of the departure from Gaussianity. However, in the case of LSS, non-zero higher-order cumulants are seen due to the non-linear nature of gravity, which induces couplings between different modes and one of the challenging tasks is to disentangle the PNG signals from the late time evolution. In contrast, CMB probes see fluctuations immediately, following decoupling, making them free of such nonlinear influences.
+
+\section{ Two-point correlation function and power spectrum}
+ As we saw in section \ref{section 1.7.5} the two-point correlation function of the density field is the ensemble average of $\delta$ at two different points. It is given by
+
+
+\begin{equation}
+    \left\langle\delta\left(\mathbf{x}_{1}\right) \delta\left(\mathbf{x}_{2}\right)\right\rangle=\left\langle\delta\left(\mathbf{x}_{1}\right) \delta\left(\mathbf{x}_{2}\right)\right\rangle_{c}=\xi(r), \autolabel{}
+\end{equation}
+
+and taking the Fourier transform of $\xi(r)$ we get to Eq. \ref{1.2.118}
+where the quantity $P(k)$ is the Fourier coefficient of the two-point correlation function, called the power spectrum. We saw strictly positive for a continuous random field  $\delta(\mathbf{x})$ and it is non-zero only for equal and opposite wavenumbers. \\
+
+
+Now, let us try to understand what the power spectrum actually measures and look into Eq. \ref{1.2.119}, which is the one-point second cumulant $(\xi(0))$ of the linear overdensity field and we write it here again,
+
+
+\begin{equation}
+    \sigma^{2}=\left\langle\delta^{2}(\mathbf{k})\right\rangle_{c}=\int \frac{d k}{2 \pi^{2}} k^{2} P(k) \autolabel{}
+\end{equation}
+
+
+From the equation, we see that the power spectrum characterizes the amplitude of the density fluctuations around the mean background value.
+
+Now, we will define the smoothed linear matter density contrast $\delta_{R}$, over a radius $R(M)=\left(3 M / 4 \pi \bar{\rho}_{m}\right)^{1 / 3}$, as\footnote{In the above equation, $M$ is the mass originating from the matter inside the region of size $R(M)$ and $\bar{\rho}_{m}$ is the average density of the Universe at present time.}
+
+\begin{equation}
+    \delta_{R}(\mathbf{k}, z)=W_{R}(k) \delta(\mathbf{k}, z). \autolabel{}
+\end{equation}
+
+. A popular choice for the filter is $W_{R}(k)=3(\sin k R-k R \cos (k R)) /(k R)^{3}$, which is the Fourier transform of the spherical top-hat window function \footnote{\ref{Window function}}. Hence, we can write a smoothed linear power spectrum $P_{R}(k)$ as in Eq. \ref{eq:3.29}, where now $M(k, z)$ is replaced by $M_{R}(k, z)=W_{R}(k) M(k, z)$. The smoothed mass variance of the density field, at mass scale $M$, is defined as
+
+\begin{equation}
+    \sigma_{R}^{2}(z)=\left\langle\delta_{R}^{2}(\mathbf{k})\right\rangle_{c}=\frac{1}{2 \pi^{2}} \int k^{2} P_{R}(k, z) d k \autolabel{}
+\end{equation}
+
+
+For a density random field with a well-defined average (\(\rho > 0\)), it is evident that the mass variance must diminish towards zero as the radius \( R \) extends indefinitely (i.e., \( \lim_{R \to \infty} \sigma^2(R) = 0 \)). Consequently, the two-point correlation function must also approach zero for large separations (i.e., \( \xi(r \to \infty) \rightarrow 0 \)). This leads to the condition:
+
+\begin{equation}
+    \int d^3 r \, \xi(\mathbf{r}) = 0 \autolabel{}
+\end{equation}
+
+where the integral spans across all space. As a consequence, there exist distances \( r \) where \( \xi(r) < 0 \). Another significant property of the two-point correlation function, arising from the ergodicity of the density random field, is its maximum value at zero separation (i.e., \( \xi(0) > |\xi(\mathbf{r})| \)). Finally, Eq. (3.85) defines the correlation length as:
+
+\begin{equation}
+    r_{c}^{2} = \frac{\int dr \, r^2 |\xi(r)|}{\int dr \, |\xi(r)|} \autolabel{}
+\end{equation}
+
+This quantity characterizes how far correlations persist in the density fluctuation field, indicating the extent to which a localized perturbation influences the surrounding system.
+
+
+\subsection{ Perturbative Expansion: up to one-loop}
+
+In the previous chapter, we saw that the perturbative solution to the density and the velocity depended on the PT scheme we used, for the first-order (linear) fields. Now we will write the linear matter power spectrum using the linear part of the expansion. Using Eq \ref{eq:3.29} we get:
+
+
+\begin{align*}
+    & \left\langle\delta_{m}^{(1)}\left(\mathbf{k}_{1}\right) \delta_{m}^{(1)}\left(\mathbf{k}_{2}\right)\right\rangle_{c}=M\left(k_{1}, z\right) M\left(k_{2}, z\right)\left\langle\Phi\left(\mathbf{k}_{1}\right) \Phi\left(\mathbf{k}_{2}\right)\right\rangle_{c} \quad \Rightarrow \\
+    & P_{m}^{L}(k, z)=M^{2}(k, z) P_{\Phi}(k) \autolabel{}
+\end{align*}
+
+
+where $\Phi$ is the primordial Bardeen gravitational potential, with a power spectrum given by,
+\begin{equation}
+    P_{\phi}(k) = \frac{9}{25}\frac{2\pi^{2}}{k^{3}} \mathcal{A}_{s}^{2}\left(\frac{k}{k_{0}}\right)^{n_{s}-1} \autolabel{}
+\end{equation}
+where we used Eqs. (\ref{1.2.120}, \ref{1.2.123} and \ref{eq:3.29}).
+Here we have used in the perturbative solution the transfer function, incorporated through the Poisson relation of the linear density field with the primordial gravitational potential Eq. \ref{eq:3.31}. 
+
+Now, we proceed to derive higher-order corrections to the linear power spectrum, from the perturbative solution of the matter and velocity fields which is done by using the perturbative expansion of a field and substituting it in the two-point correlation function Eq. \ref{1.2.113}. Keeping only the non-zero combinations, after taking into account the cumulant relation, results in a series of terms with an increasing power of the linear field. The terms that have the power of the linear solution to the $n$-th order denote the $n$ th-loop correction to the linear order, which is also called tree-level order. The above process leads to:
+
+
+\begin{align*}
+    & \left\langle X(\mathbf{k}, z) X\left(\mathbf{k}^{\prime}, z\right)\right\rangle_{c}=\left\langle X_{\mathbf{k}}^{(1)}(z) X_{\mathbf{k}^{\prime}}^{(1)}(z)\right\rangle_{c}+2\left\langle X_{\mathbf{k}}^{(1)}(z) X_{\mathbf{k}^{\prime}}^{(2)}(z)\right\rangle_{c} \\
+    & +\left\langle X_{\mathbf{k}}^{(2)}(z) X_{\mathbf{k}^{\prime}}^{(2)}(z)\right\rangle_{c}+2\left\langle X_{\mathbf{k}}^{(1)}(z) X_{\mathbf{k}^{\prime}}^{(3)}(z)\right\rangle_{c}+\ldots \Rightarrow \\
+    & P(k, z)=P^{(0)}(k, z)+P^{(1)}(k, z)+\ldots \autolabel{}
+\end{align*}
+
+
+where the zero loop term is just the linear power spectrum (i.e. $\left.P^{(0)}(k, z) \equiv P_{m}^{L}(k, z)\right)$ and $P^{(1)}(k, z)$ is the 1-loop correction. The field $X$ denotes a quantity that can have a perturbative solution, e.g. matter overdensity and velocity fields. 
+In the case of Gaussian initial conditions, all the odd terms in each loop order are zero\footnote{eg. $ \left\langle X_{\mathbf{k}}^{(1)}(z) X_{\mathbf{k}^{\prime}}^{(2)}(z)\right\rangle_{c} = 0$}, according to Wick's theorem. In the Eulerian PT, the higher-order perturbative terms are given in Eq. \ref{eq:3.35} and Eq. \ref{eq:3.36} for the density and velocity fields respectively. 
+Gaussian initial conditions, the 1-loop results in standard PT are \cite{Bernardeau_2002}
+
+
+\begin{equation}
+P^{(1)}(k, z)=P_{22}(k, z)+P_{13}(k, z) \autolabel{}
+\end{equation}
+
+
+where
+
+
+\begin{align}
+    & P_{22}(k, z) \equiv 2 \int\left[F_{2}^{(s)}(\mathbf{k}-\mathbf{q}, \mathbf{q})\right]^{2} P_{m}^{L}(|\mathbf{k}-\mathbf{q}|, z) P_{m}^{L}(q, z) \mathrm{d}^{3} \mathbf{q}  \autolabel{}\\
+    & P_{13}(k, z) \equiv 6 P_{m}^{L}(k, z) \int F_{3}^{(s)}(\mathbf{k}, \mathbf{q},-\mathbf{q}) P_{m}^{L}(q, z) \mathrm{d}^{3} \mathbf{q} \autolabel{}
+\end{align}
+
+
+One-loop corrections describe the primal effects of mode coupling and can give a quantitative estimation of the breakdown scales of standard PT. The first part of the 1-loop contribution (i.e. $P_{22}(k, z)$ ) is positive definite and describes the mode coupling between waves with wave vectors$\mathbf{k}-\mathbf{q}$ and $\mathbf{q}$, coming from the presence of the second order standard PT kernel. On the other hand, the $P_{13}$ term is negative and does not exhibit any mode coupling, i.e. it is just a term proportional to the linear power spectrum. This term can be interpreted as the nonlinear correction to the standard $\alpha(\tau)$l linear growth.\\
+
+\cite{Jeong_2006} demonstrated that the power spectrum, including up to 1-loop corrections, agrees with simulations to within 1 \% accuracy for redshifts in the range $1 < z < 6$ and on quasi-nonlinear scales. However, beyond a certain scale, 1-loop corrections become insufficient to accurately describe the power spectrum in simulations, necessitating the use of higher-order corrections, such as 2-loop corrections.
+
+
+To characterize the degree of non-linear evolution when including one loop correction corrections, it is convenient to define scales in real space, $R_{0}$, as the scale where the smoothed linear variance is unity $\sigma^{2}\left(R_{0}\right)= 1$. Additionally, one can use the dimensionless power spectrum and define the non-linear scales $k_{N L}$, as those where $\mathcal{P} \left(k_{N} L\right)= 4 \pi k_{N L}^{3} P\left(k_{N L}\right) =1$ \cite{Bernardeau_2002}.
+
+
+\section{Three-point correlation function and bispectrum}
+The lowest higher-order correlator, beyond the two-point correlation function we can take into account is the three-point correlation function. It is defined as
+
+
+\begin{equation}
+    \left\langle\delta\left(\mathbf{x}_{1}\right) \delta\left(\mathbf{x}_{2}\right) \delta\left(\mathbf{x}_{3}\right)\right\rangle=\left\langle\delta\left(\mathbf{x}_{1}\right) \delta\left(\mathbf{x}_{2}\right) \delta\left(\mathbf{x}_{3}\right)\right\rangle_{c}=\xi\left(\mathbf{x}_{1}, \mathbf{x}_{2}, \mathbf{x}_{3}\right) \autolabel{}
+\end{equation}
+
+
+The Fourier transform of the three-point correlation function is known as the bispectrum which is written as:
+
+\begin{equation}
+    \left\langle \delta\left(\mathbf{k}_{1}\right) \delta\left(\mathbf{k}_{2}\right) \delta\left(\mathbf{k}_{3}\right) \right\rangle{c} = (2\pi)^{3} \delta_{D}\left(\mathbf{k}_{1} + \mathbf{k}_{2} + \mathbf{k}_{3}\right) B\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{3}\right) \autolabel{}
+\end{equation}
+
+The Dirac delta function in the above equation enforces the condition of translational invariance, implying that the wave vectors $\mathbf{k}_{i}$ form the sides of a closed triangle (i.e., $\mathbf{k}{1} + \mathbf{k}_{2} + \mathbf{k}_{3} = 0$). Due to statistical isotropy, the bispectrum $B\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{3}\right)$ depends only on the magnitudes of the wave vectors, $k_{i} = \left|\mathbf{k}_{i}\right|$, and the distances between points, $r_{ij} = \left|\mathbf{r}_{ij}\right|$. The bispectrum provides crucial insights into the nonlinear evolution of the density and velocity fields, as it captures information from the nonlinear regime
+
+The relationship between the three-point correlation function in real space and its Fourier transform, the bispectrum, is given by:
+
+\begin{equation}
+    \xi\left(\mathbf{x}_{1}, \mathbf{x}_{2}, \mathbf{x}_{3}\right) = \int \frac{d^{3}k{1}}{(2\pi)^{3}} \int \frac{d^{3}k_{2}}{(2\pi)^{3}} \frac{d^{3}k_{3}}{(2\pi)^{3}} \delta_{D}\left(\mathbf{k}_{1} + \mathbf{k}_{2} + \mathbf{k}_{3}\right) B\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{k}_{3}\right) e^{i\left(\mathbf{k}_{1} \cdot \mathbf{x}_{1} + \mathbf{k}_{2} \cdot \mathbf{x}_{2} + \mathbf{k}_{3} \cdot \mathbf{x}_{3}\right)} \autolabel{}
+\end{equation}
+
+
+
+Now let us consider the perturbative expansion of the quantity $\mathrm{X}$ we get:
+
+$$
+\begin{aligned}
+    & \left\langle X\left(k_{1}, z\right) X\left(k_{2}, z\right) X\left(k_{3}, z\right)\right\rangle_{c}=\left\langle X^{(1)}\left(k_{1}, z\right) X^{(1)}\left(k_{2}, z\right) X^{(1)}\left(k_{3}, z\right)\right\rangle_{c} \\
+    & +\left\langle X^{(1)}\left(k_{1}, z\right) X^{(1)}\left(k_{2}, z\right) X^{(2)}\left(k_{3}, z\right)\right\rangle_{c}+\left\langle X^{(1)}\left(k_{1}, z\right) X^{(2)}\left(k_{2}, z\right) X^{(1)}\left(k_{3}, z\right)\right\rangle_{c}
+\end{aligned}
+$$
+
+\
+
+
+\begin{align}
+    & +\left\langle X^{(2)}\left(k_{1}, z\right) X^{(1)}\left(k_{2}, z\right) X^{(1)}\left(k_{3}, z\right)\right\rangle_{c}+\ldots \Rightarrow  \autolabel{}\\
+    & B\left(k_{1}, k_{2}, k_{3}, z\right)=B_{111}\left(k_{1}, k_{2}, k_{3}, z\right)+B_{112}\left(k_{1}, k_{2}, k_{3}, z\right)+2 \text { perm }+\ldots \autolabel{}
+\end{align}
+
+
+Let's recall the application of Wick's theorem for a Gaussian random field, where the first-order term vanishes. Moving to the second-order density field, we find $\left\langle X^{(1)} X^{(1)} X^{(2)} \right\rangle_{c} \propto \left\langle X^{(1)} X^{(1)} X^{(1)} X^{(1)} \right\rangle_{c}$, leading us to the four-point correlator. In the Gaussian case, this is expressed through pairs of the product of two-point correlators. Now, let's outline the tree-level bispectrum of the matter field:
+\begin{align*}
+    B_{G}\left(k_{1}, k_{2}, k_{3}, z\right) \equiv B_{112} & = 2 \left[ F_{2}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right) P_{m}^{L}\left(k_{1}, z\right) P_{m}^{L}\left(k_{2}, z\right) \right. \\
+    & \quad + F_{2}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) P_{m}^{L}\left(k_{2}, z\right) P_{m}^{L}\left(k_{3}, z\right) \\
+    & \quad + F_{2}\left(\mathbf{k}_{3}, \mathbf{k}_{1}\right) P_{m}^{L}\left(k_{3}, z\right) P_{m}^{L}\left(k_{1}, z\right) \big] \autolabel{}
+\end{align*}
+
+The configuration dependence of $B_{G}$ stems from the kernel $F_{2}$, which includes terms like $\alpha\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right)$ arising from the gradient of the density with the velocity field (represented by the $\mathbf{u} \nabla \delta$ term in the continuity equation) and contributions from the $(\mathbf{u} \nabla) \cdot \mathbf{u}$ term in the Euler equation which is gravity-induced. Consequently, the tree-level bispectrum exhibits high sensitivity to the nonlinear effects of gravity, enhancing the amplitude of the three-point correlator. Its scale dependence originates from the linear power spectrum, which amplifies the anisotropic characteristics of the bispectrum on large scales (refer to \cite{Liguori:2010hx} and the references therein). To be able to study the shape of the tree-level bispectrum we introduce the reduced bispectrum quantity as \cite{FRY1984ApJ...279..499F}:
+
+
+\begin{equation}
+    Q \equiv \frac{B\left(k_{1}, k_{2}, k_{3}, z\right)}{P_{m}^{L}\left(k_{1}, z\right) P_{m}^{L}\left(k_{2}, z\right)+P_{m}^{L}\left(k_{2}, z\right) P_{m}^{L}\left(k_{3}, z\right)+P_{m}^{L}\left(k_{1}, z\right) P_{m}^{L}\left(k_{3}, z\right)}, \autolabel{}
+\end{equation}
+
+which at tree-level is independent of redshift \cite{FRY1984ApJ...279..499F} and scale dependencies of the gravity contribution \cite{FRY1994ApJ...421...21F}. Now, varying the angle $\theta$ that satisfies the translation invariance $k_{1}+k_{2}+k_{3}= 0 $ and generating triangle configurations by fixing \emph{k1}, \emph{k2} and \emph{z} it can be shown that it is easier to find galaxies in a row than in an equilateral configuration physically which means that filaments are the preferred structures in the Universe \cite{Liguori:2010hx}.
+
+
+Now, let's consider the case of primordial non-Gaussianity (PNG), where additional terms appear in the bispectrum even at the tree-level. The bispectrum is an ideal tool for studying PNG due to its high sensitivity to non-linearities. However, this sensitivity also presents a challenge: we must carefully remove any contributions arising from gravitational evolution to draw meaningful conclusions about the primordial Universe. The first non-zero term in this context is \( B_{111} \), which represents the linearly extrapolated primordial bispectrum of the gravitational potential as predicted by inflationary models. It is given by:
+
+
+\begin{equation}
+    B_{I}\left(k_{1}, k_{2}, k_{3}, z\right) \equiv B_{111}\left(k_{1}, k_{2}, k_{3}, z\right)=M\left(k_{1}, z\right) M\left(k_{2}, z\right) M\left(k_{3}, z\right) B_{\Phi}\left(k_{1}, k_{2}, k_{3}\right) \autolabel{}
+\end{equation}
+
+ 
+Let us see in the case of the local primordial non-Gaussianity, the primordial gravitational field is written as a Taylor expansion around the Gaussian part as, 
+\begin{equation}
+    \Phi(\mathbf{x})=\Phi_{G}(\mathbf{x})+f_{\mathrm{NL}}^{\mathrm{local}}\left(\Phi_{G}^{2}(\mathbf{x})-\left\langle\Phi_{G}^{2}(\mathbf{x})\right\rangle\right)+\ldots \autolabel{}
+\end{equation}
+
+
+Plugging this expansion in Eq. \eqref{eq:4.20}, where now $X=\Phi$, we get a similar expression to that of the tree-level bispectrum. Note that the kernel $F_{2}$ will not be present, due to the primordial nature of $\Phi$. taking into account the Poisson equation, as well as by using the local expansion of $\Phi$, we get up to second order:
+
+
+\begin{align*}
+    & \delta_{\text {lin }}(\mathbf{k}, z)=M(k, z) \Phi(\mathbf{k}) \\
+    & =M(k, z) \Phi^{(1)}(\mathbf{k})+f_{\mathrm{NL}}^{\text {loc }} M(k, z) \Phi^{(2)}(\mathbf{k}) \\
+    & =M(k, z) \Phi_{G}(\mathbf{k})+M(k, z) f_{\mathrm{NL}}^{\mathrm{loc}} \int \frac{d^{3} q_{1}}{(2 \pi)^{3}} \frac{d^{3} q_{2}}{(2 \pi)^{3}} \delta_{D}\left(\mathbf{k}-\mathbf{q}_{12}\right) \Phi_{G}\left(\mathbf{q}_{1}\right) \Phi_{G}\left(\mathbf{q}_{2}\right) \\
+    & =\delta_{\text {lin }}^{(1)}(\mathbf{k}, z)+f_{\mathrm{NL}}^{\mathrm{loc}} \delta_{\text {lin }}^{(2)}(\mathbf{k}, z) \autolabel{}
+\end{align*}
+
+
+The first-order results, which coincide with the Gaussian case, are given by $\delta^{(1)}(\mathbf{k}, z) \equiv$
+
+$\delta_{\text {lin }}^{(1)}(\mathbf{k}, z)=M(k, z) \Phi_{G}(\mathbf{k})$. Plugging this in $B_{111}$, we get Eq, \eqref{eq:1.233} \cite{creminelli2006JCAP...05..004C}. The signal coming from the primordial bispectrum is much smaller than the tree-level gravitational bispectrum \cite{Sefusatti_2007}.
+
+\subsection{One-loop matter bispectrum}
+The 1-loop corrections to the tree-level bispectrum is given in an analogous way to the power spectrum $\left(B=B^{(0)}+B^{(1)}\right)$, i.e. by adding higher order solutions of the density field in the connected correlator and keeping terms up to some power of the linear density field. For Gaussian initial conditions, we get four terms that constitute the bispectrum 1-loop, involving up to fourth order perturbative solution, i.e. $B^{(1)}=B_{222}+B_{321}^{I}+B_{321}^{I}+B_{411}$.
+
+Each term is given as follows \cite{Scoccimarro_1997,Scoccimarro_1999,Bernardeau_2002}
+
+
+\begin{align*}
+    B_{222} \equiv & 8 \int \frac{d^{3} q}{(2 \pi)^{3}} P_{m}^{L}(q, z) F_{2}^{(s)}\left(-\mathbf{q}, \mathbf{q}+\mathbf{k}_{1}\right) P_{m}^{L}\left(\left|\mathbf{q}+\mathbf{k}_{1}\right|, z\right) \\
+    & \times F_{2}^{(s)}\left(-\mathbf{q}-\mathbf{k}_{1}, \mathbf{q}-\mathbf{k}_{2}\right) P_{m}^{L}\left(\left|\mathbf{q}-\mathbf{k}_{2}\right|, z\right) F_{2}^{(s)}\left(\mathbf{k}_{2}-\mathbf{q}, \mathbf{q}\right)  \autolabel{}\\
+    B_{321}^{I} \equiv & 6 P_{m}^{L}\left(k_{3}, z\right) \int \frac{d^{3} q}{(2 \pi)^{3}} P_{m}^{L}(q, z) F_{3}^{(s)}\left(-\mathbf{q}, \mathbf{q}-\mathbf{k}_{2},-\mathbf{k}_{3}\right) P_{m}^{L}\left(\left|\mathbf{q}-\mathbf{k}_{2}\right|, z\right) \\
+    & \times F_{2}^{(s)}\left(\mathbf{q}, \mathbf{k}_{2}-\mathbf{q}\right)+5 \text { perm }  \autolabel{}\\
+    B_{321}^{I I} \equiv & 6 P_{m}^{L}\left(k_{2}, z\right) P_{m}^{L}\left(k_{3}, z\right) F_{2}^{(s)}\left(\mathbf{k}_{2}, \mathbf{k}_{3}\right) \int \frac{d^{3} q}{(2 \pi)^{3}} P_{m}^{L}(q, z) F_{3}^{(s)}\left(\mathbf{k}_{3}, \mathbf{q},-\mathbf{q}\right) \\
+    & +5 \text { perm, }  \autolabel{}\\
+    B_{411} \equiv & 12 P_{m}^{L}\left(k_{2}, z\right) P_{m}^{L}\left(k_{3}, z\right) \int \frac{d^{3} q}{(2 \pi)^{3}} P_{m}^{L}(q, z) F_{4}^{(s)}\left(\mathbf{q},-\mathbf{q},-\mathbf{k}_{2},-\mathbf{k}_{3}\right) \\
+    & +2 \text { perm. } \autolabel{}
+\end{align*}
+
+
+For non-Gaussian initial conditions, there are additional terms introduced in the above, contributing at each order with up to $\mathcal{O}\left(\delta^{6}\right)$. They are given by \cite{Sefusatti_2009}:
+
+
+\begin{equation}
+    B_{N G}^{(1)}=B_{112}^{I I}+B_{122}^{I}+B_{122}^{I I}+B_{113}^{I}+B_{113}^{I I} \autolabel{}
+\end{equation}
+
+
+The first non-trivial term, involving up to second-order solutions of the density field, is
+
+
+\begin{equation}
+    B_{112}^{I I} \equiv=\int \frac{d^{3} q}{(2 \pi)^{3}} F_{2}^{(s)}\left(\mathbf{q}, \mathbf{k}_{3}-\mathbf{q}\right) T_{I}\left(\mathbf{k}_{1}, \mathbf{k}_{2}, \mathbf{q}, \mathbf{k}_{3}-\mathbf{q}\right)+2 \text { perm } \autolabel{}
+\end{equation}
+
+
+This correction to the $\mathcal{O}\left(\delta^{4}\right)$ terms of the matter bispectrum Eq. \eqref{eq:4.22} is negligibly small, due to the kernel suppression \cite{Scoccimarro_2004}. The remaining terms of the 1-loop correction are listed below \cite{Sefusatti_2009}:
+
+
+\begin{align*}
+    B_{122}^{I} & =2 P_{m}^{L}\left(k_{1}, z\right)\left[F_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{3}\right) \int \frac{d^{3} q}{(2 \pi)^{3}} F_{2}^{(s)}\left(\mathbf{q}, \mathbf{k}_{3}-\mathbf{q}\right) B_{I}\left(k_{3}, q,\left|\mathbf{k}_{3}-\mathbf{q}\right|\right)+\left(k_{3} \leftrightarrow k_{2}\right)\right]+2 \text { perm. } \\
+    & =F_{2}^{(s)}\left(\mathbf{k}_{1}, \mathbf{k}_{2}\right)\left[P_{m}^{L}\left(k_{1}, z\right) P_{12}\left(k_{2}\right)+P_{m}^{L}\left(k_{2}, z\right) P_{12}\left(k_{1}\right)\right]+2 \text { perm. }  \autolabel{}\\
+    B_{122}^{I I} & =4 \int \frac{d^{3} q}{(2 \pi)^{3}} F_{2}^{(s)}\left(\mathbf{q}, \mathbf{k}_{2}-\mathbf{q}\right) F_{2}^{(s)}\left(\mathbf{k}_{1}+\mathbf{q}, \mathbf{k}_{2}-\mathbf{q}\right) B_{I}\left(k_{1}, q,\left|\mathbf{k}_{1}+\mathbf{q}\right|\right) \\
+    & \times P_{m}^{L}\left(\left|\mathbf{k}_{2}-\mathbf{q}\right|, z\right)+2 \text { perm. }  \autolabel{}\\
+    B_{113}^{I} & =3 B_{I}\left(k_{1}, k_{2}, k_{3}\right) \int \frac{d^{3} q}{(2 \pi)^{3}} F_{3}^{(s)}\left(\mathbf{k}_{3}, \mathbf{q},-\mathbf{q}\right) P_{m}^{L}(q, z)+2 \text { perm., }  \autolabel{}\\
+    B_{113}^{I I} & =3 P_{m}^{L}\left(k_{1}, z\right) \int \frac{d^{3} q}{(2 \pi)^{3}} F_{3}^{(s)}\left(\mathbf{k}_{1}, \mathbf{q}, \mathbf{k}_{2}-\mathbf{q}\right) B_{I}\left(k_{2}, q,\left|\mathbf{k}_{2}-\mathbf{q}\right|\right)+\left(k_{1} \leftrightarrow k_{2}\right)+2 \text { perm. } \autolabel{}
+\end{align*}
+
+
+
+\subsection{Marked Statistics} \label{Marked}
+The commonly used statistics to extract cosmological information for eg. the power spectrum is significantly affected by the mass of the most massive objects, and is expected to be suboptimal when extracting information embedded in low-density regions \cite{Rimes_2005}. The idea of marked statistics is to give more weight to low-density regions and extract information from there.\\
+
+Marked density fields are weighted density fields where their weight can represent galaxy properties, halo merger histories or environmental densities defined as a weighted sum over particle positions \cite{skibba2006MNRAS.369...68S, Balaguera_Antol_nez_2014, Beisbart_2000}. So, The key statistic is the marked density field, defined as a weighted sum over particle positions\cite{Philcox_2020};
+\begin{equation}
+    \rho_M(\mathbf{x})=\sum_i \delta_D\left(\mathbf{x}-\mathbf{x}_i\right) m\left(\mathbf{x}_i\right)=\int d \mathbf{x}^{\prime}\left[\sum_i \delta_D\left(\mathbf{x}^{\prime}-\mathbf{x}_i\right) m\left(\mathbf{x}^{\prime}\right)\right] \delta_D\left(\mathbf{x}-\mathbf{x}^{\prime}\right),\autolabel{}
+\end{equation}
+where $\delta_D$ is a Dirac delta and $i$ runs over all matter particles. In the above expression, $m(\mathbf{x})$ is the mark, defined as a local overdensity as in  \cite{Massara_2021}:
+\begin{equation}
+    m(\mathbf{x})=\left(\frac{1+\delta_s}{1+\delta_s+\delta_R(\mathbf{x})}\right)^p \equiv\left(1+\frac{\delta_R(\mathbf{x})}{1+\delta_s}\right)^{-p} \autolabel{}
+\end{equation}
+where $\delta_R(\mathbf{x})$ is the matter overdensity filtered on scale $R$ using Top-Hat filter of radius $R$, the bias $\delta_s$  is a density parameter and the exponent $p$ being user-defined parameters. Defining the sample density field $n\left(\mathbf{x}^{\prime}\right)=\sum_i \delta_D\left(\mathbf{x}^{\prime}-\mathbf{x}_i\right)$, Eq. \eqref{eq:4.38} can be rewritten as:
+\begin{equation}
+    \rho_M(\mathbf{x})=m(\mathbf{x}) n(\mathbf{x})=m(\mathbf{x}) \bar{n}[1+\delta(\mathbf{x})],\autolabel{}
+\end{equation}
+where $\bar{n}=\langle n(\mathbf{x})\rangle$ is the average density.
+In order to convert Eq. \eqref{eq:4.40} into an overdensity field, we require the mean density:
+\begin{equation}
+    \left\langle\rho_M(\mathbf{x})\right\rangle=\langle n(\mathbf{x}) m(\mathbf{x})\rangle=\bar{n} \bar{m},\autolabel{}
+\end{equation}
+where we have defined $\bar{m}$ as $\langle n(\mathbf{x}) m(\mathbf{x})\rangle /\langle n(\mathbf{x})\rangle$, i.e., the average of $m(\mathbf{x})$ weighted by the number density field. The marked overdensity field is thus
+\begin{equation}
+    \delta_M(\mathbf{x}) \equiv \frac{\rho_M(\mathbf{x})-\left\langle\rho_M\right\rangle}{\left\langle\rho_M\right\rangle}=\frac{1}{\bar{m}} m(\mathbf{x})[1+\delta(\mathbf{x})]-1.\autolabel{}
+\end{equation}
+
+So, we see that depending on the parameters in Eq. \eqref{eq:4.39} i.e $R$, $\delta_s$,$p$ we can define our marks. The exponent $ p $ and the bias $ \delta_s $ dictate how much the value of the local density $ \delta_R $ impacts the final mark. When $ p $ is close to zero or $ \delta_s $ is very large, the mark $ m(\mathbf{x}) $ tends to unity. Moreover, when $ p $ is positive, galaxies in low-density environments are up-weighted compared to those in high-density regions. This means that mark power spectra with $ p > 0 $ are more sensitive to low-density regions, while the opposite happens when $ p $ is negative.
+
+Recent studies have demonstrated that measuring the power spectrum \cite{Massara_2021, Massara_2023} and bispectrum \cite{jung2024quijotepngoptimizingsummarystatistics} of the marked density field reveals new cosmological information beyond what is captured by the standard power spectrum. This additional information originates from higher-order statistics embedded in the marked field.
+
+
+
+\subsection*{Halo Mass function}
+Halos are assumed to form on the peaks of the smoothed underlying matter overdensity field when its value exceeds some threshold value $\delta_{c}$. Therefore, the number of created objects depends on the distribution of points that exceed such a threshold. In the early work of \cite{press1974ApJ...187..425P}, it was found that the mass function can be expressed in terms of the height of the peaks, by using the spherical collapse model. It states that in a smoothed linear contrast field in Lagrangian space $\delta_{R}^{(1)}(\mathbf{q})$, a spherical region of radius $R$ with uniform density and enclosed mass $M=(4 \pi / 3) \bar{\rho}_{m} R^{3}$, where $\bar{\rho}_{m}$ is the mean co-moving density at time $t$, will collapse to form a bound object when $\delta_{R}^{(1)}$ exceeds a threshold $\delta_{c}$ (spherical collapse threshold). Assuming Gaussian statistics for the smoothed overdensity field, one can write the probability of having a halo with mass greater than $M$ as a fraction of a Lagrangian volume by
+
+
+\begin{equation}
+    p_{G}\left(\delta_{R}^{(1)}>\delta_{c}\right)=\frac{1}{\sqrt{2 \pi} \sigma(R)} \int_{\delta_{c}}^{\infty} d \delta \exp \left[-\frac{1}{2} \frac{\delta^{2}}{\sigma^{2}(R)}\right] \autolabel{}
+\end{equation}
+
+
+where $\sigma(R)$ is the smoothed variance of the density field over a radius $R$ [Eq.(3.84)]. The Lagrangian volume fraction that encloses the halo with mass greater than $M$ is given by:
+
+
+\begin{equation}
+    F(>M)=\frac{1}{\bar{\rho}_{m}} \int_{M}^{\infty} d \ln M^{\prime} M^{\prime} n_{h}\left(M^{\prime}\right)=p_{G}\left(\delta_{R}^{(1)}>\delta_{c}\right) \autolabel{}
+\end{equation}
+
+
+where $n_{h}(M)$ is the co-moving number density of halos above mass $M$. Differentiating over the halo mass $M$ gives
+
+
+\begin{equation}
+    f(M) \equiv-\frac{d F(>M)}{d M} \autolabel{}
+\end{equation}
+
+
+which leads to the mass function of halos
+
+
+\begin{align*}
+    & \frac{d F}{d M}=-n_{h}(M) M=\frac{1}{\sqrt{2 \pi} \sigma(R)} \exp \left[-\frac{1}{2} \frac{\delta^{2}}{\sigma^{2}(R)}\right] \frac{d}{d M}\left(\frac{\delta_{c}}{\sigma_{R}}\right) \Rightarrow \\
+    & n_{h}(M)=-\frac{2 \bar{\rho}_{m}}{\sqrt{2 \pi}} \frac{\delta_{c}}{\sigma_{R}^{2}} \frac{1}{M} \frac{d \sigma_{R}}{d M} \exp \left[-\frac{1}{2} \frac{\delta^{2}}{\sigma^{2}(R)}\right] \autolabel{}
+\end{align*}
+
+
+The factor 2 in front of the mean density is introduced to recover the proper normalisation and to get the total mass after the integration over the whole range of $M$, i.e. $\int_{0}^{\infty} d M M n_{h}(M)=\bar{\rho}_{m} / 2$. It is convenient to parametrize the mass function with a multi-\\
+plicity function $f(\nu)$ as:
+
+
+\begin{equation}
+    n_{h}(M, z)=\frac{d \mathcal{N}}{\mathrm{d} \ln M}=\frac{\bar{\rho}_{m}}{M} f(\nu)\left|\frac{\mathrm{d} \ln \nu}{\mathrm{d} \ln M}\right| \autolabel{}
+\end{equation}
+
+
+where $\nu(M, z)=\delta_{c} / \sigma_{R}(M, z)$ is the height of the peak. In the Press-Schechter (PS) formalism this function is simply:
+
+
+\begin{equation}
+    f_{P S}(\nu)=\sqrt{\frac{2}{\pi}} \nu e^{-\nu^{2} / 2} \autolabel{}
+\end{equation}
+
+
+The PS mass function has a dependence on redshift and cosmological parameters, as well as on the primordial power spectrum, therefore it has a universal character \cite{Sheth_1999} (ST hereafter). The mass function shows that an increasing halo mass leads to high-peaks $(\nu \gg 1)$ and therefore to more rare objects. The opposite happens for low-mass halos, which seem to be a common case during the process of halo formation. In ST \cite{Sheth_1999}  a modified version of the PS mass function is proposed to improve the agreement with simulations
+
+
+\begin{equation}
+    f_{S T}(\nu)=A \sqrt{\frac{2 q}{\pi}}\left(1+\frac{1}{\left(q \nu^{2}\right)^{p}}\right) \nu e^{-\frac{q \nu^{2}}{2}} \autolabel{}
+\end{equation}
+
+
+where $A=1 /\left(1+2^{-p} \Gamma(0.5-p) / \sqrt{\pi}\right) \approx 0.322184, q=0.707$ and $p=0.3$.
+
+Although the PS formalism predictions on the form of the mass function are in agreement with simulations, it does not treat properly the small overdensities that might exist inside the Lagrangian radius. This is due to the fact that the PS formalism considers the whole smoothed region as one halo. In other words, all the points inside the halo exceed the threshold value, which is not generally true for realistic cases. This is known as the cloud-in-cloud problem and excursion set formalism was introduced \cite{Bond1991ApJ...379..440B} to solve it. The latter approach adds the first-crossing condition, where it states that a region belongs to a bound structure only if the smoothing radius $R$ has the maximum value, in order for $\delta_{R}^{(1)}$ to reach the threshold $\delta_{c}$.
+
+HMF is known to be sensitive to non-Gaussian initial conditions. Depending on these initial conditions, it skews the distribution by changing the abundance of massive halos. It was proposed as an interesting complementary probe of primordial non-Gaussianity (PNG) to the bispectrum in several studies \cite{Matarrese_2000, Desjacques_2009, Sefusatti_2007, Sefusatti_2009}. A major advantage of the HMF is that it directly depends on the PNG amplitude parameter $f_{\text{NL}}$. Therefore, it does not exhibit the $b_{\phi}$–$f_{\text{NL}}$ degeneracy that affects the scale-dependent power spectrum signature.
+
+In the case of massive neutrinos, the free streaming of the non-relativistic neutrinos counteracts gravitational collapse, the fundamental process of cosmic structure formation. This leads to a significant suppression in the average number density of massive structures which is particularly evident in the high-mass end of the HMF. For a fixed amplitude of primordial curvature perturbations, the degree of suppression in the number density of dark matter halos depends on the total neutrino mass $M_{\nu}$. As the neutrino mass increases, the suppression in the comoving number density of dark matter halos becomes more pronounced so HMF is also sensitive to the total neutrino mass $M_{\nu}$ \cite{Marulli_2011,Brandbyge_2010}.
+

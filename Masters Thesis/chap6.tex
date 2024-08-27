@@ -1,1 +1,99 @@
-\chapter{Results and Discussion}
+\chapter{Results and Discussion}\label{result}
+\justifying
+As we mentioned in the previous chapter one of the primary objectives of this thesis is to determine which statistics, or combinations of them, yield the greatest information about cosmological parameters at small, non-linear scales, as was indicated in the preceding chapter. 
+To achieve this, we developed a neural network pipeline that uses the moment network approach to carry out likelihood-free inferences. As both $f_{NL}^{\mathrm{equil}}$ and $\mathrm{M}_{\nu}$ show significant signals at small, non-linear scales, we tested our pipeline on two distinct datasets: Quijote-PNG, which has non-Gaussian initial conditions, and the Quijote dataset with massive neutrinos included to assess the efficacy of our pipeline.
+
+This chapter is divided into two sections. Firstly we discuss our results of the model on $f_{\mathrm{NL}}^\mathrm{equil}$ LH which has non-gaussian initial conditions and then we discuss it for "nwLH" i.e latin-hypercube with massive neutrinos.
+
+\section{\texorpdfstring{$f_{NL}^{\mathrm{equil}}$ LH}{fNL^equil LH}}
+
+
+In order to evaluate our neural network's (NN) learning capacity, we examine the training vs validation loss plots shown in Figure \ref{fig:fnl_loss_plot}.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1.0\textwidth]{fnl_results/combined_training_validation_loss_grid.png}
+    \caption{Loss plot for a combination of different summary statistics trained in $f_{NL}^\mathrm{equil}$ LH }
+    \label{fig:fnl_loss_plot}
+\end{figure}
+
+We see a consistent pattern over the course of our tests with different combinations of summary statistics i.e. both the training and validation losses decrease over time. Most importantly, our model does not overfit the training data since the validation loss is constantly less than or comparable to the training loss. 
+This analysis affirms that our neural network effectively learns from diverse combinations of summary statistics, representing varied training data, and demonstrates strong generalization to unseen data. This is evident from the consistent stabilization and convergence observed in both training and validation losses.
+The stability and convergence of these metrics across different sets of summary statistics underscore the model's ability to extract meaningful patterns and relationships from the data. 
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.5\textwidth]{fnl_results/sigma_heatmap[0].png}
+    \caption{Standard deviation prediction of the NN model for different combinations of summary statistics in $f_{NL}^\mathrm{equil}$ LH. The colour scale gives the ratio of each error with respect to its equivalent computed using only the power spectrum and bispectrum.}
+    \label{fig:sigma_heatmap}
+\end{figure}
+
+In Fig. \ref{fig:parameters_metrics} and Fig. \ref{fig:sigma_heatmap} we present an overview of our primary finding. In Fig \ref{fig:parameters_metrics} we plot different evaluators for checking the accuracy of our model's ability to constrain the parameters on a test set, and in Fig. \ref{fig:sigma_heatmap} we show the standard deviation prediction of the NN model. The power spectrum (Pk0), which is important to constrain the conventional cosmological parameters, is taken for granted in our study and we determine what additional single summary statistic may be added to it to increase further constraints on $f_{NL}^{\mathrm{equil}}$.
+
+From Fig. \ref{fig:sigma_heatmap} we can see that adding the marked power spectrum (MP0\_0) to the power spectrum (Pk0) outperforms both Pk0 and Bk0.\footnote{We found that the mark with the smallest smoothing scale (R = 20, p = 1, $\delta_s = 0.5$) gives results as good as the combination of the three others, which was also noted in \cite{jung2024quijotepngoptimizingsummarystatistics}.} Adding the marked power spectrum or marked bispectrum to the power spectrum and bispectrum does not result in any significant changes in the standard deviation.
+
+As noted in \cite{Jung_2023, jung2024quijotepngoptimizingsummarystatistics}, the HMF significantly improves the constraints on cosmological parameters, especially $f_{NL}^{\mathrm{equil}}$. Based on this insight, we included HMF in our analysis. We observed that incorporating HMF into any combination enhances the accuracy of our constraints. Notably, the best-performing combination of statistics is Pk0 + MP0\_0 + HMF, achieving a standard deviation of $241.58$ on $f_{NL}^\mathrm{equil}$.
+
+
+Now, let's examine Fig. \ref{fig:parameters_metrics}, where we sometimes notice a drop in accuracy when adding more observables. To understand this, it is important to recall that better accuracy generally requires either a large set of input features for the model to learn from or highly informative features. In our case, we are limited by the available training data, and having a larger training set would improve the accuracy in constraining the parameters. Additionally, some statistics are strongly correlated, so adding new features to the existing ones may not provide additional relevant information. This redundancy can negatively impact the training, resulting in a drop in accuracy, which we observe in the case of the standard deviation predictions.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1.05\textwidth]{fnl_results/Parameters_metrics[0].png}
+    \caption{Different evaluators for assessing the model's accuracy in predicting $f_{NL}^{\mathrm{equil}}$, $\Omega_{m}$, $\mathrm{h}$, $\mathrm{n_{s}}$, and $\sigma_{8}$ parameters using combinations of power spectrum (Pk0), bispectrum (Bk0), marked power spectrum with smallest smoothing scale (MP0\_0), combination of all marked power spectra (MP0), and combination of all marked bispectra (MB0). Each column represents a specific combination.}
+    \label{fig:parameters_metrics}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{fnl_results/Pk0_MP0_0_HMF/combined_plot_Pk0_MP0_0_HMF.png}
+    \caption{Predictions of parameters for the best-performing network trained on the combination of the Pk0, MP0\_0, and HMF statistics, applied to the test set of the $f_{NL}$ LH. Left panel — Comparison of the true and predicted values of $\Omega_m$. The lines span the predicted 1$\sigma$ about the predicted value. Centre panel — Predicted standard deviations as a function of the true parameter value. The mean standard deviation is also shown, compared with the root mean squared errors (RMSE) of the mean predictions. Right panel — Bias of the mean prediction in units of the predicted standard deviations.}
+    \label{fig:Pk0_MP0_0_HMF}
+\end{figure}
+
+
+In Fig.\ref{fig:Pk0_MP0_0_HMF} we show the predictions of different parameters from the NN which was trained on Pk0, MP0\_0, and HMF and applied to the test $f_{NL}^{\mathrm{equil}}$ LH which shows the best constraints. We observe a very high $R^2$ value of 0.99 for $\Omega_{m}$ and 0.98 for $\sigma_{8}$ indicating that the model has very high accuracy in predicting these parameters. In the case of $\mathrm{h}$, $\mathrm{n_{s}}$, and $f_{NL}^{\mathrm{equil}}$ we see the scatter in the standard deviation is more considerable than $\Omega_{m}$ and $\sigma_{8}$ indicating the influence of other cosmological parameters in each simulation. The trend in the bias as a function of true value for $\mathrm{h}$, $\mathrm{n_{s}}$, and $f_{NL}^{\mathrm{equil}}$ indicates that the predictions are bounded by the prior. If the true value is near the edge of the prior, the model struggles more with the prediction. The results for other combinations are presented in \ref{fnlappendix}.
+
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{nwLH}
+
+As we mentioned before massive neutrinos also show strong signals at small non-linear scales so we tried implementing our NN pipeline to LH data with massive neutrinos. We discuss our results below. \\
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1.0\textwidth]{nwlh_results/combined_training_validation_loss_grid.png}
+    \caption{Loss plot for a combination of different summary statistics trained in nwLH }
+    \label{fig:mnu_loss_plot}
+\end{figure}
+
+We see in Fig. \ref{fig:mnu_loss_plot} that even for the nwLH data set, our model learns well on the training set. The training and validation losses consistently decrease over time, indicating effective learning. Additionally, the validation loss remains lower than or comparable to the training loss, suggesting that the model is not overfitting and is generalizing well to unseen data. This pattern is consistent with the results observed from other data sets and combinations of summary statistics, further validating the robustness and reliability of our model.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{nwlh_results/keras_tuner_dir-halos_nwlh-mmnsigma_heatmap-[0].png}
+    \caption{Standard deviation prediction of the NN model for different combinations of summary statistics in nwLH. The colour scale gives the ratio of each error with respect to its equivalent computed using only the power spectrum and bispectrum.}
+    \label{fig:sigma_heatmap_nwlh}
+\end{figure}
+
+In Fig. \ref{fig:sigma_heatmap_nwlh}, we plot the standard deviation prediction of the NN for different combinations of summary statistics trained and tested on the nwLH dataset. We observe that adding marked statistics to the power spectrum, even in the case of massive neutrinos, provides better constraints than adding the bispectrum. The constraints are improved further when adding marked statistics with the smallest smoothing scale compared to the sum of all the marks, both when added to the power spectrum alone and to both the power spectrum and bispectrum. Additionally, we observe that adding the marked bispectrum does not significantly improve the constraints. However, adding the Halo Mass Function (HMF) improves the constraints on $\mathrm{M}_{\nu}$. Overall, the best constraint on $\mathrm{M}_{\nu}$ is found with the combination of statistics Pk0 + Bk0 + MP0\_0 + HMF, achieving a standard deviation of 0.2493.\\
+In Figure \ref{fig:parameters_metrics_nwlh}, we notice a pattern similar to what we saw with the equilateral shape of $f_{NL}$ likelihood (LH) i.e Fig. \ref{fig:parameters_metrics}, where accuracy decreases when certain observables are added. This trend shows that our ability to accurately predict outcomes is limited by the amount of data we have and how closely related the different statistics are.
+\cite{jung2024quijotepngoptimizingsummarystatistics} showed that increasing the number of samples results in improved accuracy. This suggests that if we gather more data, we might overcome the accuracy drop we observe and handle the challenges posed by statistical correlations and data limitations more effectively.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=1.05\textwidth]{nwlh_results/keras_tuner_dir-halos_nwlh-mmnParameters_metrics-trial[0].png}
+    \caption {Different evaluators for assessing the model's accuracy in predicting $f_{NL}^{\mathrm{equil}}$, $\Omega_{m}$, $\mathrm{h}$, $\mathrm{n_{s}}$, and $\sigma_{8}$ parameters using combinations of power spectrum (Pk0), bispectrum (Bk0), marked power spectrum with smallest smoothing scale (MP0\_0), combination of all marked power spectra (MP0), and combination of all marked bispectra (MB0). Each column represents a specific combination.}
+    \label{fig:parameters_metrics_nwlh}
+\end{figure}
+
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.8\textwidth]{nwlh_results/Pk0_MP0_0_HMF/combined_plot_Pk0_MP0_0_HMF.png}
+    \caption{Predictions of parameters for the best-performing network trained on the combination of the Pk0, MP0\_0, and HMF statistics, applied to the test set of the nwLH. Left panel — Comparison of the true and predicted values of $\Omega_m$. The lines span the predicted 1$\sigma$ about the predicted value. Centre panel — Predicted standard deviations as a function of the true parameter value. The mean standard deviation is also shown, compared with the root mean squared errors (RMSE) of the mean predictions. Right panel — Bias of the mean prediction in units of the predicted standard deviations.}
+    \label{fig:Pk0_MP0_0_HMFnwlh}
+\end{figure}
+
+In Fig.\ref{fig:Pk0_MP0_0_HMFnwlh} we present the predictions made by our neural network (NN) model trained on Pk0, MP0\_0, and HMF data, applied to the test case of $f_{NL}^{\mathrm{equil}}$ likelihood (LH). Notably, the accuracy of predicting the parameter $\mathrm{M}_{\nu}$ is remarkably low. However, when we calculate the standard deviation based on the uniform prior we used for neutrino masses, which ranges from [0, 1] $\mathrm{eV}$, we expect a standard deviation of $\approx 0.2887$. Interestingly, our model demonstrates an improvement in the mean sigma, suggesting it is learning meaningful patterns from the data.
+
+The poor accuracy observed could be attributed to firstly, the limited amount of available data. With insufficient data, the model may struggle to generalize effectively beyond the training set, leading to inaccurate predictions. Secondly, as discussed before for $f_{NL}^\mathrm{equil}$ we are limited by the prior which we can see from the bias trend where it is overestimating the sigma values for lower true values of $\mathrm{M}_{\nu}$ and underestimation the higher true values.
+The results for other combinations of summary statistics trained in nwLh are presented in \ref{nwlhappendix}.
